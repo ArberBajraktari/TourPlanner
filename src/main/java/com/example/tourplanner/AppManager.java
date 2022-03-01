@@ -14,7 +14,7 @@ public class AppManager extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         //"Import" Stylesheet
         scene.getStylesheets().add(String.valueOf(getClass().getResource("StringConcatenation.css")));
-        stage.setTitle("Hello!");
+        stage.setTitle("Hello World!");
         stage.setScene(scene);
         stage.show();
 

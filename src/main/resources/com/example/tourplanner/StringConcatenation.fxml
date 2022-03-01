@@ -14,14 +14,14 @@
     </padding>
 
     <Label> Left String </Label>
-    <TextField fx:id="LeftStringTextField"></TextField>
+    <TextField fx:id="leftStringTextField"></TextField>
 
     <Label> Right String </Label>
-    <TextField fx:id="RightStringTextField"></TextField>
+    <TextField fx:id="rightStringTextField"></TextField>
 
     <!-- e shkru emrin e buttonit ne attribute (per shkak te gjuhve te shumta: eng, gjerm, etj-->
     <Button styleClass="mainButton" text="Concatenate" onMouseClicked="#concatenateStrings"></Button>
 
-    <Label fx:id="StringConcatenationResultLabel"></Label>
+    <Label fx:id="stringConcatenationResultLabel"></Label>
 
 </VBox>

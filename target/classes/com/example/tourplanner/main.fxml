@@ -12,14 +12,13 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.RowConstraints?>
-<GridPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tourplanner.Controller">
+<GridPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tourplanner.Controller"
     alignment="center"
     gridLinesVisible="true"
     hgap="10" vgap="5.0"
     minHeight="400.0" minWidth="400.0"
     prefHeight="400.0" prefWidth="400.0"
-    xmlns="http://javafx.com/javafx/11.0.2"
-    fx:controller="com.example.tourplanner.Controller">
+    xmlns="http://javafx.com/javafx/11.0.2">
     <children>
         <Label text="Tour:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
         <TextField fx:id="tourTextField" GridPane.columnIndex="1" GridPane.rowIndex="0"></TextField>

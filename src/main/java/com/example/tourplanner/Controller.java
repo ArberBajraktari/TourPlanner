@@ -19,8 +19,8 @@ public class Controller implements Initializable {
     private final MainViewModel viewModel = new MainViewModel();
 
     public TableView tableView;
-    public TableColumn tourColumn;
-    public TableColumn distanceColumn;
+    public TableColumn tourColumn = new TableColumn();
+    public TableColumn distanceColumn = new TableColumn();
     public TextField tourTextField;
     public TextField distanceTextField;
     @FXML

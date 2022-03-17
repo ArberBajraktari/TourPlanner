@@ -15,8 +15,10 @@ public class Main extends Application {
 
         //"Import" Stylesheet
         Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
+        Scene scene = new Scene(root, 500, 600);
+        scene.getStylesheets().add(String.valueOf(getClass().getResource("StringConcatenation.css")));
         primaryStage.setTitle("Tourplanner");
-        primaryStage.setScene(new Scene(root, 500, 600));
+        primaryStage.setScene(scene);
         primaryStage.setMinWidth(400);
         primaryStage.show();
 

@@ -9,14 +9,19 @@
 <?import javafx.scene.layout.HBox?>
 
 
-<SplitPane prefHeight="500.0" prefWidth="215.0">
+<SplitPane prefHeight="500.0" prefWidth="250.0" orientation="VERTICAL" GridPane.rowIndex="4" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
     <items>
-        <AnchorPane>
-            <Label maxWidth="1.7976931348623157E308" minWidth="-Infinity" text="Tours:">
+        <AnchorPane maxHeight="50" minHeight="50" >
+            <HBox>
+                <Label minWidth="-Infinity" text="Tours:"></Label>
+                <Button text="+" styleClass="mainButton"/>
+                <Button text="-" />
+                <Button text="Edit" />
+            </HBox>
         </AnchorPane>
 
         <AnchorPane>
-            <Label maxWidth="1.7976931348623157E308" minWidth="-Infinity" text="Tours:">
+            <ListView fx:id="node" layoutX="5.0" layoutY="3.0" minHeight="250.0" maxWidth="100" prefWidth="node.parent.width"/>
         </AnchorPane>
     </items>
 

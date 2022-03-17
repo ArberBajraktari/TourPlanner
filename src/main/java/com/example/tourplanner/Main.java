@@ -16,7 +16,7 @@ public class Main extends Application {
         //"Import" Stylesheet
         Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
         primaryStage.setTitle("Tourplanner");
-        primaryStage.setScene(new Scene(root, 400, 275));
+        primaryStage.setScene(new Scene(root, 500, 600));
         primaryStage.setMinWidth(400);
         primaryStage.show();
     }

@@ -21,7 +21,7 @@
         </AnchorPane>
 
         <AnchorPane>
-            <ListView fx:id="node" layoutX="5.0" layoutY="3.0" minHeight="250.0" maxWidth="100" prefWidth="node.parent.width"/>
+            <ListView fx:id="node" layoutX="5.0" layoutY="3.0" minHeight="250.0" maxWidth="100"/>
         </AnchorPane>
     </items>
 

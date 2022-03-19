@@ -1,3 +1,7 @@
 .mainButton{
-    -fx-background-color: blue;
+    /*-fx-background-color: blue;*/
+}
+
+Label{
+    -fx-padding: 10 10 10 10;
 }

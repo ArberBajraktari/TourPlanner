@@ -19,58 +19,45 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="CENTER" gridLinesVisible="true" hgap="10.0" minHeight="600.0" minWidth="500.0" prefHeight="400.0" prefWidth="400.0" vgap="10.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tourplanner.Controller">
+<?import javafx.scene.layout.BorderPane?>
+<GridPane alignment="CENTER" hgap="10.0" prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tourplanner.Controller">
     <children>
-<!--  Add Search View     -->
-    <fx:include source="TourSearchView.fxml" />
-    <MenuBar prefHeight="27.0" prefWidth="253.0" GridPane.rowIndex="1">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
+
+        <MenuBar prefHeight="27.0" prefWidth="253.0" GridPane.rowIndex="1" GridPane.columnSpan="3">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Close" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Option" />
+            </menus>
+        </MenuBar>
+
+        <!--  Add Search View     -->
+        <fx:include source="TourSearchView.fxml" />
+
+
+
+        <!--  Add Tour Overview View  -->
+        <fx:include source="TourOverviewView.fxml" />
+
+
+        <SplitPane dividerPositions="0.5, 0.5" orientation="VERTICAL" prefHeight="400.0" prefWidth="160.0" GridPane.rowIndex="4" GridPane.columnIndex="2" GridPane.rowSpan="6">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+    <!--  Add Tour Details View  -->
+                <fx:include source="TourDetailsView.fxml" />
+
+    <!--  Add Tour Log View  -->
+                <fx:include source="TourLogView.fxml" />
             </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Option" />
-        </menus>
-      </MenuBar>
-
-<!--  Add Tour Overview View  -->
-    <fx:include source="TourOverviewView.fxml" />
-
-
-
-    <SplitPane dividerPositions="0.5, 0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-        <items>
-            <Label text="Title:" />
-<!--  Add Tour Details View  -->
-            <fx:include source="TourDetailsView.fxml" />
-
-<!--  Add Tour Log View  -->
-            <fx:include source="TourLogView.fxml" />
-        </items>
-      </SplitPane>
+        </SplitPane>
 
 
     </children>
-    <columnConstraints>
-        <ColumnConstraints halignment="RIGHT" hgrow="NEVER" maxWidth="255.0082244873047" minWidth="100.0" prefWidth="172.17185974121094" />
-        <ColumnConstraints hgrow="ALWAYS" maxWidth="309.3153533935547" minWidth="158.9917755126953" prefWidth="287.82814025878906" />
-        <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
-      <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
-    </columnConstraints>
-    <rowConstraints>
-        <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
-        <RowConstraints maxHeight="27.0" minHeight="27.0" prefHeight="27.0" />
-        <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" vgrow="NEVER" />
-      <RowConstraints maxHeight="17.0" minHeight="17.0" prefHeight="17.0" vgrow="NEVER" />
-      <RowConstraints vgrow="ALWAYS" />
-    </rowConstraints>
-    <padding>
-        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-    </padding>
 </GridPane>

@@ -13,26 +13,17 @@
 <!--<SplitPane GridPane.rowIndex="4" GridPane.columnIndex="1" prefHeight="500.0" prefWidth="250.0" orientation="VERTICAL" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">-->
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.control.TextField?>
-<SplitPane GridPane.rowIndex="4" GridPane.rowSpan="6" GridPane.columnIndex="1" minHeight="400" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-    <VBox>
-        <HBox>
-            <Label minWidth="-Infinity" text="Tours:"></Label>
-            <StackPane>
-                <TextField></TextField>
-            </StackPane>
-            <StackPane>
-                <Button text="+" styleClass="mainButton"/>
-            </StackPane>
-        </HBox>
+<HBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tourplanner.Controller">
+    <Label minWidth="-Infinity" text="Tours:"></Label>
+    <StackPane>
+        <TextField fx:id="inputTour"></TextField>
+    </StackPane>
+    <StackPane>
+        <Button text="+" styleClass="mainButton" onAction="#saveAction"></Button>
+    </StackPane>
+</HBox>
 
-
-
-
-        <ListView fx:id="node" layoutX="5.0" layoutY="3.0"></ListView>
-    </VBox>
-</SplitPane>
-
-<!--</SplitPane>-->
+        <!--</SplitPane>-->
 
 <!--
 <SplitPane dividerPositions="0.09978768577494693" orientation="VERTICAL" prefHeight="473.0" prefWidth="215.0" GridPane.rowIndex="4">

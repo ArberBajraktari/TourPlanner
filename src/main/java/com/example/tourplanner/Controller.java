@@ -35,6 +35,7 @@ public class Controller implements Initializable {
         }
     });
 
+
 //        tourColumn.setCellValueFactory(new PropertyValueFactory<>("tour"));
 //        distanceColumn.setCellValueFactory(new PropertyValueFactory<>("distance"));
 

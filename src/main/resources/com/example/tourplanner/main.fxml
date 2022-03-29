@@ -20,6 +20,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 <GridPane alignment="CENTER" hgap="10.0" prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tourplanner.Controller">
     <children>
 
@@ -45,8 +46,12 @@
 
 
         <!--  Add Tour Overview View  -->
-        <fx:include source="TourOverviewView.fxml" />
-
+        <SplitPane GridPane.rowIndex="4" GridPane.rowSpan="6" GridPane.columnIndex="1" minHeight="400" >
+            <VBox>
+                <fx:include source="TourEntryView.fxml" />
+                <fx:include source="TourListView.fxml" />
+            </VBox>
+        </SplitPane>
 
         <SplitPane dividerPositions="0.5, 0.5" orientation="VERTICAL" prefHeight="400.0" prefWidth="160.0" GridPane.rowIndex="4" GridPane.columnIndex="2" GridPane.rowSpan="6">
             <items>

@@ -3,6 +3,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.ListView?>
 
-<VBox minHeight="400" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tourplanner.Controller">
+<VBox minHeight="400" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tourplanner.controller.TourListController">
     <ListView fx:id="listView" layoutX="5.0" layoutY="3.0"></ListView>
 </VBox>

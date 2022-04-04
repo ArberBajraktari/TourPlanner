@@ -7,4 +7,6 @@ module com.example.tourplanner {
 
     opens com.example.tourplanner to javafx.fxml;
     exports com.example.tourplanner;
+    exports com.example.tourplanner.controller;
+    opens com.example.tourplanner.controller to javafx.fxml;
 }

@@ -1,22 +1,20 @@
-package com.example.tourplanner;
+package com.example.tourplanner.controller;
 
+import com.example.tourplanner.FocusChangedListener;
+import com.example.tourplanner.TourEntryViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
-    private final MainViewModel viewModel = new MainViewModel();
+    private final TourEntryViewModel viewModel = new TourEntryViewModel();
+    @FXML
+    private ListView listView = new ListView<>();
 
 //    public TableView tableView;
 //    public TableColumn tourColumn = new TableColumn();
@@ -46,6 +44,7 @@ public class Controller implements Initializable {
     }
     @FXML
     public void saveAction(ActionEvent actionEvent) {
+        listView.getItems().add("petter");
         viewModel.saveDataToList();
         // don't put "requestFocus" logic in here!
         // you would split up the logic of your view on different places

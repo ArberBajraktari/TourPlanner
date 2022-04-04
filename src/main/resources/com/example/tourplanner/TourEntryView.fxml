@@ -13,8 +13,8 @@
 <!--<SplitPane GridPane.rowIndex="4" GridPane.columnIndex="1" prefHeight="500.0" prefWidth="250.0" orientation="VERTICAL" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">-->
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.control.TextField?>
-<HBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tourplanner.Controller">
-    <Label minWidth="-Infinity" text="Tours:"></Label>
+<HBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tourplanner.controller.TourEntryController">
+    <Label fx:id="toursLabel" minWidth="-Infinity" text="Tours:"></Label>
     <StackPane>
         <TextField fx:id="inputTour"></TextField>
     </StackPane>

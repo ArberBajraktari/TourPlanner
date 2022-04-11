@@ -4,6 +4,8 @@ module com.example.tourplanner {
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
+    requires java.sql;
+    requires org.apache.logging.log4j;
 
     opens com.example.tourplanner to javafx.fxml;
     exports com.example.tourplanner;

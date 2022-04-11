@@ -10,11 +10,15 @@ import java.util.List;
 public class TourEntryViewModel {
 
     public List<FocusChangedListener> focusChangedListenerList = new ArrayList<FocusChangedListener>();
-    private TourEntryModel tourEntryModel = new TourEntryModel();
+    private TourEntryModel tourEntryModel;
 
 
     private final StringProperty currentTour = new SimpleStringProperty("");
     private final StringProperty currentDistance = new SimpleStringProperty("");
+
+    public TourEntryViewModel(TourEntryModel tourEntryModel) {
+        this.tourEntryModel = tourEntryModel;
+    }
 //    private final ObservableList<TourEntryModel> data =
 //            FXCollections.observableArrayList(
 //                    new TourEntryModel("tour1", "120"),
@@ -37,13 +41,11 @@ public class TourEntryViewModel {
         this.focusChangedListenerList.add(listener);
     }
 
-    public void saveDataToList(){
-        tourEntryModel.setToursLabel("hallo:");
+    public void saveDataToList(String text){
+        this.tourEntryModel.setToursLabel(text);
         for (var listener: this.focusChangedListenerList) {
             listener.requestFocusChange("input of tour");
         }
         System.out.println(tourEntryModel.getToursLabel().get());
-
     }
-
 }

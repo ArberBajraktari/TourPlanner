@@ -14,18 +14,23 @@ import java.util.ResourceBundle;
 
 public class TourEntryController implements Initializable {
 
-    private TourEntryModel tourEntryModel = new TourEntryModel();
-    private TourEntryViewModel mainViewModel = new TourEntryViewModel();
+    private TourEntryModel tourEntryModel;
+    private TourEntryViewModel tourEntryViewModel;
 
     @FXML
     public Label toursLabel;
     @FXML
     public TextField inputTour;
 
+    public TourEntryController(TourEntryModel tourEntryModel) {
+        this.tourEntryModel = tourEntryModel;
+        this.tourEntryViewModel = new TourEntryViewModel(tourEntryModel);
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        mainViewModel.addListener(new FocusChangedListener() {
+        tourEntryViewModel.addListener(new FocusChangedListener() {
             @Override
             public void requestFocusChange(String name) {
                 toursLabel.requestFocus();
@@ -35,8 +40,7 @@ public class TourEntryController implements Initializable {
     }
 
     public void saveAction(ActionEvent actionEvent) {
-        System.out.println("here");
-        mainViewModel.saveDataToList();
+        tourEntryViewModel.saveDataToList(inputTour.getText());
     }
 
 

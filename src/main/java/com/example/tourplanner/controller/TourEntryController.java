@@ -1,7 +1,5 @@
 package com.example.tourplanner.controller;
 
-import com.example.tourplanner.FocusChangedListener;
-import com.example.tourplanner.TourEntryViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,11 +9,12 @@ import model.TourEntryModel;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 
 public class TourEntryController implements Initializable {
-
     private TourEntryModel tourEntryModel;
-    private TourEntryViewModel tourEntryViewModel;
+
+    private Consumer<TourEntryModel> newTourListener;
 
     @FXML
     public Label toursLabel;
@@ -24,24 +23,30 @@ public class TourEntryController implements Initializable {
 
     public TourEntryController(TourEntryModel tourEntryModel) {
         this.tourEntryModel = tourEntryModel;
-        this.tourEntryViewModel = new TourEntryViewModel(tourEntryModel);
+    }
+
+    public TourEntryController() {
+
+    }
+
+
+    public void addTour(ActionEvent actionEvent) {
+        this.newTourListener.accept(this.tourEntryModel);
+    }
+
+    public void addListener(Consumer<TourEntryModel> listenToNewProduct) {
+        this.newTourListener = listenToNewProduct;
+        System.out.println(getConsumer());
+    }
+
+    public String getConsumer(){
+       return newTourListener.toString();
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        tourEntryViewModel.addListener(new FocusChangedListener() {
-            @Override
-            public void requestFocusChange(String name) {
-                toursLabel.requestFocus();
-            }
-        });
-        toursLabel.textProperty().bindBidirectional(tourEntryModel.getToursLabel());
+        this.inputTour.textProperty().bindBidirectional(this.tourEntryModel.getTourNameProperty());
     }
-
-    public void saveAction(ActionEvent actionEvent) {
-        tourEntryViewModel.saveDataToList(inputTour.getText());
-    }
-
 
 }

@@ -5,6 +5,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 
-<HBox>
+<HBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tourplanner.controller.TourDetailsController">
     <Label text="Title:"></Label>
 </HBox>

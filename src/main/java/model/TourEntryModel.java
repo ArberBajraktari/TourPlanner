@@ -1,6 +1,7 @@
 package model;
 
 import com.example.tourplanner.FocusChangedListener;
+import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -9,59 +10,21 @@ import java.util.List;
 
 public class TourEntryModel {
 
-    public StringProperty toursLabel;
+    private StringProperty tourName;
 
     public TourEntryModel(){
-        toursLabel = new SimpleStringProperty("Tours: ");
+        tourName = new SimpleStringProperty("");
     }
 
-    public StringProperty getToursLabel(){
-        return toursLabel;
+    public void setTourName(String newValue) {
+        this.tourName.set(newValue);
     }
 
-    public void setToursLabel(String newValue) {
-        System.out.println(newValue);
-        this.toursLabel.set(newValue);
+    public String getTourName() {
+        return tourName.get();
     }
 
-//    private StringProperty tourName;
-//    private StringProperty distance;
-//
-//    public TourEntryModel(String tour, String distance){
-//        this.tourName = new SimpleStringProperty(tour);
-//        this.distance = new SimpleStringProperty(distance);
-//    }
-//
-//    public TourEntryModel(String tour){
-//        this.tourName = new SimpleStringProperty(tour);
-//    }
-//
-//    public TourEntryModel(StringProperty tour, StringProperty distance) {
-//        this.tourName = tour;
-//        this.distance = distance;
-//    }
-//
-//    public String getDistance() {
-//        return distance.get();
-//    }
-//
-//    public void setDistance(String distance){
-//        this.distance.set(distance);
-//    }
-//
-//    public StringProperty distanceProperty() {
-//        return distance;
-//    }
-//
-//    public String getTour() {
-//        return tourName.get();
-//    }
-//
-//    public void setTour(String tour){
-//        this.tourName.set(tour);
-//    }
-//
-//    public StringProperty tourProperty() {
-//        return tourName;
-//    }
+    public StringProperty getTourNameProperty() {
+        return tourName;
+    }
 }

@@ -1,28 +1,34 @@
 package com.example.tourplanner.controller;
 
+import com.example.tourplanner.TourListItemCell;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import model.TourListModel;
+import model.TourModel;
 
-public class TourListController {
+import java.net.URL;
+import java.util.ResourceBundle;
 
+public class TourListController implements Initializable{
+    private TourListModel tourListModel;
 
-    private final TourListModel tourListModel;
     @FXML
-    private ListView listView = new ListView();
+    public ListView<TourModel> tours = new ListView<>();
 
     public TourListController(TourListModel tourListModel) {
         this.tourListModel = tourListModel;
     }
 
-
-    public ListView getListView() {
-        return listView;
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.tours.setItems(this.tourListModel.getTours());
+        this.tours.setCellFactory(
+                ToursListView -> new TourListItemCell(p -> this.deleteProduct(p)));
     }
 
-    public void setListView(ListView listView) {
-        this.listView = listView;
+    private void deleteProduct(TourModel model) {
+        this.tourListModel.removeProduct(model);
     }
-
 
 }

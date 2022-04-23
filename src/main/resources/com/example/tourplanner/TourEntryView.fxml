@@ -19,7 +19,7 @@
         <TextField fx:id="inputTour"></TextField>
     </StackPane>
     <StackPane>
-        <Button text="+" styleClass="mainButton" onAction="#saveAction"></Button>
+        <Button text="+" styleClass="mainButton" onAction="#addTour"></Button>
     </StackPane>
 </HBox>
 

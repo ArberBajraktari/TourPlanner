@@ -19,11 +19,6 @@ public class TourEntryViewModel {
     public TourEntryViewModel(TourEntryModel tourEntryModel) {
         this.tourEntryModel = tourEntryModel;
     }
-//    private final ObservableList<TourEntryModel> data =
-//            FXCollections.observableArrayList(
-//                    new TourEntryModel("tour1", "120"),
-//                    new TourEntryModel("tour2", "60")
-//            );
 
     public StringProperty getCurrentTour() {
         return currentTour;
@@ -33,19 +28,11 @@ public class TourEntryViewModel {
         return currentDistance;
     }
 
-//    public ObservableList getData(){
-//        return data;
-//    }
-
-    public void addListener(FocusChangedListener listener) {
-        this.focusChangedListenerList.add(listener);
-    }
-
     public void saveDataToList(String text){
-        this.tourEntryModel.setToursLabel(text);
+        this.tourEntryModel.setTourName(text);
         for (var listener: this.focusChangedListenerList) {
             listener.requestFocusChange("input of tour");
         }
-        System.out.println(tourEntryModel.getToursLabel().get());
+        System.out.println(tourEntryModel.getTourName());
     }
 }

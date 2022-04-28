@@ -14,7 +14,7 @@ public class TourListController implements Initializable{
     private TourListModel tourListModel;
 
     @FXML
-    public ListView<TourModel> tours = new ListView<>();
+    public ListView<TourModel> listView = new ListView<>();
 
     public TourListController(TourListModel tourListModel) {
         this.tourListModel = tourListModel;
@@ -22,8 +22,8 @@ public class TourListController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.tours.setItems(this.tourListModel.getTours());
-        this.tours.setCellFactory(
+        this.listView.setItems(this.tourListModel.getTours());
+        this.listView.setCellFactory(
                 ToursListView -> new TourListItemCell(p -> this.deleteProduct(p)));
     }
 

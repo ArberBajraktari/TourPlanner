@@ -39,6 +39,7 @@ public class Main extends Application {
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
+                            System.out.println("returning null");
                             return null;
                         });
         return fxmlLoader;

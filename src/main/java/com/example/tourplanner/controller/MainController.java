@@ -14,7 +14,7 @@ public class MainController implements Initializable {
     private final TourListModel tourListModel;
 
     @FXML
-    private TourEntryController tourEntryController = new TourEntryController();
+    private TourEntryController tourEntryController;
     @FXML
     private TourListController tourListController;
 

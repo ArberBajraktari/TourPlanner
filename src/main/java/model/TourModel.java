@@ -16,7 +16,11 @@ public class TourModel {
         return tourName.get();
     }
 
-    public StringProperty getTourProperty() {
+    public StringProperty getTourNameProperty() {
         return tourName;
+    }
+
+    public void setTourName(String name){
+        this.tourName.set(name);
     }
 }

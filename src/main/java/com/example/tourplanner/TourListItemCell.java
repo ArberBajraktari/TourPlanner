@@ -38,8 +38,7 @@ public class TourListItemCell extends javafx.scene.control.ListCell<TourModel>{
 
         var controller = (TourItemController)fxmlLoader.getController();
         controller.setProduct(product);
-        controller.addListenerForDeleteProduct(this.onDeleteProductCallBack);
+        controller.addListenerForDeleteTour(this.onDeleteProductCallBack);
         setGraphic(controller.getProductItemBox());
     }
-
 }

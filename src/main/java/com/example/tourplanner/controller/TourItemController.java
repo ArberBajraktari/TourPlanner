@@ -10,7 +10,7 @@ import model.TourModel;
 import java.util.function.Consumer;
 
 public class TourItemController {
-    private TourModel product;
+    private TourModel tourModel;
 
     private Consumer<TourModel> onDeleteProductConsumer;
 
@@ -21,23 +21,23 @@ public class TourItemController {
     @FXML
     private Node box = new HBox();
 
-    public TourItemController() { }
-
     public Node getProductItemBox() {
         return box;
     }
 
-    public void setProduct(TourModel product) {
-        this.product = product;
-        this.name.textProperty().bindBidirectional(this.product.getTourProperty());
+    public void setProduct(TourModel TourModel) {
+        this.tourModel = TourModel;
+        this.name.textProperty().bindBidirectional(this.tourModel.getTourNameProperty());
     }
 
-
-    public void onDeleteProduct(ActionEvent actionEvent) {
-        this.onDeleteProductConsumer.accept(this.product);
-    }
-
-    public void addListenerForDeleteProduct(Consumer<TourModel> listener) {
+    public void addListenerForDeleteTour(Consumer<TourModel> listener) {
         this.onDeleteProductConsumer = listener;
+    }
+
+    public void onDeleteTour(ActionEvent actionEvent)  {
+        this.onDeleteProductConsumer.accept(this.tourModel);
+    }
+
+    public void onUpdateTour(ActionEvent actionEvent) {
     }
 }

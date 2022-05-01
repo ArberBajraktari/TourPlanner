@@ -30,13 +30,13 @@ public class TourEntryController implements Initializable {
     }
 
 
+    //butoni
     public void addTour(ActionEvent actionEvent) {
         this.newTourListener.accept(this.tourEntryModel);
     }
 
-    public void addListener(Consumer<TourEntryModel> listenToNewProduct) {
-        this.newTourListener = listenToNewProduct;
-        System.out.println(getConsumer());
+    public void addListener(Consumer<TourEntryModel> listenToNewTour) {
+        this.newTourListener = listenToNewTour;
     }
 
     public String getConsumer(){

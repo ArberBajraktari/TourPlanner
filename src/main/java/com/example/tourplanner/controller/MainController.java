@@ -2,6 +2,8 @@ package com.example.tourplanner.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import model.TourListModel;
 import model.TourModel;
 
@@ -12,6 +14,7 @@ public class MainController implements Initializable {
 
 
     private final TourListModel tourListModel;
+
 
     @FXML
     private TourEntryController tourEntryController;
@@ -28,6 +31,5 @@ public class MainController implements Initializable {
         this.tourEntryController.addListener(
                 p -> this.tourListModel.addTours(TourModel.From(p)));
 
-        System.out.println(this.tourEntryController.getConsumer());
     }
 }

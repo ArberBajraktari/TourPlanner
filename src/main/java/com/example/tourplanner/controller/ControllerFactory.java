@@ -1,9 +1,6 @@
 package com.example.tourplanner.controller;
 
-import model.TourDetailsModel;
-import model.TourEntryModel;
-import model.TourListModel;
-import model.TourLogModel;
+import model.*;
 
 public class ControllerFactory {
     private final TourEntryModel tourEntryModel;
@@ -30,8 +27,7 @@ public class ControllerFactory {
             return new TourDetailsController(this.tourDetailsModel);
         }else if(controllerClass == MainController.class){
             return new MainController(this.tourListModel);
-        }
-        else {
+        }else {
             throw new Exception("Controller not supported " + controllerClass.getName());
         }
     }

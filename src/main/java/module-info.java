@@ -9,4 +9,6 @@ module com.example.tourplanner {
     exports com.example.tourplanner;
     exports com.example.tourplanner.controller;
     opens com.example.tourplanner.controller to javafx.fxml;
+    exports com.example.tourplanner.model;
+    opens com.example.tourplanner.model to javafx.fxml;
 }

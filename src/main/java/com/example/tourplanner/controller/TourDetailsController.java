@@ -1,6 +1,6 @@
 package com.example.tourplanner.controller;
 
-import model.TourDetailsModel;
+import com.example.tourplanner.model.TourDetailsModel;
 
 public class TourDetailsController {
 

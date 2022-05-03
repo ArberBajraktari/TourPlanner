@@ -2,10 +2,8 @@ package com.example.tourplanner.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import model.TourListModel;
-import model.TourModel;
+import com.example.tourplanner.model.TourListModel;
+import com.example.tourplanner.model.TourModel;
 
 import java.net.URL;
 import java.util.ResourceBundle;

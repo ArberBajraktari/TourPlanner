@@ -1,6 +1,6 @@
 package com.example.tourplanner.controller;
 
-import model.*;
+import com.example.tourplanner.model.*;
 
 public class ControllerFactory {
     private final TourEntryModel tourEntryModel;

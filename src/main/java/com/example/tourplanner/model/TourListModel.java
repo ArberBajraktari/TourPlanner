@@ -1,4 +1,4 @@
-package model;
+package com.example.tourplanner.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

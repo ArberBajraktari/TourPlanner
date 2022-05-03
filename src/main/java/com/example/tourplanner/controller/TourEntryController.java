@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import model.TourEntryModel;
+import com.example.tourplanner.model.TourEntryModel;
 
 import java.net.URL;
 import java.util.ResourceBundle;

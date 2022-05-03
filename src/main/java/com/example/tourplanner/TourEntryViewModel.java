@@ -2,7 +2,7 @@ package com.example.tourplanner;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import model.TourEntryModel;
+import com.example.tourplanner.model.TourEntryModel;
 
 import java.util.ArrayList;
 import java.util.List;

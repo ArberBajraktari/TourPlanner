@@ -2,7 +2,7 @@ package com.example.tourplanner.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import model.TourLogModel;
+import com.example.tourplanner.model.TourLogModel;
 
 public class TourLogController {
 

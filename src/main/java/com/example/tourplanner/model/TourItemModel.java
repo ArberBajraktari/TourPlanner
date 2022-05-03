@@ -1,20 +1,17 @@
-package com.example.tourplanner;
+package com.example.tourplanner.model;
 
 import com.example.tourplanner.controller.TourItemController;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.util.Callback;
-import model.TourModel;
+import com.example.tourplanner.model.TourModel;
 
 import java.io.IOException;
 import java.util.function.Consumer;
 
-public class TourListItemCell extends javafx.scene.control.ListCell<TourModel>{
+public class TourItemModel extends javafx.scene.control.ListCell<TourModel>{
 
     private Consumer<TourModel> onDeleteProductCallBack;
 
-    public TourListItemCell(Consumer<TourModel> callback) {
+    public TourItemModel(Consumer<TourModel> callback) {
         this.onDeleteProductCallBack = callback;
     }
 

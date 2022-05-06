@@ -19,8 +19,8 @@ public class Database implements IDatabaseLayer {
     }
 
     private Connection CreateConnection() throws SQLException, FileNotFoundException {
-        String usernameString = ConfigurationManager.GetConfigProperty("postgres");
-        String pwdString = ConfigurationManager.GetConfigProperty("Eridmilan12316");
+        String usernameString = ConfigurationManager.GetConfigProperty("PostgresSqlUsername");
+        String pwdString = ConfigurationManager.GetConfigProperty("PostgresSqlPwd");
         try {
             return DriverManager.getConnection(connectionString, usernameString, pwdString);
         } catch (SQLException e){

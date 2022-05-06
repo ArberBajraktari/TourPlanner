@@ -7,10 +7,10 @@ module com.example.tourplanner {
     requires java.sql;
     requires org.apache.logging.log4j;
 
-    opens com.example.tourplanner to javafx.fxml;
-    exports com.example.tourplanner;
-    exports com.example.tourplanner.controller;
-    opens com.example.tourplanner.controller to javafx.fxml;
-    exports com.example.tourplanner.model;
-    opens com.example.tourplanner.model to javafx.fxml;
+    opens PresentationLayer to javafx.fxml;
+    exports PresentationLayer;
+    exports PresentationLayer.controller;
+    opens PresentationLayer.controller to javafx.fxml;
+    exports PresentationLayer.model;
+    opens PresentationLayer.model to javafx.fxml;
 }

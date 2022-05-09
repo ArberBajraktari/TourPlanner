@@ -43,7 +43,8 @@ public class TourEntryController implements Initializable {
 
     //butoni
     public void addTour(ActionEvent actionEvent) throws SQLException, IOException {
-        loadFXML("TourFormView.fxml");
+        //TourFormController tourFormController = new TourFormController("sda");
+        //loadFXML("TourFormView.fxml", tourFormController);
         this.newTourListener.accept(this.tourEntryModel);
         tourEntryModel.createTour(this.tourEntryModel);
     }
@@ -56,7 +57,7 @@ public class TourEntryController implements Initializable {
        return newTourListener.toString();
     }
 
-    public void loadFXML(String url){
+    public void loadFXML(String url, TourFormController tourFormController){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource(url));

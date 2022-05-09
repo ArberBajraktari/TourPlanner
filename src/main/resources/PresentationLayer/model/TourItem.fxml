@@ -12,6 +12,5 @@
         <Label  fx:id="price" style="-fx-label-padding: 10; -fx-alignment: center-left"/>
         <Region HBox.hgrow="ALWAYS"></Region>
         <Button text="delete" onAction="#onDeleteTour" style="-fx-label-padding: 10; -fx-alignment: center-right" />
-        <Button text="Update" onAction="#onUpdateTour" style="-fx-label-padding: 10; -fx-alignment: center-right" />
     </children>
 </HBox>

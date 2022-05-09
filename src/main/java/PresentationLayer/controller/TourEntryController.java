@@ -7,7 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import PresentationLayer.model.TourEntryModel;
 
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
@@ -31,8 +33,9 @@ public class TourEntryController implements Initializable {
 
 
     //butoni
-    public void addTour(ActionEvent actionEvent) {
+    public void addTour(ActionEvent actionEvent) throws SQLException, IOException {
         this.newTourListener.accept(this.tourEntryModel);
+        tourEntryModel.createTour(this.tourEntryModel);
     }
 
     public void addListener(Consumer<TourEntryModel> listenToNewTour) {

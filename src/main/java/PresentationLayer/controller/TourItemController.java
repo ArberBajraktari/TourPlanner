@@ -1,5 +1,7 @@
 package PresentationLayer.controller;
 
+import PresentationLayer.model.TourEntryModel;
+import PresentationLayer.model.TourItemModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -7,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import PresentationLayer.model.TourModel;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.function.Consumer;
 
 public class TourItemController {
@@ -34,10 +38,9 @@ public class TourItemController {
         this.onDeleteProductConsumer = listener;
     }
 
-    public void onDeleteTour(ActionEvent actionEvent)  {
+    public void onDeleteTour(ActionEvent actionEvent) throws SQLException, IOException {
         this.onDeleteProductConsumer.accept(this.tourModel);
+        tourModel.deleteTour(this.tourModel);
     }
 
-    public void onUpdateTour(ActionEvent actionEvent) {
-    }
 }

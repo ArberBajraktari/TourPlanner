@@ -3,6 +3,13 @@ package BusinessLayer;
 import DatabaseAccessLayer.IDatabaseLayer;
 
 public class AppManagerFactory {
-    public static IDatabaseLayer databaseLayer;
+    private static AppManager manager;
+
+    public static  AppManager GetManager() {
+        if (manager == null){
+            manager = new AppManagerImp();
+        }
+        return manager;
+    }
 
 }

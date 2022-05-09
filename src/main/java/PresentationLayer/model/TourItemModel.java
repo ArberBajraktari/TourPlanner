@@ -1,5 +1,7 @@
 package PresentationLayer.model;
 
+import BusinessLayer.AppManager;
+import BusinessLayer.AppManagerFactory;
 import PresentationLayer.controller.TourItemController;
 import javafx.fxml.FXMLLoader;
 
@@ -9,6 +11,7 @@ import java.util.function.Consumer;
 public class TourItemModel extends javafx.scene.control.ListCell<TourModel>{
 
     private Consumer<TourModel> onDeleteProductCallBack;
+    private AppManager manager = AppManagerFactory.GetManager();
 
     public TourItemModel(Consumer<TourModel> callback) {
         this.onDeleteProductCallBack = callback;
@@ -23,8 +26,6 @@ public class TourItemModel extends javafx.scene.control.ListCell<TourModel>{
             setGraphic(null);
             return;
         }
-        System.out.println(getClass().getResource(""));
-        System.out.println(getClass().getResource("TourItem.fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TourItem.fxml"));
         try
         {
@@ -39,4 +40,6 @@ public class TourItemModel extends javafx.scene.control.ListCell<TourModel>{
         controller.addListenerForDeleteTour(this.onDeleteProductCallBack);
         setGraphic(controller.getProductItemBox());
     }
+
+
 }

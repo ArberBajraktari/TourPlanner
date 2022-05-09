@@ -15,18 +15,20 @@ public class TourModel {
         return newInstance;
     }
 
+    //Getter and Setter
     public String getTourName() {
         return tourName.get();
     }
-
-    public StringProperty getTourNameProperty() {
-        return tourName;
-    }
-
     public void setTourName(String name){
         this.tourName.set(name);
     }
 
+    //Getter and Setter for Property
+    public StringProperty getTourNameProperty() {
+        return tourName;
+    }
+
+    //Delete Tour
     public void deleteTour(TourModel tourModel) {
         System.out.println(tourModel.getTourName());
         manager.deleteTourItem(tourModel);

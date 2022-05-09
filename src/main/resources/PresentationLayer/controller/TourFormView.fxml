@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox xmlns:fx="http://javafx.com/fxml" fx:id="box" fx:controller="PresentationLayer.controller.TourFormController">
+    <children>
+        <Label  fx:id="name" text="Hello" style="-fx-label-padding: 10; -fx-alignment: center-left"/>
+        <Label  fx:id="price" style="-fx-label-padding: 10; -fx-alignment: center-left"/>
+        <Region HBox.hgrow="ALWAYS"></Region>
+      </children>
+</HBox>

@@ -1,15 +1,13 @@
 package PresentationLayer.controller;
 
-import PresentationLayer.model.TourDetailsModel;
-import PresentationLayer.model.TourEntryModel;
-import PresentationLayer.model.TourListModel;
-import PresentationLayer.model.TourLogModel;
+import PresentationLayer.model.*;
 
 public class ControllerFactory {
     private final TourEntryModel tourEntryModel;
     private final TourLogModel tourLogModel;
     private final TourListModel tourListModel;
     private final TourDetailsModel tourDetailsModel;
+    private final TourFormModel tourFormModel;
 
 
     public ControllerFactory(){
@@ -17,6 +15,7 @@ public class ControllerFactory {
         this.tourLogModel = new TourLogModel();
         this.tourListModel = new TourListModel();
         this.tourDetailsModel = new TourDetailsModel();
+        this.tourFormModel = new TourFormModel();
     }
 
     public Object create(Class controllerClass) throws Exception {

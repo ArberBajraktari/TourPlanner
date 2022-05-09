@@ -11,7 +11,6 @@ import java.util.function.Consumer;
 public class TourItemModel extends javafx.scene.control.ListCell<TourModel>{
 
     private Consumer<TourModel> onDeleteProductCallBack;
-    private AppManager manager = AppManagerFactory.GetManager();
 
     public TourItemModel(Consumer<TourModel> callback) {
         this.onDeleteProductCallBack = callback;

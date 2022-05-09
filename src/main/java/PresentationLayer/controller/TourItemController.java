@@ -15,12 +15,10 @@ import java.util.function.Consumer;
 
 public class TourItemController {
     private TourModel tourModel;
-
     private Consumer<TourModel> onDeleteProductConsumer;
 
     @FXML
     public Label name;
-
 
     @FXML
     private Node box = new HBox();

@@ -18,7 +18,9 @@ public class Database implements IDatabaseLayer {
         this.connectionString = connectionString;
     }
 
-    private Connection CreateConnection() throws SQLException, FileNotFoundException {
+    @Override
+    public Connection createConnection() throws FileNotFoundException, SQLException {
+        System.out.println("Saving in postgres");
         String usernameString = ConfigurationManager.GetConfigProperty("PostgresSqlUsername");
         String pwdString = ConfigurationManager.GetConfigProperty("PostgresSqlPwd");
         try {

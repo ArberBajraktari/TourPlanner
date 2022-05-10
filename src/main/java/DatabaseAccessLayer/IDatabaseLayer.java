@@ -6,4 +6,5 @@ import java.sql.SQLException;
 
 public interface IDatabaseLayer {
     Connection createConnection() throws FileNotFoundException, SQLException;
+    void addTour(String tour);
 }

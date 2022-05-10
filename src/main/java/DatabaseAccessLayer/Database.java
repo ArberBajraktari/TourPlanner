@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 
 public class Database implements IDatabaseLayer {
@@ -20,17 +21,18 @@ public class Database implements IDatabaseLayer {
 
     @Override
     public Connection createConnection() throws FileNotFoundException, SQLException {
-        System.out.println("Saving in postgres");
-        String usernameString = ConfigurationManager.GetConfigProperty("PostgresSqlUsername");
-        String pwdString = ConfigurationManager.GetConfigProperty("PostgresSqlPwd");
-        try {
-            return DriverManager.getConnection(connectionString, usernameString, pwdString);
-        } catch (SQLException e){
-            Logger log = LogManager.getLogger(Database.class);
-            log.error("Establishing connection failed: " + e.getMessage());
-            e.printStackTrace();
-        }
-        throw new SQLException("Establishing connection failed.");
+        String url = "jdbc:postgresql://localhost:5432/postgres";
+        Properties props = new Properties();
+        props.setProperty("user","postgres");
+        props.setProperty("password","myPassword");
+        return DriverManager.getConnection(url, props);
     }
+
+    @Override
+    public void addTour(String tour) {
+        System.out.println("Saving Tour into DB");
+        System.out.println(tour);
+    }
+
 
 }

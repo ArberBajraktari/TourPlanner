@@ -2,6 +2,13 @@
     /*-fx-background-color: blue;*/
 }
 
+.editButton{
+}
+
 Label{
     -fx-padding: 10 10 10 10;
+}
+
+.detailsBox {
+    -fx-padding: 10 5;
 }

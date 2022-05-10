@@ -1,7 +1,5 @@
 package PresentationLayer.model;
 
-import BusinessLayer.AppManager;
-import BusinessLayer.AppManagerFactory;
 import PresentationLayer.controller.TourItemController;
 import javafx.fxml.FXMLLoader;
 

@@ -1,13 +1,16 @@
 package PresentationLayer.model;
 
-import BusinessLayer.AppManager;
-import BusinessLayer.AppManagerFactory;
+import BusinessLayer.IBusinessLayer;
+import BusinessLayer.BusinessLayerFactory;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.io.FileNotFoundException;
+import java.sql.SQLException;
+
 public class TourModel {
     private StringProperty tourName = new SimpleStringProperty();
-    private AppManager manager = AppManagerFactory.GetManager();
+    private IBusinessLayer manager = BusinessLayerFactory.GetManager();
 
     public static TourModel From(TourEntryModel source) {
         var newInstance = new TourModel();
@@ -29,8 +32,9 @@ public class TourModel {
     }
 
     //Delete Tour
-    public void deleteTour(TourModel tourModel) {
+    public void deleteTour(TourModel tourModel) throws SQLException, FileNotFoundException {
         System.out.println(tourModel.getTourName());
         manager.deleteTourItem(tourModel);
+
     }
 }

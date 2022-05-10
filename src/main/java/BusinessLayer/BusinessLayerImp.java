@@ -9,17 +9,17 @@ import java.io.FileNotFoundException;
 import java.sql.SQLException;
 
 
-public class AppManagerImp implements AppManager{
+public class BusinessLayerImp implements IBusinessLayer {
 
     //connection to DB layer
     private IDatabaseLayer dataLayer;
 
-    public AppManagerImp(){
+    public BusinessLayerImp(){
         dataLayer = DataAccessLayerFactory.getDatabase();
     }
 
     @Override
-    public void CreateTourItem(TourEntryModel tourItem) throws SQLException, FileNotFoundException {
+    public void createTourItem(TourEntryModel tourItem) throws SQLException, FileNotFoundException {
         System.out.println("Creating");
         dataLayer.createConnection();
         dataLayer.addTour(tourItem.getTourName());
@@ -27,7 +27,8 @@ public class AppManagerImp implements AppManager{
     }
 
     @Override
-    public void deleteTourItem(TourModel tourModel) {
-        System.out.println("Deleting");
+    public void deleteTourItem(TourModel tourModel) throws SQLException, FileNotFoundException {
+        dataLayer.createConnection();
+        dataLayer.removeTour(tourModel);
     }
 }

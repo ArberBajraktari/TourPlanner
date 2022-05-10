@@ -1,21 +1,17 @@
 package DatabaseAccessLayer;
 
-import BusinessLayer.ConfigurationManager;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import PresentationLayer.model.TourModel;
 
 import java.io.FileNotFoundException;
 import java.sql.*;
 import java.util.Properties;
 
 
-public class Database implements IDatabaseLayer {
+public class DatabaseLayerPostGres implements IDatabaseLayer {
 
-    private final String connectionString;
     private Connection con;
 
-    public Database(String connectionString){
-        this.connectionString = connectionString;
+    public DatabaseLayerPostGres(){
     }
 
     @Override
@@ -46,6 +42,22 @@ public class Database implements IDatabaseLayer {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    @Override
+    public void removeTour(TourModel tourModel) {
+        System.out.println("Saving Tour into DB");
+        int count = getMaxId() + 1;
+        try {
+            // Step 4: Create a statement
+            String sql = "DELETE FROM Tours WHERE name = '" + tourModel.getTourName() + "';";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            // Step 6: Process the results
+            System.out.println(ps.executeUpdate());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

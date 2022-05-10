@@ -29,7 +29,10 @@ public class ControllerFactory {
             return new TourDetailsController(this.tourDetailsModel);
         }else if(controllerClass == MainController.class){
             return new MainController(this.tourListModel);
-        }else {
+        }else if(controllerClass == TourFormController.class){
+            return new TourFormController(this.tourFormModel, this.tourEntryModel);
+        }
+        else {
             throw new Exception("Controller not supported " + controllerClass.getName());
         }
     }

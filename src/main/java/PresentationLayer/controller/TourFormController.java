@@ -11,16 +11,26 @@ import java.util.ResourceBundle;
 
 public class TourFormController implements Initializable{
 
-    private TourFormModel tourFormModel = new TourFormModel();
+    @FXML
+    public Label tourName;
+    private TourFormModel tourFormModel;
+    private TourEntryModel tourEntryModel;
     @FXML
     private Label name;
+
 
     public TourFormController(){
 
     }
 
-    public TourFormController(String tourName) {
-        tourFormModel.setTourName(tourName);
+    public TourFormController(TourFormModel tourFormModel) {
+        this.tourFormModel = tourFormModel;
+    }
+
+    public TourFormController(TourFormModel tourFormModel, TourEntryModel tourEntryModel) {
+        this.tourFormModel = tourFormModel;
+        this.tourEntryModel = tourEntryModel;
+        this.tourFormModel.setTourName(this.tourEntryModel.getTourName());
     }
 
 

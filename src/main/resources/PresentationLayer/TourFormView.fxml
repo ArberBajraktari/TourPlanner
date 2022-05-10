@@ -10,6 +10,7 @@
     <children>
         <Label  fx:id="name" text="Hello" style="-fx-label-padding: 10; -fx-alignment: center-left"/>
         <Label  fx:id="price" style="-fx-label-padding: 10; -fx-alignment: center-left"/>
+        <Label fx:id="tourName"></Label>
         <Region HBox.hgrow="ALWAYS"></Region>
       </children>
 </HBox>

@@ -11,7 +11,8 @@ public class DataAccessLayerFactory {
 
     public static IDatabaseLayer getDatabase(){
         if (databaseLayer == null) {
-            databaseLayer = new Database("PostgresSqlConnectionString");
+            databaseLayer = new Database("jdbc:postgresql://localhost:5432/postgres");
+
         }
         return databaseLayer;
     }

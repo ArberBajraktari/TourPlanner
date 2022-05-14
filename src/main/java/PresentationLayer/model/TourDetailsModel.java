@@ -18,6 +18,9 @@ public class TourDetailsModel {
     private BooleanProperty workingMode;
 
 
+    private TourModel tourModel;
+
+
 
     public TourDetailsModel(){
         tourName = new SimpleStringProperty("");
@@ -28,9 +31,9 @@ public class TourDetailsModel {
         tourFromLabel = new SimpleStringProperty("Dummy");
         tourTo = new SimpleStringProperty("");
         tourToLabel = new SimpleStringProperty("Dummy");
-        editButton = new SimpleStringProperty("Editing");
-        editMode = new SimpleBooleanProperty(true);
-        workingMode = new SimpleBooleanProperty(false);
+        editButton = new SimpleStringProperty("Edit");
+        editMode = new SimpleBooleanProperty(false);
+        workingMode = new SimpleBooleanProperty(true);
     }
 
     public String getTourName(){
@@ -104,5 +107,44 @@ public class TourDetailsModel {
 
     public void setEditButton(String editButton) {
         this.editButton.set(editButton);
+    }
+
+
+
+    public void setTourDetailName(String tourName) {
+        this.tourName.set(tourName);
+    }
+
+    public void setTourDetailDesc(String tourDesc) {
+        this.tourDesc.set(tourDesc);
+    }
+
+    public void setTourModel(TourModel currentTourModel) {
+        setTourDetailName(currentTourModel.getTourName());
+        setTourDetailDesc(currentTourModel.getTourDesc());
+        setTourDetailFrom(currentTourModel.getTourFrom());
+        setTourDetailTo(currentTourModel.getTourTo());
+        this.tourModel = currentTourModel;
+    }
+
+    public void setTourDetailTo(String tourTo) {
+        this.tourTo.set(tourTo);
+    }
+    public void setTourDetailFrom(String tourFrom) {
+        this.tourFrom.set(tourFrom);
+    }
+
+    //butoni save
+    public void saveTourModel() {
+        this.tourModel.setTourDesc(getTourDesc());
+        this.tourModel.setTourFrom(getTourFrom());
+        this.tourModel.setTourTo(getTourTo());
+    }
+
+    public void resetTourModel() {
+        setTourDetailName(tourModel.getTourName());
+        setTourDetailDesc(tourModel.getTourDesc());
+        setTourDetailFrom(tourModel.getTourFrom());
+        setTourDetailTo(tourModel.getTourTo());
     }
 }

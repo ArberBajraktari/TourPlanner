@@ -1,6 +1,7 @@
 package PresentationLayer.controller;
 
 import PresentationLayer.model.TourDetailsModel;
+import PresentationLayer.model.TourModel;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
@@ -46,9 +47,10 @@ public class TourDetailsController implements Initializable {
             this.tourDetailsModel.setEditMode(false);
             this.tourDetailsModel.setEditButton("Edit");
             this.tourDetailsModel.setWorkMode(true);
+            this.tourDetailsModel.resetTourModel();
         }else{
             this.tourDetailsModel.setEditMode(true);
-            this.tourDetailsModel.setEditButton("Editing");
+            this.tourDetailsModel.setEditButton("Cancel");
             this.tourDetailsModel.setWorkMode(false);
         }
 
@@ -56,11 +58,17 @@ public class TourDetailsController implements Initializable {
 
     public void saveTour(ActionEvent actionEvent) {
         if(this.tourDetailsModel.getWorkingMode()){
+
             System.out.println("Saving tour to DB");
         }else{
             System.out.println("Pop up window");
         }
+        this.tourDetailsModel.saveTourModel();
 
+        //Revert to Working mode
+        this.tourDetailsModel.setEditMode(false);
+        this.tourDetailsModel.setEditButton("Edit");
+        this.tourDetailsModel.setWorkMode(true);
     }
 
     @Override

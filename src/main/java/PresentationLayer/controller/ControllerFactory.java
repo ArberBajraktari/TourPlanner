@@ -22,7 +22,7 @@ public class ControllerFactory {
         if (controllerClass == TourEntryController.class) {
             return new TourEntryController(this.tourEntryModel);
         }else if(controllerClass == TourListController.class){
-            return new TourListController(this.tourListModel);
+            return new TourListController(this.tourListModel, this.tourDetailsModel);
         }else if(controllerClass == TourLogController.class){
             return new TourLogController(this.tourLogModel);
         }else if(controllerClass == TourDetailsController.class){

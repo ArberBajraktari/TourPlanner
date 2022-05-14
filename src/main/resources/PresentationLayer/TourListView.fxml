@@ -4,5 +4,5 @@
 <?import javafx.scene.control.ListView?>
 
 <VBox minHeight="400" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PresentationLayer.controller.TourListController">
-    <ListView fx:id="listView" layoutX="5.0" layoutY="3.0"></ListView>
+    <ListView fx:id="listView" layoutX="5.0" layoutY="3.0" onMouseClicked="#tourItemClicked"></ListView>
 </VBox>

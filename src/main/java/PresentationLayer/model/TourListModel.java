@@ -26,7 +26,4 @@ public class TourListModel {
         this.tours.clear();
     }
 
-    public void removeProduct(TourModel tour) {
-        this.tours.remove(tour);
-    }
 }

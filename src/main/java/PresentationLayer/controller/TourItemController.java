@@ -40,5 +40,4 @@ public class TourItemController {
         this.onDeleteProductConsumer.accept(this.tourModel);
         tourModel.deleteTour(this.tourModel);
     }
-
 }

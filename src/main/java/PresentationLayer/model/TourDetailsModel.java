@@ -136,6 +136,7 @@ public class TourDetailsModel {
 
     //butoni save
     public void saveTourModel() {
+        this.tourModel.setTourName(getTourName());
         this.tourModel.setTourDesc(getTourDesc());
         this.tourModel.setTourFrom(getTourFrom());
         this.tourModel.setTourTo(getTourTo());

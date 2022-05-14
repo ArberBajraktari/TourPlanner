@@ -1,9 +1,6 @@
 package PresentationLayer.controller;
 
-import PresentationLayer.model.TourDetailsModel;
-import PresentationLayer.model.TourItemModel;
-import PresentationLayer.model.TourListModel;
-import PresentationLayer.model.TourModel;
+import PresentationLayer.model.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
@@ -15,13 +12,15 @@ import java.util.ResourceBundle;
 public class TourListController implements Initializable{
     private TourListModel tourListModel;
     private TourDetailsModel tourDetailsModel;
+    private TourLogModel tourLogModel;
 
     @FXML
     public ListView<TourModel> listView = new ListView<>();
 
-    public TourListController(TourListModel tourListModel, TourDetailsModel tourDetailsModel) {
+    public TourListController(TourListModel tourListModel, TourDetailsModel tourDetailsModel, TourLogModel tourLogModel) {
         this.tourListModel = tourListModel;
         this.tourDetailsModel = tourDetailsModel;
+        this.tourLogModel = tourLogModel;
     }
 
     @Override
@@ -39,6 +38,10 @@ public class TourListController implements Initializable{
     private void tourItemClicked(MouseEvent mouseEvent) {
         //Select the model that is clicked
         TourModel tourModelList = listView.getSelectionModel().getSelectedItem();
-        tourDetailsModel.setTourModel(tourModelList);
+        if(tourModelList != null){
+            tourDetailsModel.setTourModel(tourModelList);
+            tourLogModel.setTourModel(tourModelList);
+        }
+
     }
 }

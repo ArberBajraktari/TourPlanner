@@ -1,6 +1,7 @@
 package PresentationLayer.model;
 
 import javafx.beans.property.*;
+import javafx.scene.image.Image;
 
 public class TourDetailsModel {
 
@@ -16,7 +17,7 @@ public class TourDetailsModel {
 
     private BooleanProperty editMode;
     private BooleanProperty workingMode;
-
+    private ObjectProperty<javafx.scene.image.Image> imageProperty = new SimpleObjectProperty<>();
 
     private TourModel tourModel;
 
@@ -147,5 +148,13 @@ public class TourDetailsModel {
         setTourDetailDesc(tourModel.getTourDesc());
         setTourDetailFrom(tourModel.getTourFrom());
         setTourDetailTo(tourModel.getTourTo());
+    }
+
+    public Property<Image> getImageProperty() {
+        return imageProperty;
+    }
+
+    public void setTourDetailImg(Image image) {
+        this.imageProperty.set(image);
     }
 }

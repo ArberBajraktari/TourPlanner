@@ -10,13 +10,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class TourDetailsController implements Initializable {
 
     private final TourDetailsModel tourDetailsModel;
+    @FXML
+    private ImageView imageView;
     @FXML
     private Button editButton;
     @FXML
@@ -94,7 +99,15 @@ public class TourDetailsController implements Initializable {
         this.tourToLabel.textProperty().bind(this.tourDetailsModel.getTourToProperty());
 
         this.editButton.textProperty().bindBidirectional(this.tourDetailsModel.getEditButtonProperty());
+        this.imageView.imageProperty().bindBidirectional(this.tourDetailsModel.getImageProperty());
 
+        //TODO
+        // kjo asht provizore
+        // ka nevoj me u ba dikun tjt
+        // refresh sa her bahet save
+        File file = new File("src/map.png");
+        Image image = new Image(file.toURI().toString());
+        this.tourDetailsModel.setTourDetailImg(image);
     }
 
 

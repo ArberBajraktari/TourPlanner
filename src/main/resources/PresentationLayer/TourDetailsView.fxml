@@ -12,9 +12,10 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.Tab?>
+<?import javafx.scene.image.ImageView?>
 <VBox styleClass="detailsBox" prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PresentationLayer.controller.TourDetailsController">
 
-    <TabPane>
+    <TabPane tabClosingPolicy="UNAVAILABLE">
         <Tab text="Details">
             <VBox>
                 <HBox>
@@ -63,7 +64,11 @@
             </VBox>
         </Tab>
         <Tab text="Map">
+            <VBox>
+                <ImageView fx:id="imageView" fitWidth="-Infinity" fitHeight="-Infinity">
+                </ImageView>
 
+            </VBox>
         </Tab>
     </TabPane>
 

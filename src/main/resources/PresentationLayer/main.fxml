@@ -46,7 +46,7 @@
 
 
         <!--  Add Tour Overview View  -->
-        <SplitPane GridPane.rowIndex="4" GridPane.rowSpan="6" GridPane.columnIndex="1" minHeight="400" minWidth="350" >
+        <SplitPane GridPane.rowIndex="4" GridPane.rowSpan="6" GridPane.columnIndex="1" minHeight="500" minWidth="350" >
             <VBox>
                 <fx:include fx:id="tourEntry" source="TourEntryView.fxml" />
                 <fx:include fx:id="tourList" source="TourListView.fxml" />

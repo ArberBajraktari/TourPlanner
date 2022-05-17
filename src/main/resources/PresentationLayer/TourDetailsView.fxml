@@ -10,48 +10,62 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.StackPane?>
-<VBox styleClass="detailsBox" prefHeight="400.0" prefWidth="170.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PresentationLayer.controller.TourDetailsController">
-    <HBox>
-        <Pane HBox.hgrow="ALWAYS" />
-        <Button text="Edit" fx:id="editButton" styleClass="editButton" onAction="#editMode"></Button>
-    </HBox>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Tab?>
+<VBox styleClass="detailsBox" prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PresentationLayer.controller.TourDetailsController">
 
-    <HBox >
-        <Label text="Tour name:"></Label>
-        <StackPane>
-            <Label text="Template" fx:id="tourNameLabel"></Label>
-            <TextField fx:id="tourName"></TextField>
-        </StackPane>
+    <TabPane>
+        <Tab text="Details">
+            <VBox>
+                <HBox>
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Button text="Edit" fx:id="editButton" styleClass="editButton" onAction="#editMode"></Button>
+                </HBox>
 
-    </HBox>
+                <HBox >
+                    <Label text="Tour name:"></Label>
+                    <StackPane>
+                        <Label text="Template" fx:id="tourNameLabel"></Label>
+                        <TextField fx:id="tourName"></TextField>
+                    </StackPane>
 
-    <HBox >
-        <Label text="Description:"></Label>
-        <StackPane>
-            <Label text="Template" fx:id="tourDescLabel"></Label>
-            <TextField fx:id="tourDesc"></TextField>
-        </StackPane>
+                </HBox>
 
-    </HBox>
+                <HBox >
+                    <Label text="Description:"></Label>
+                    <StackPane>
+                        <Label text="Template" fx:id="tourDescLabel"></Label>
+                        <TextField fx:id="tourDesc"></TextField>
+                    </StackPane>
 
-    <HBox >
-        <Label text="From:"></Label>
-        <StackPane>
-            <Label text="Template" fx:id="tourFromLabel"></Label>
-            <TextField fx:id="tourFrom"></TextField>
-        </StackPane>
-    </HBox>
+                </HBox>
 
-    <HBox >
-        <Label text="To:"></Label>
-        <StackPane>
-            <Label text="Template" fx:id="tourToLabel"></Label>
-            <TextField fx:id="tourTo"></TextField>
-        </StackPane>
-    </HBox>
+                <HBox >
+                    <Label text="From:"></Label>
+                    <StackPane>
+                        <Label text="Template" fx:id="tourFromLabel"></Label>
+                        <TextField fx:id="tourFrom"></TextField>
+                    </StackPane>
+                </HBox>
 
-    <HBox>
-        <Pane HBox.hgrow="ALWAYS" />
-        <Button text="Save" fx:id="saveButton" styleClass="saveButton" onAction="#saveTour"></Button>
-    </HBox>
+                <HBox >
+                    <Label text="To:"></Label>
+                    <StackPane>
+                        <Label text="Template" fx:id="tourToLabel"></Label>
+                        <TextField fx:id="tourTo"></TextField>
+                    </StackPane>
+                </HBox>
+
+                <HBox>
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Button text="Save" fx:id="saveButton" styleClass="saveButton" onAction="#saveTour"></Button>
+                </HBox>
+            </VBox>
+        </Tab>
+        <Tab text="Map">
+
+        </Tab>
+    </TabPane>
+
+
 </VBox>

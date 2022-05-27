@@ -6,6 +6,8 @@ module com.example.tourplanner {
     requires com.dlsc.formsfx;
     requires java.sql;
     requires org.apache.logging.log4j;
+    requires java.desktop;
+    requires org.json;
 
     opens PresentationLayer to javafx.fxml;
     exports PresentationLayer;

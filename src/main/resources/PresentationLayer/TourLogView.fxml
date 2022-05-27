@@ -9,8 +9,20 @@
 
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.control.TextField?>
-<HBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PresentationLayer.controller.TourLogController">
-    <Label fx:id="logLabel" minWidth="-Infinity" text="Log view"></Label>
-</HBox>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PresentationLayer.controller.TourLogController">
+    <HBox>
+        <Label fx:id="logLabel" minWidth="-Infinity" text="Log view"></Label>
+        <Pane HBox.hgrow="ALWAYS" />
+        <Button text="+" fx:id="addLogButton" styleClass="editButton" onAction="#addLog"></Button>
+        <Button text="-" fx:id="dleteLogButton" styleClass="editButton" onAction="#deleteLog"></Button>
+    </HBox>
+
+    <HBox>
+        <ListView fx:id="listView" layoutX="5.0" layoutY="3.0" onMouseClicked="#tourLogClicked"></ListView>
+    </HBox>
+</VBox>
 
 

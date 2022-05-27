@@ -60,6 +60,6 @@ public class MapQuestManager {
             log.error("JsonObject is null");
             return null;
         }
-        JSONObject obj
+        return null;
     }
 }

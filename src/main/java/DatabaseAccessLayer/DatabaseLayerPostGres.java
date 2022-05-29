@@ -19,7 +19,7 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
         String url = "jdbc:postgresql://localhost:5432/postgres";
         Properties props = new Properties();
         props.setProperty("user","postgres");
-        props.setProperty("password","myPassword");
+        props.setProperty("password","Eridmilan12316");
         con = DriverManager.getConnection(url, props);
         return DriverManager.getConnection(url, props);
     }
@@ -29,7 +29,7 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
         try {
 
             // Step 4: Create a statement
-            String sql = "SELECT max(id) FROM Tours";
+            String sql = "SELECT max(id) FROM tours";
 
             PreparedStatement ps = con.prepareStatement(sql);
             // Step 6: Process the results
@@ -37,6 +37,9 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
             ResultSet last_updated_person = ps.getResultSet();
             if(last_updated_person.next()) {
                 return last_updated_person.getInt(1);
+            }
+            else{
+                return 1;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -50,7 +53,7 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
         int count = getMaxId() + 1;
         try {
             // Step 4: Create a statement
-            String sql = "DELETE FROM Tours WHERE name = '" + tourModel.getTourName() + "';";
+            String sql = "DELETE FROM tours WHERE name = '" + tourModel.getTourName() + "';";
 
             PreparedStatement ps = con.prepareStatement(sql);
             // Step 6: Process the results
@@ -66,7 +69,7 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
         int count = getMaxId() + 1;
         try {
             // Step 4: Create a statement
-            String sql = "insert into Tours values("+ count +", '" + tour +"')";
+            String sql = "insert into tours values("+ count +", '" + tour +"')";
 
             PreparedStatement ps = con.prepareStatement(sql);
             // Step 6: Process the results

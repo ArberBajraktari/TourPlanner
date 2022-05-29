@@ -40,8 +40,7 @@ public class TourListController implements Initializable{
         TourModel tourModelList = listView.getSelectionModel().getSelectedItem();
         if(tourModelList != null){
             tourDetailsModel.setTourModel(tourModelList);
-            //TODO fix this
-            //tourLogModel.setTourModel(tourModelList);
+            tourLogModel.setTourModel(tourModelList);
         }
 
     }

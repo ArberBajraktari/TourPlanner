@@ -6,6 +6,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
+import java.util.Iterator;
+
 public class TourLogModel {
 
     private StringProperty tourLog;
@@ -24,9 +26,31 @@ public class TourLogModel {
         return tourLog;
     }
 
-    public void setTourModel(TourLogCellModel tourModelList) {
-        //TODO comment here
-        //tourLog.set(tourModelList.getTourName());
+    public void setTourModel(TourModel tourModelList) {
+        setLogModel(tourModelList);
+        tourLog.set(tourModelList.getTourName());
+
+    }
+
+    private void setLogModel(TourModel tourModel) {
+
+        clearLogs();
+
+        tourModel.getTourList();
+        TourLogCellModel t = new TourLogCellModel();
+        t.setDistanceProperty(tourModel.getTourName());
+        tourLogs.add(t);
+    }
+
+    private void clearLogs(){
+
+        for (Iterator<TourLogCellModel> iterator = tourLogs.iterator(); iterator.hasNext(); ) {
+            String value = String.valueOf(iterator.next());
+            if (value.length() > 0) {
+                iterator.remove();
+            }
+        }
+
     }
 
     public ObservableList<TourLogCellModel> getTours() {
@@ -35,5 +59,9 @@ public class TourLogModel {
 
     public void removeTour(TourLogCellModel product) {
         this.tourLogs.remove(product);
+    }
+
+    public void saveTourModel() {
+
     }
 }

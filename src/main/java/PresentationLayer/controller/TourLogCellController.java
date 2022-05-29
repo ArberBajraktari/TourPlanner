@@ -15,12 +15,14 @@ import java.util.function.Consumer;
 
 public class TourLogCellController {
 
-    private TourLogCellModel tourModel;
+    private TourLogCellModel tourLogCellModel;
 
     private Consumer<TourLogCellModel> onDeleteProductConsumer;
 
     @FXML
-    public Label name;
+    public Label distance;
+    @FXML
+    public Label duration;
 
     @FXML
     private Node box = new HBox();
@@ -29,9 +31,10 @@ public class TourLogCellController {
         return box;
     }
 
-    public void setProduct(TourLogCellModel TourModel) {
-        this.tourModel = TourModel;
-        this.name.textProperty().bindBidirectional(this.tourModel.getTourNameProperty());
+    public void setProduct(TourLogCellModel tourLogCellModel) {
+        this.tourLogCellModel = tourLogCellModel;
+        this.distance.textProperty().bindBidirectional(this.tourLogCellModel.getDistanceProperty());
+        this.duration.textProperty().bindBidirectional(this.tourLogCellModel.getDurationProperty());
         //this.name.textProperty().bindBidirectional(this.tourModel.getTourNameProperty());
     }
 
@@ -40,7 +43,7 @@ public class TourLogCellController {
     }
 
     public void onDeleteTour(ActionEvent actionEvent) throws SQLException, IOException {
-        this.onDeleteProductConsumer.accept(this.tourModel);
-        tourModel.deleteTour(this.tourModel);
+        this.onDeleteProductConsumer.accept(this.tourLogCellModel);
+        tourLogCellModel.deleteTour(this.tourLogCellModel);
     }
 }

@@ -45,6 +45,7 @@ public class TourLogController implements Initializable {
         this.tourLogModel.removeTour(model);
     }
 
+
     public void tourLogClicked(MouseEvent mouseEvent) {
 
     }
@@ -55,7 +56,19 @@ public class TourLogController implements Initializable {
         System.out.println("button add clicked");
     }
 
-    public void deleteLog(ActionEvent actionEvent) {
-        System.out.println("button delete clicked");
+    public void saveLog(ActionEvent actionEvent) {
+//        if(this.tourDetailsModel.getWorkingMode()){
+//
+//            System.out.println("Saving tour to DB");
+//        }else{
+//            System.out.println("Pop up window");
+//        }
+        this.tourLogModel.saveTourModel();
+
+        //Revert to Working mode
+//        this.tourDetailsModel.setEditMode(false);
+//        this.tourDetailsModel.setEditButton("Edit");
+//        this.tourDetailsModel.setWorkMode(true);
+
     }
 }

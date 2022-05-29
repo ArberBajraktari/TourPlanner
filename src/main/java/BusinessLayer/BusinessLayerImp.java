@@ -26,8 +26,8 @@ public class BusinessLayerImp implements IBusinessLayer {
         dataLayer.addTour(tourItem.getTourName());
         //TourEntryModel tourEntryModel = touritemDAO.AddnewItem(tourItem);
         //fileAccess.saveImage(MapQuestManager.requestRouteImage(tourItem.getStart(), tourItem.getEnd()), tourEntryModel.getId());
-        BufferedImage test = MapQuestManager.requestRouteImage("Vienna", "Berlin");
-        System.out.println(test);
+        //BufferedImage test = MapQuestManager.requestRouteImage("Vienna", "Berlin");
+        System.out.println(MapQuestManager.requestRoute("Vienna", "Berlin"));
     }
 
 

@@ -15,11 +15,9 @@ public class MapQuestManager {
     public static String requestRoute(String start, String end){
         HttpURLConnection connection = null;
         try{
-            URL url = new URL("http://www.mapquestapi.com/directions/v2/route?key=KEY&from=Clarendon Blvd,Arlington,VA&to=2400+S+Glebe+Rd,+Arlington,+VA");
+            URL url = new URL("http://www.mapquestapi.com/directions/v2/route?key=wrq6qJ05GD4w8ZMjbTsZ25C5matuLpNw&from=Vienna&to=2400+S+Glebe+Rd,+Arlington,+VA");
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
-            connection.setRequestMethod("Content-Type," +
-                    "application/x-www-form-urlencoded");
             connection.setRequestProperty("Content-Length",
                     Integer.toString(0));
             connection.setRequestProperty("Content-Language", "en-US");

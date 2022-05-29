@@ -6,11 +6,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox xmlns:fx="http://javafx.com/fxml" fx:id="box" fx:controller="PresentationLayer.controller.TourItemController">
+<HBox xmlns:fx="http://javafx.com/fxml" fx:id="box" fx:controller="PresentationLayer.controller.TourLogCellController">
     <children>
         <Label  fx:id="name" style="-fx-label-padding: 10; -fx-alignment: center-left"/>
         <Label  fx:id="price" style="-fx-label-padding: 10; -fx-alignment: center-left"/>
         <Region HBox.hgrow="ALWAYS"></Region>
-        <Button text="Hellooo" onAction="#onDeleteTour" style="-fx-label-padding: 10; -fx-alignment: center-right" />
+        <Button text="X" onAction="#onDeleteTour" style="-fx-label-padding: 10; -fx-alignment: center-right" />
     </children>
 </HBox>

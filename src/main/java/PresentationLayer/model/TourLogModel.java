@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 public class TourLogModel {
 
     private StringProperty tourLog;
-    private ObservableList<TourModel> tourLogs = FXCollections.observableArrayList();
+    private ObservableList<TourLogCellModel> tourLogs = FXCollections.observableArrayList();
 
     public TourLogModel(){
         tourLog = new SimpleStringProperty("Log view");
@@ -24,15 +24,16 @@ public class TourLogModel {
         return tourLog;
     }
 
-    public void setTourModel(TourModel tourModelList) {
-        tourLog.set(tourModelList.getTourName());
+    public void setTourModel(TourLogCellModel tourModelList) {
+        //TODO comment here
+        //tourLog.set(tourModelList.getTourName());
     }
 
-    public ObservableList<TourModel> getTours() {
+    public ObservableList<TourLogCellModel> getTours() {
         return tourLogs;
     }
 
-    public void removeTour(TourModel product) {
+    public void removeTour(TourLogCellModel product) {
         this.tourLogs.remove(product);
     }
 }

@@ -1,9 +1,6 @@
 package PresentationLayer.controller;
 
-import PresentationLayer.model.TourItemModel;
-import PresentationLayer.model.TourLogItemModel;
-import PresentationLayer.model.TourLogModel;
-import PresentationLayer.model.TourModel;
+import PresentationLayer.model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,7 +18,7 @@ public class TourLogController implements Initializable {
     @FXML
     private Label logLabel = new Label();
     @FXML
-    public ListView<TourModel> listView = new ListView<>();
+    public ListView<TourLogCellModel> listView = new ListView<>();
 
     public TourLogController(TourLogModel tourLogModel) {
         this.tourLogModel = tourLogModel;
@@ -44,7 +41,7 @@ public class TourLogController implements Initializable {
                 ToursListView -> new TourLogItemModel(p -> this.deleteProduct(p)));
     }
 
-    private void deleteProduct(TourModel model) {
+    private void deleteProduct(TourLogCellModel model) {
         this.tourLogModel.removeTour(model);
     }
 
@@ -53,7 +50,7 @@ public class TourLogController implements Initializable {
     }
 
     public void addLog(ActionEvent actionEvent) {
-        TourModel t = new TourModel();
+        TourLogCellModel t = new TourLogCellModel();
         listView.getItems().add(t);
         System.out.println("button add clicked");
     }

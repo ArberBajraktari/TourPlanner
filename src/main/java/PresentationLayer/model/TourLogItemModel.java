@@ -1,21 +1,22 @@
 package PresentationLayer.model;
 
 import PresentationLayer.controller.TourItemController;
+import PresentationLayer.controller.TourLogCellController;
 import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 import java.util.function.Consumer;
 
-public class TourLogItemModel extends javafx.scene.control.ListCell<TourModel>{
+public class TourLogItemModel extends javafx.scene.control.ListCell<TourLogCellModel>{
 
-    private Consumer<TourModel> onDeleteProductCallBack;
+    private Consumer<TourLogCellModel> onDeleteProductCallBack;
 
-    public TourLogItemModel(Consumer<TourModel> callback) {
+    public TourLogItemModel(Consumer<TourLogCellModel> callback) {
         this.onDeleteProductCallBack = callback;
     }
 
     @Override
-    public void updateItem(TourModel product, boolean empty)
+    public void updateItem(TourLogCellModel product, boolean empty)
     {
         super.updateItem(product, empty);
         if (empty || product == null) {
@@ -32,7 +33,7 @@ public class TourLogItemModel extends javafx.scene.control.ListCell<TourModel>{
             throw new RuntimeException(e);
         }
 
-        var controller = (TourItemController)fxmlLoader.getController();
+        var controller = (TourLogCellController)fxmlLoader.getController();
         controller.setProduct(product);
         controller.addListenerForDeleteTour(this.onDeleteProductCallBack);
         setGraphic(controller.getProductItemBox());

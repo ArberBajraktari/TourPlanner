@@ -4,11 +4,13 @@ import BusinessLayer.IBusinessLayer;
 import BusinessLayer.BusinessLayerFactory;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
 
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
+import java.util.Iterator;
 
 public class TourModel {
     @FXML
@@ -23,7 +25,7 @@ public class TourModel {
     @FXML
     private StringProperty distance = new SimpleStringProperty();
 
-    private javafx.scene.control.ListView<TourLogCellModel> listLog = new ListView<>();
+    private ObservableList<TourLogCellModel> tourLogs = FXCollections.observableArrayList();
 
 
     private IBusinessLayer manager = BusinessLayerFactory.GetManager();
@@ -87,7 +89,15 @@ public class TourModel {
         return distance;
     }
 
-    public void getTourList() {
-        System.out.println(listLog.getSelectionModel());
+
+    public ObservableList<TourLogCellModel> getTours() {
+        return tourLogs;
+    }
+    public void setTourLogs(ObservableList<TourLogCellModel> tourLogs){
+        Iterator<TourLogCellModel> it = tourLogs.iterator();
+        while (it.hasNext()) {
+            TourLogCellModel value = it.next();
+            this.tourLogs.add(value);
+        }
     }
 }

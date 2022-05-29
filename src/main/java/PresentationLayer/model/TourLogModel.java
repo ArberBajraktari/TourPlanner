@@ -4,14 +4,12 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-
-import java.util.Iterator;
 
 public class TourLogModel {
 
     private StringProperty tourLog;
     private ObservableList<TourLogCellModel> tourLogs = FXCollections.observableArrayList();
+    TourModel tourModel;
 
     public TourLogModel(){
         tourLog = new SimpleStringProperty("Log view");
@@ -27,30 +25,30 @@ public class TourLogModel {
     }
 
     public void setTourModel(TourModel tourModelList) {
+        //clear listview
+        clearLogs();
+        //save tourLogs from Listview to LogListView
         setLogModel(tourModelList);
-        tourLog.set(tourModelList.getTourName());
+
+//        TourLogCellModel t = new TourLogCellModel();
+//        t.setDistanceProperty("Test");
+//        tourLogs.add(t);
+//        tourLog.set(tourModelList.getTourName());
 
     }
 
     private void setLogModel(TourModel tourModel) {
-
-        clearLogs();
-
-        tourModel.getTourList();
-        TourLogCellModel t = new TourLogCellModel();
-        t.setDistanceProperty(tourModel.getTourName());
-        tourLogs.add(t);
+        System.out.println("hello");
+        tourModel.getTours().forEach(tourLog -> {
+            System.out.println("here");
+            System.out.println(tourLog);
+            tourLogs.add(tourLog);
+        });
+        this.tourModel = tourModel;
     }
 
     private void clearLogs(){
-
-        for (Iterator<TourLogCellModel> iterator = tourLogs.iterator(); iterator.hasNext(); ) {
-            String value = String.valueOf(iterator.next());
-            if (value.length() > 0) {
-                iterator.remove();
-            }
-        }
-
+        tourLogs.clear();
     }
 
     public ObservableList<TourLogCellModel> getTours() {
@@ -62,6 +60,6 @@ public class TourLogModel {
     }
 
     public void saveTourModel() {
-
+        this.tourModel.setTourLogs(getTours());
     }
 }

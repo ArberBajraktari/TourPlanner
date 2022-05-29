@@ -60,6 +60,53 @@ public class MapQuestManager {
             log.error("JsonObject is null");
             return null;
         }
-        JSONObject obj
+        JSONObject obj = new JSONObject(jsonString);
+        if(!obj.getJSONObject("route").has("sessionId") && !obj.getJSONObject("route").has("boundingBox")) {
+            log.error("Wrong JsonObject");
+            return null;
+        }
+        String session = obj.getJSONObject("route").getString("sessionId");
+        JSONObject boundingBox = obj.getJSONObject("route").getJSONObject("boundingBox");
+        try {
+            String params;
+            params = "&size=700,300";
+            params += "&defaultMarker=none";
+            params += "&zoom=11";
+            params += "&rand=737758036";
+            params += "&session="+session;
+            String box = boundingBox.getJSONObject("lr").getFloat("lat") + "," + boundingBox.getJSONObject("lr").getFloat("lng") + "," + boundingBox.getJSONObject("ul").getFloat("lat") + "," + boundingBox.getJSONObject("ul").getFloat("lng");
+            params += "&boundingBox="+box;
+
+            URL url = new URL("http://www.mapquestapi.com/staticmap/v5/map?key=wrq6qJ05GD4w8ZMjbTsZ25C5matuLpNw" + params);
+            InputStream is;
+            try {
+                is = url.openStream();
+            }
+            catch (Exception e){
+                log.error("Cant open Stream: " + e.getMessage());
+                return null;
+            }
+            return ImageIO.read(is);
+
+        } catch (IOException e) {
+            log.error("Cant create URL: " + e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private static String escapeCharacters(String string) {
+        string = string.replaceAll(" ","");
+        string = string.replaceAll("ä","ae");
+        string = string.replaceAll("ü","ue");
+        string = string.replaceAll("ö","oe");
+        string = string.replaceAll("Ä","Ae");
+        string = string.replaceAll("Ü","Ue");
+        string = string.replaceAll("Ö","Oe");
+        string = string.replaceAll("\\.","");
+        string = string.replaceAll(",","");
+        string = string.replaceAll("/","");
+        return string;
     }
 }
+

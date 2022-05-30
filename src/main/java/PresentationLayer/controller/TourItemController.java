@@ -37,6 +37,7 @@ public class TourItemController {
     }
 
     public void onDeleteTour(ActionEvent actionEvent) throws SQLException, IOException {
+        TourEntryController.deleteTourName(this.tourModel.getTourName());
         this.onDeleteProductConsumer.accept(this.tourModel);
         tourModel.deleteTour(this.tourModel);
         tourModel.deleteImg("src/main/resources/TourImages/" + this.tourModel.getTourName() + ".jpg");

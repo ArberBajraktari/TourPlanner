@@ -1,5 +1,7 @@
 package PresentationLayer.controller;
 
+import BusinessLayer.BusinessLayerFactory;
+import BusinessLayer.IBusinessLayer;
 import PresentationLayer.model.TourDetailsModel;
 import PresentationLayer.model.TourModel;
 import javafx.beans.property.BooleanProperty;
@@ -14,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -62,6 +65,8 @@ public class TourDetailsController implements Initializable {
     @FXML
     private Label tourInfoLabel;
 
+    private IBusinessLayer manager = BusinessLayerFactory.GetManager();
+
     public TourDetailsController(TourDetailsModel tourDetailsModel) {
         this.tourDetailsModel = tourDetailsModel;
     }
@@ -80,7 +85,7 @@ public class TourDetailsController implements Initializable {
 
     }
 
-    public void saveTour(ActionEvent actionEvent) {
+    public void saveTour(ActionEvent actionEvent) throws IOException {
         if(this.tourDetailsModel.getWorkingMode()){
 
             System.out.println("Saving tour to DB");
@@ -93,6 +98,10 @@ public class TourDetailsController implements Initializable {
         this.tourDetailsModel.setEditMode(false);
         this.tourDetailsModel.setEditButton("Edit");
         this.tourDetailsModel.setWorkMode(true);
+        manager.getMap(this.tourDetailsModel.getTourName(), this.tourDetailsModel.getTourFrom(), this.tourDetailsModel.getTourTo());
+        File file = new File("src/main/resources/TourImages/" + this.tourDetailsModel.getTourName() + ".jpg");
+        Image image = new Image(file.toURI().toString());
+        this.tourDetailsModel.setTourDetailImg(image);
     }
 
     @Override
@@ -139,13 +148,6 @@ public class TourDetailsController implements Initializable {
         this.editButton.textProperty().bindBidirectional(this.tourDetailsModel.getEditButtonProperty());
         this.imageView.imageProperty().bindBidirectional(this.tourDetailsModel.getImageProperty());
 
-        //TODO
-        // kjo asht provizore
-        // ka nevoj me u ba dikun tjt
-        // refresh sa her bahet save
-        File file = new File("src/map.png");
-        Image image = new Image(file.toURI().toString());
-        this.tourDetailsModel.setTourDetailImg(image);
     }
 
 

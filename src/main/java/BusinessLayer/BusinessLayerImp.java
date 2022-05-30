@@ -5,7 +5,11 @@ import DatabaseAccessLayer.IDatabaseLayer;
 import PresentationLayer.model.TourEntryModel;
 import PresentationLayer.model.TourModel;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.SQLException;
 
 
@@ -13,6 +17,7 @@ public class BusinessLayerImp implements IBusinessLayer {
 
     //connection to DB layer
     private IDatabaseLayer dataLayer;
+    private MapQuestManager map = new MapQuestManager();
 
     public BusinessLayerImp(){
         dataLayer = DataAccessLayerFactory.getDatabase();
@@ -30,5 +35,19 @@ public class BusinessLayerImp implements IBusinessLayer {
     public void deleteTourItem(TourModel tourModel) throws SQLException, FileNotFoundException {
         dataLayer.createConnection();
         dataLayer.removeTour(tourModel);
+    }
+
+    @Override
+    public void getMap(String tourName, String start, String finish) throws IOException {
+        try {
+            File outputFile = new File("src/main/resources/TourImages/" + tourName + ".jpg");
+            BufferedImage img = MapQuestManager.requestRouteImage(start, finish);
+            ImageIO.write(img, "jpg", outputFile);
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+
+
     }
 }

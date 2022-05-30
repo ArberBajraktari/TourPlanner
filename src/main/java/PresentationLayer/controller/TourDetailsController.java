@@ -88,24 +88,24 @@ public class TourDetailsController implements Initializable {
     }
 
     public void saveTour(ActionEvent actionEvent) throws IOException {
-        if(!tourDetailsModel.getTourName().equals("")) {
-            if (this.tourDetailsModel.getWorkingMode()) {
+        if(tourDetailsModel.getTourName() != null && !tourDetailsModel.getTourName().equals("") ){
+                if (this.tourDetailsModel.getWorkingMode()) {
 
-                System.out.println("Saving tour to DB");
-            } else {
-                System.out.println("Pop up window");
-            }
-            this.tourDetailsModel.saveTourModel();
+                    System.out.println("Saving tour to DB");
+                } else {
+                    System.out.println("Pop up window");
+                }
+                this.tourDetailsModel.saveTourModel();
 
-            //Revert to Working mode
-            this.tourDetailsModel.setEditMode(false);
-            this.tourDetailsModel.setEditButton("Edit");
-            this.tourDetailsModel.setWorkMode(true);
+                //Revert to Working mode
+                this.tourDetailsModel.setEditMode(false);
+                this.tourDetailsModel.setEditButton("Edit");
+                this.tourDetailsModel.setWorkMode(true);
 
-            manager.getMap(this.tourDetailsModel.getTourName(), this.tourDetailsModel.getTourFrom(), this.tourDetailsModel.getTourTo());
-            File file = new File("src/main/resources/TourImages/" + this.tourDetailsModel.getTourName() + ".jpg");
-            Image image = new Image(file.toURI().toString());
-            this.tourDetailsModel.setTourDetailImg(image);
+                manager.getMap(this.tourDetailsModel.getTourName(), this.tourDetailsModel.getTourFrom(), this.tourDetailsModel.getTourTo());
+                File file = new File("src/main/resources/TourImages/" + this.tourDetailsModel.getTourName() + ".jpg");
+                Image image = new Image(file.toURI().toString());
+                this.tourDetailsModel.setTourDetailImg(image);
         }
     }
 

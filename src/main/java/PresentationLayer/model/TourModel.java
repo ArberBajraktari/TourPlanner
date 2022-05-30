@@ -23,7 +23,48 @@ public class TourModel {
     private StringProperty tourTo = new SimpleStringProperty();
 
     @FXML
-    private StringProperty distance = new SimpleStringProperty();
+    private StringProperty tourTransport = new SimpleStringProperty();
+
+    public String getTourTransport() {
+        return tourTransport.get();
+    }
+
+    public String getTourDistance() {
+        return tourDistance.get();
+    }
+
+    public String getTourEstTime() {
+        return tourEstTime.get();
+    }
+
+    public void setTourTransport(String tourTransport) {
+        this.tourTransport.set(tourTransport);
+    }
+
+    public void setTourDistance(String tourDistance) {
+        this.tourDistance.set(tourDistance);
+    }
+
+    public void setTourEstTime(String tourEstTime) {
+        this.tourEstTime.set(tourEstTime);
+    }
+
+    public void setTourInfo(String tourInfo) {
+        this.tourInfo.set(tourInfo);
+    }
+
+    public String getTourInfo() {
+        return tourInfo.get();
+    }
+
+
+    @FXML
+    private StringProperty tourDistance = new SimpleStringProperty();
+    @FXML
+    private StringProperty tourEstTime = new SimpleStringProperty();
+    @FXML
+    private StringProperty tourInfo = new SimpleStringProperty();
+
 
     private ObservableList<TourLogCellModel> tourLogs = FXCollections.observableArrayList();
 
@@ -82,18 +123,23 @@ public class TourModel {
     }
 
     public String getDistance() {
-        return distance.get();
+        return tourDistance.get();
     }
 
     public StringProperty distanceProperty() {
-        return distance;
+        return tourDistance;
     }
 
+    private void clearLogs(){
+        this.tourLogs.clear();
+    }
 
     public ObservableList<TourLogCellModel> getTours() {
         return tourLogs;
     }
     public void setTourLogs(ObservableList<TourLogCellModel> tourLogs){
+        clearLogs();
+
         Iterator<TourLogCellModel> it = tourLogs.iterator();
         while (it.hasNext()) {
             TourLogCellModel value = it.next();

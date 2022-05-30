@@ -20,12 +20,15 @@ import java.util.ResourceBundle;
 public class TourDetailsController implements Initializable {
 
     private final TourDetailsModel tourDetailsModel;
+
     @FXML
     private ImageView imageView;
     @FXML
     private Button editButton;
     @FXML
     private Button saveButton;
+
+
     @FXML
     private TextField tourName;
     @FXML
@@ -35,6 +38,14 @@ public class TourDetailsController implements Initializable {
     @FXML
     private TextField tourTo;
     @FXML
+    private TextField tourTransport;
+    @FXML
+    private TextField tourDistance;
+    @FXML
+    private TextField tourEstTime;
+    @FXML
+    private TextField tourInfo;
+    @FXML
     private Label tourNameLabel;
     @FXML
     private Label tourDescLabel;
@@ -42,6 +53,14 @@ public class TourDetailsController implements Initializable {
     private Label tourFromLabel;
     @FXML
     private Label tourToLabel;
+    @FXML
+    private Label tourTransportLabel;
+    @FXML
+    private Label tourDistanceLabel;
+    @FXML
+    private Label tourEstTimeLabel;
+    @FXML
+    private Label tourInfoLabel;
 
     public TourDetailsController(TourDetailsModel tourDetailsModel) {
         this.tourDetailsModel = tourDetailsModel;
@@ -82,21 +101,40 @@ public class TourDetailsController implements Initializable {
         this.tourDesc.textProperty().bindBidirectional(this.tourDetailsModel.getTourDescProperty());
         this.tourFrom.textProperty().bindBidirectional(this.tourDetailsModel.getTourFromProperty());
         this.tourTo.textProperty().bindBidirectional(this.tourDetailsModel.getTourToProperty());
+        this.tourTransport.textProperty().bindBidirectional(this.tourDetailsModel.getTourTransportProperty());
+        this.tourDistance.textProperty().bindBidirectional(this.tourDetailsModel.getTourDistanceProperty());
+        this.tourEstTime.textProperty().bindBidirectional(this.tourDetailsModel.getTourEstTimeProperty());
+        this.tourInfo.textProperty().bindBidirectional(this.tourDetailsModel.getTourInfoProperty());
 
         this.tourName.visibleProperty().bind(this.tourDetailsModel.getEditModeProperty());
         this.tourDesc.visibleProperty().bind(this.tourDetailsModel.getEditModeProperty());
         this.tourFrom.visibleProperty().bind(this.tourDetailsModel.getEditModeProperty());
         this.tourTo.visibleProperty().bind(this.tourDetailsModel.getEditModeProperty());
+        this.tourTransport.visibleProperty().bind(this.tourDetailsModel.getEditModeProperty());
+        this.tourDistance.visibleProperty().bind(this.tourDetailsModel.getEditModeProperty());
+        this.tourEstTime.visibleProperty().bind(this.tourDetailsModel.getEditModeProperty());
+        this.tourInfo.visibleProperty().bind(this.tourDetailsModel.getEditModeProperty());
 
-        this.tourNameLabel.visibleProperty().bind(this.tourDetailsModel.getWorkingModeProperty());
-        this.tourDescLabel.visibleProperty().bind(this.tourDetailsModel.getWorkingModeProperty());
-        this.tourFromLabel.visibleProperty().bind(this.tourDetailsModel.getWorkingModeProperty());
-        this.tourToLabel.visibleProperty().bind(this.tourDetailsModel.getWorkingModeProperty());
 
         this.tourNameLabel.textProperty().bind(this.tourDetailsModel.getTourNameProperty());
         this.tourDescLabel.textProperty().bind(this.tourDetailsModel.getTourDescProperty());
         this.tourFromLabel.textProperty().bind(this.tourDetailsModel.getTourFromProperty());
         this.tourToLabel.textProperty().bind(this.tourDetailsModel.getTourToProperty());
+        this.tourTransportLabel.textProperty().bindBidirectional(this.tourDetailsModel.getTourTransportProperty());
+        this.tourDistanceLabel.textProperty().bindBidirectional(this.tourDetailsModel.getTourDistanceProperty());
+        this.tourEstTimeLabel.textProperty().bindBidirectional(this.tourDetailsModel.getTourEstTimeProperty());
+        this.tourInfoLabel.textProperty().bindBidirectional(this.tourDetailsModel.getTourInfoProperty());
+
+        this.tourNameLabel.visibleProperty().bind(this.tourDetailsModel.getWorkingModeProperty());
+        this.tourDescLabel.visibleProperty().bind(this.tourDetailsModel.getWorkingModeProperty());
+        this.tourFromLabel.visibleProperty().bind(this.tourDetailsModel.getWorkingModeProperty());
+        this.tourToLabel.visibleProperty().bind(this.tourDetailsModel.getWorkingModeProperty());
+        this.tourTransportLabel.visibleProperty().bind(this.tourDetailsModel.getWorkingModeProperty());
+        this.tourDistanceLabel.visibleProperty().bind(this.tourDetailsModel.getWorkingModeProperty());
+        this.tourEstTimeLabel.visibleProperty().bind(this.tourDetailsModel.getWorkingModeProperty());
+        this.tourInfoLabel.visibleProperty().bind(this.tourDetailsModel.getWorkingModeProperty());
+
+
 
         this.editButton.textProperty().bindBidirectional(this.tourDetailsModel.getEditButtonProperty());
         this.imageView.imageProperty().bindBidirectional(this.tourDetailsModel.getImageProperty());

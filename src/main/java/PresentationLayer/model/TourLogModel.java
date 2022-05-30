@@ -1,5 +1,6 @@
 package PresentationLayer.model;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -9,7 +10,8 @@ public class TourLogModel {
 
     private StringProperty tourLog;
     private ObservableList<TourLogCellModel> tourLogs = FXCollections.observableArrayList();
-    TourModel tourModel;
+    private TourModel tourModel;
+
 
     public TourLogModel(){
         tourLog = new SimpleStringProperty("Log view");
@@ -37,11 +39,9 @@ public class TourLogModel {
 
     }
 
+    //set ListView to LogListView
     private void setLogModel(TourModel tourModel) {
-        System.out.println("hello");
         tourModel.getTours().forEach(tourLog -> {
-            System.out.println("here");
-            System.out.println(tourLog);
             tourLogs.add(tourLog);
         });
         this.tourModel = tourModel;
@@ -59,7 +59,10 @@ public class TourLogModel {
         this.tourLogs.remove(product);
     }
 
+    //save ListView to be the Same as the modified LogListView
     public void saveTourModel() {
-        this.tourModel.setTourLogs(getTours());
+        if(this.tourModel != null){
+            this.tourModel.setTourLogs(getTours());
+        }
     }
 }

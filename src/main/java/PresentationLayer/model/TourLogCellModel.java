@@ -1,8 +1,7 @@
 package PresentationLayer.model;
 
-import javafx.beans.property.Property;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 
 import java.io.FileNotFoundException;
@@ -11,9 +10,79 @@ import java.sql.SQLException;
 public class TourLogCellModel {
 
     @FXML
-    private StringProperty distance = new SimpleStringProperty("hallall");
+    private StringProperty date = new SimpleStringProperty("dummy");
     @FXML
-    private StringProperty duration = new SimpleStringProperty("hallall");
+    private StringProperty comment = new SimpleStringProperty("dummy");
+    @FXML
+    private StringProperty difficulty = new SimpleStringProperty("dummy");
+    @FXML
+    private StringProperty totalTime = new SimpleStringProperty("dummy");
+    @FXML
+    private StringProperty rating = new SimpleStringProperty("dummy");
+
+    private BooleanProperty editMode = new SimpleBooleanProperty(false);
+    private BooleanProperty workingMode = new SimpleBooleanProperty(true);
+
+    public String getDate() {
+        return date.get();
+    }
+
+    public StringProperty dateProperty() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date.set(date);
+    }
+
+    public String getComment() {
+        return comment.get();
+    }
+
+    public StringProperty commentProperty() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment.set(comment);
+    }
+
+    public String getDifficulty() {
+        return difficulty.get();
+    }
+
+    public StringProperty difficultyProperty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(String difficulty) {
+        this.difficulty.set(difficulty);
+    }
+
+    public String getTotalTime() {
+        return totalTime.get();
+    }
+
+    public StringProperty totalTimeProperty() {
+        return totalTime;
+    }
+
+    public void setTotalTime(String totalTime) {
+        this.totalTime.set(totalTime);
+    }
+
+    public String getRating() {
+        return rating.get();
+    }
+
+    public StringProperty ratingProperty() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating.set(rating);
+    }
+
 
     public void deleteTour(TourLogCellModel tourModel) throws SQLException, FileNotFoundException {
         System.out.println("ok");
@@ -22,15 +91,27 @@ public class TourLogCellModel {
         //manager.deleteTourItem(tourModel);
     }
 
-    public StringProperty getDistanceProperty() {
-        return distance;
+
+
+
+
+    public boolean getEditMode() {
+        return editMode.get();
     }
 
-    public void setDistanceProperty(String distance) {
-        this.distance.set(distance);
+    public void setEditMode(boolean value) {
+        editMode.set(value);
     }
 
-    public StringProperty getDurationProperty() {
-        return duration;
+    public void setWorkMode(boolean value) {
+        workingMode.set(value);
+    }
+
+    public BooleanProperty getWorkingModeProperty() {
+        return workingMode;
+    }
+
+    public BooleanProperty getEditModeProperty() {
+        return editMode;
     }
 }

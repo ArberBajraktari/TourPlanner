@@ -15,14 +15,16 @@
         <Button fx:id="saveLogButton" onAction="#saveLog" styleClass="editButton" text="save" />
     </HBox>
    <HBox prefHeight="61.0" prefWidth="450.0" >
-       <Label minWidth="-Infinity" text="Distance" />
-       <Label minWidth="-Infinity" text="Duration" />
-       <Label minWidth="-Infinity" text="Start" />
-       <Label minWidth="-Infinity" text="Stop" />
+       <Pane minWidth="32" />
+       <Label minWidth="110" text="Date" />
+       <Label minWidth="110" text="Comment" />
+       <Label minWidth="110" text="Difficulty" />
+       <Label minWidth="110" text="Total Time" />
+       <Label minWidth="110" text="Rating" />
    </HBox>
 
     <HBox>
-        <ListView fx:id="listView" layoutX="5.0" layoutY="3.0" onMouseClicked="#tourLogClicked" prefHeight="400.0" prefWidth="450.0" />
+        <ListView fx:id="listView" layoutX="5.0" layoutY="3.0" onMouseClicked="#tourLogClicked" prefHeight="400.0" prefWidth="700.0" />
     </HBox>
 
 

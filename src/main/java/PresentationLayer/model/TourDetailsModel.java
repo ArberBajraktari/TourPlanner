@@ -3,6 +3,8 @@ package PresentationLayer.model;
 import javafx.beans.property.*;
 import javafx.scene.image.Image;
 
+import java.io.File;
+
 public class TourDetailsModel {
 
     private StringProperty tourName;
@@ -164,6 +166,9 @@ public class TourDetailsModel {
         setTourDetailDistance(currentTourModel.getTourDistance());
         setTourDetailEstTime(currentTourModel.getTourEstTime());
         setTourDetailInfo(currentTourModel.getTourInfo());
+        File file = new File("src/main/resources/TourImages/" + getTourName() + ".jpg");
+        Image image = new Image(file.toURI().toString());
+        setTourDetailImg(image);
         this.tourModel = currentTourModel;
     }
 
@@ -210,6 +215,10 @@ public class TourDetailsModel {
             setTourDetailDesc(tourModel.getTourDesc());
             setTourDetailFrom(tourModel.getTourFrom());
             setTourDetailTo(tourModel.getTourTo());
+            setTourDetailDistance(tourModel.getTourDistance());
+            setTourDetailInfo(tourModel.getTourInfo());
+            setTourDetailEstTime(tourModel.getTourEstTime());
+            setTourDetailTransport(tourModel.getTourTransport());
         }
     }
 

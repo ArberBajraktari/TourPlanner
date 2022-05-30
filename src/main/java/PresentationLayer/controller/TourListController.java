@@ -38,6 +38,9 @@ public class TourListController implements Initializable{
     private void tourItemClicked(MouseEvent mouseEvent) {
         //Select the model that is clicked
         TourModel tourModelList = listView.getSelectionModel().getSelectedItem();
+        TourModel temp = new TourModel();
+        tourDetailsModel.setTourModel(temp);
+        tourLogModel.setTourModel(temp);
         if(tourModelList != null){
             tourDetailsModel.setTourModel(tourModelList);
             tourLogModel.setTourModel(tourModelList);

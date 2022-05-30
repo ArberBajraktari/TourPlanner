@@ -42,7 +42,10 @@ public class BusinessLayerImp implements IBusinessLayer {
         try {
             File outputFile = new File("src/main/resources/TourImages/" + tourName + ".jpg");
             BufferedImage img = MapQuestManager.requestRouteImage(start, finish);
-            ImageIO.write(img, "jpg", outputFile);
+            if(img != null){
+                ImageIO.write(img, "jpg", outputFile);
+            }
+
 
         } catch (IOException e) {
             System.out.println(e);

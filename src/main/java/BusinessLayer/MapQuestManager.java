@@ -61,7 +61,7 @@ public class MapQuestManager {
             return null;
         }
         JSONObject obj = new JSONObject(jsonString);
-        if(!obj.getJSONObject("route").has("sessionId") && !obj.getJSONObject("route").has("boundingBox")) {
+        if(!obj.getJSONObject("route").has("sessionId") || !obj.getJSONObject("route").has("boundingBox")) {
             log.error("Wrong JsonObject");
             return null;
         }

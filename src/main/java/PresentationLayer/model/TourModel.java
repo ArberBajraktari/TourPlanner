@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.util.Iterator;
@@ -55,6 +56,15 @@ public class TourModel {
 
     public String getTourInfo() {
         return tourInfo.get();
+    }
+
+    public void deleteImg(String img){
+        File myObj = new File(img);
+        if (myObj.delete()) {
+            System.out.println("Deleted the file: " + myObj.getName());
+        } else {
+            System.out.println("Failed to delete the file.");
+        }
     }
 
 

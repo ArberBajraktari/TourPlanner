@@ -17,7 +17,7 @@ public class Main extends Application {
 
         //"Import" Stylesheet
         FXMLLoader fxmlLoader = getFxmlLoader(factory);
-        Scene scene = new Scene(fxmlLoader.load(), 1000, 800);
+        Scene scene = new Scene(fxmlLoader.load(), 1200, 800);
         scene.getStylesheets().add(String.valueOf(getClass().getResource("StringConcatenation.css")));
         primaryStage.setTitle("Tourplanner");
         primaryStage.setScene(scene);

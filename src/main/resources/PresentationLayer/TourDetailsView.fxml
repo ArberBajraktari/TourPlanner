@@ -57,17 +57,48 @@
                     </StackPane>
                 </HBox>
 
+                <HBox >
+                    <Label text="Transport type:"></Label>
+                    <StackPane>
+                        <Label text="Template" fx:id="tourTransportLabel"></Label>
+                        <TextField fx:id="tourTransport"></TextField>
+                    </StackPane>
+                </HBox>
+
+                <HBox >
+                    <Label text="Distance:"></Label>
+                    <StackPane>
+                        <Label text="Template" fx:id="tourDistanceLabel"></Label>
+                        <TextField fx:id="tourDistance"></TextField>
+                    </StackPane>
+                </HBox>
+
+                <HBox >
+                    <Label text="Estimated Time:"></Label>
+                    <StackPane>
+                        <Label text="Template" fx:id="tourEstTimeLabel"></Label>
+                        <TextField fx:id="tourEstTime"></TextField>
+                    </StackPane>
+                </HBox>
+
+                <HBox >
+                    <Label text="Route Info:"></Label>
+                    <StackPane>
+                        <Label text="Template" fx:id="tourInfoLabel"></Label>
+                        <TextField fx:id="tourInfo"></TextField>
+                    </StackPane>
+                </HBox>
+
                 <HBox>
                     <Pane HBox.hgrow="ALWAYS" />
                     <Button text="Save" fx:id="saveButton" styleClass="saveButton" onAction="#saveTour"></Button>
                 </HBox>
             </VBox>
         </Tab>
-        <Tab text="Map">
+        <Tab text="Map" fx:id="map_tab" onSelectionChanged="#test" >
             <VBox>
                 <ImageView fx:id="imageView" fitWidth="-Infinity" fitHeight="-Infinity">
                 </ImageView>
-
             </VBox>
         </Tab>
     </TabPane>

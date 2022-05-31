@@ -6,11 +6,30 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox xmlns:fx="http://javafx.com/fxml" fx:id="box" fx:controller="PresentationLayer.controller.TourItemController">
+<HBox xmlns:fx="http://javafx.com/fxml" fx:id="box" fx:controller="PresentationLayer.controller.TourLogCellController">
     <children>
-        <Label  fx:id="name" style="-fx-label-padding: 10; -fx-alignment: center-left"/>
-        <Label  fx:id="price" style="-fx-label-padding: 10; -fx-alignment: center-left"/>
+        <StackPane prefWidth="110">
+            <Label  fx:id="date" style="-fx-label-padding: 10; -fx-alignment: center-left"/>
+            <TextField fx:id="dateInput"></TextField>
+        </StackPane>
+        <StackPane prefWidth="110">
+            <Label  fx:id="comment" style="-fx-label-padding: 10; -fx-alignment: center-left"/>
+            <TextField fx:id="commentInput"></TextField>
+        </StackPane>
+        <StackPane prefWidth="110">
+            <Label  fx:id="difficulty" style="-fx-label-padding: 10; -fx-alignment: center-left"/>
+            <TextField fx:id="difficultyInput"></TextField>
+        </StackPane>
+        <StackPane prefWidth="110">
+            <Label  fx:id="totalTime" style="-fx-label-padding: 10; -fx-alignment: center-left"/>
+            <TextField fx:id="totalTimeInput"></TextField>
+        </StackPane>
+        <StackPane prefWidth="110">
+            <Label  fx:id="rating" style="-fx-label-padding: 10; -fx-alignment: center-left"/>
+            <TextField fx:id="ratingInput"></TextField>
+        </StackPane>
         <Region HBox.hgrow="ALWAYS"></Region>
-        <Button text="Hellooo" onAction="#onDeleteTour" style="-fx-label-padding: 10; -fx-alignment: center-right" />
+        <Button text="X" onAction="#onDeleteTour" style="-fx-label-padding: 10; -fx-alignment: center-right" />
+        <Button text="E" onAction="#onEditTour" style="-fx-label-padding: 10; -fx-alignment: center-right" />
     </children>
 </HBox>

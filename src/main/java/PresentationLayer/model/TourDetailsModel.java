@@ -3,16 +3,28 @@ package PresentationLayer.model;
 import javafx.beans.property.*;
 import javafx.scene.image.Image;
 
+import java.io.File;
+
 public class TourDetailsModel {
 
     private StringProperty tourName;
-    private StringProperty tourNameLabel;
     private StringProperty tourDesc;
-    private StringProperty tourDescLabel;
     private StringProperty tourFrom;
-    private StringProperty tourFromLabel;
     private StringProperty tourTo;
+    private StringProperty tourTransport;
+    private StringProperty tourDistance;
+    private StringProperty tourEstTime;
+    private StringProperty tourInfo;
+
+    private StringProperty tourNameLabel;
+    private StringProperty tourDescLabel;
+    private StringProperty tourFromLabel;
     private StringProperty tourToLabel;
+    private StringProperty tourTransportLabel;
+    private StringProperty tourDistanceLabel;
+    private StringProperty tourEstTimeLabel;
+    private StringProperty tourInfoLabel;
+
     private StringProperty editButton;
 
     private BooleanProperty editMode;
@@ -22,16 +34,41 @@ public class TourDetailsModel {
     private TourModel tourModel;
 
 
+    public String getTourTransport() {
+        return tourTransport.get();
+    }
+
+    public String getTourDistance() {
+        return tourDistance.get();
+    }
+
+    public String getTourEstTime() {
+        return tourEstTime.get();
+    }
+
+    public String getTourInfo() {
+        return tourInfo.get();
+    }
 
     public TourDetailsModel(){
         tourName = new SimpleStringProperty("");
-        tourNameLabel = new SimpleStringProperty("Dummy");
         tourDesc = new SimpleStringProperty("");
-        tourDescLabel = new SimpleStringProperty("Dummy");
         tourFrom = new SimpleStringProperty("");
-        tourFromLabel = new SimpleStringProperty("Dummy");
         tourTo = new SimpleStringProperty("");
+        tourTransport = new SimpleStringProperty("");
+        tourDistance = new SimpleStringProperty("");
+        tourEstTime = new SimpleStringProperty("");
+        tourInfo = new SimpleStringProperty("");
+
+        tourNameLabel = new SimpleStringProperty("Dummy");
+        tourDescLabel = new SimpleStringProperty("Dummy");
+        tourFromLabel = new SimpleStringProperty("Dummy");
         tourToLabel = new SimpleStringProperty("Dummy");
+        tourTransportLabel = new SimpleStringProperty("Dummy");
+        tourDistanceLabel = new SimpleStringProperty("Dummy");
+        tourEstTimeLabel = new SimpleStringProperty("Dummy");
+        tourInfoLabel = new SimpleStringProperty("Dummy");
+
         editButton = new SimpleStringProperty("Edit");
         editMode = new SimpleBooleanProperty(false);
         workingMode = new SimpleBooleanProperty(true);
@@ -125,7 +162,30 @@ public class TourDetailsModel {
         setTourDetailDesc(currentTourModel.getTourDesc());
         setTourDetailFrom(currentTourModel.getTourFrom());
         setTourDetailTo(currentTourModel.getTourTo());
+        setTourDetailTransport(currentTourModel.getTourTransport());
+        setTourDetailDistance(currentTourModel.getTourDistance());
+        setTourDetailEstTime(currentTourModel.getTourEstTime());
+        setTourDetailInfo(currentTourModel.getTourInfo());
+        File file = new File("src/main/resources/TourImages/" + getTourName() + ".jpg");
+        Image image = new Image(file.toURI().toString());
+        setTourDetailImg(image);
         this.tourModel = currentTourModel;
+    }
+
+    private void setTourDetailInfo(String tourInfo) {
+        this.tourInfo.set(tourInfo);
+    }
+
+    private void setTourDetailEstTime(String tourEstTime) {
+        this.tourEstTime.set(tourEstTime);
+    }
+
+    private void setTourDetailDistance(String tourDistance) {
+        this.tourDistance.set(tourDistance);
+    }
+
+    private void setTourDetailTransport(String tourTransport) {
+        this.tourTransport.set(tourTransport);
     }
 
     public void setTourDetailTo(String tourTo) {
@@ -137,17 +197,29 @@ public class TourDetailsModel {
 
     //butoni save
     public void saveTourModel() {
-        this.tourModel.setTourName(getTourName());
-        this.tourModel.setTourDesc(getTourDesc());
-        this.tourModel.setTourFrom(getTourFrom());
-        this.tourModel.setTourTo(getTourTo());
+        if(tourModel != null){
+            this.tourModel.setTourName(getTourName());
+            this.tourModel.setTourDesc(getTourDesc());
+            this.tourModel.setTourFrom(getTourFrom());
+            this.tourModel.setTourTo(getTourTo());
+            this.tourModel.setTourDistance(getTourDistance());
+            this.tourModel.setTourInfo(getTourInfo());
+            this.tourModel.setTourEstTime(getTourEstTime());
+            this.tourModel.setTourTransport(getTourTransport());
+        }
     }
 
     public void resetTourModel() {
-        setTourDetailName(tourModel.getTourName());
-        setTourDetailDesc(tourModel.getTourDesc());
-        setTourDetailFrom(tourModel.getTourFrom());
-        setTourDetailTo(tourModel.getTourTo());
+        if(tourModel != null){
+            setTourDetailName(tourModel.getTourName());
+            setTourDetailDesc(tourModel.getTourDesc());
+            setTourDetailFrom(tourModel.getTourFrom());
+            setTourDetailTo(tourModel.getTourTo());
+            setTourDetailDistance(tourModel.getTourDistance());
+            setTourDetailInfo(tourModel.getTourInfo());
+            setTourDetailEstTime(tourModel.getTourEstTime());
+            setTourDetailTransport(tourModel.getTourTransport());
+        }
     }
 
     public Property<Image> getImageProperty() {
@@ -156,5 +228,21 @@ public class TourDetailsModel {
 
     public void setTourDetailImg(Image image) {
         this.imageProperty.set(image);
+    }
+
+    public StringProperty getTourTransportProperty() {
+        return tourTransport;
+    }
+
+    public StringProperty getTourDistanceProperty() {
+        return tourDistance;
+    }
+
+    public StringProperty getTourEstTimeProperty() {
+        return tourEstTime;
+    }
+
+    public StringProperty getTourInfoProperty() {
+        return tourInfo;
     }
 }

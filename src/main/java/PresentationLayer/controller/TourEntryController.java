@@ -19,6 +19,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
@@ -27,6 +30,8 @@ public class TourEntryController implements Initializable {
 
     private Consumer<TourEntryModel> newTourListener;
 
+    private static List<String> tourNames;
+
     @FXML
     public Label toursLabel;
     @FXML
@@ -34,23 +39,26 @@ public class TourEntryController implements Initializable {
 
     public TourEntryController(TourEntryModel tourEntryModel) {
         this.tourEntryModel = tourEntryModel;
+        tourNames = new ArrayList<>();
     }
 
     public TourEntryController() {
 
     }
 
+    public static void deleteTourName(String name){
+        tourNames.remove(name);
+    }
 
     //butoni
     public void addTour(ActionEvent actionEvent) throws SQLException, IOException {
-//        FXMLLoader l = Main.getFXMLTour();
-//        Scene scene = new Scene(l.load(), 600, 400);
-//        Stage stage = new Stage();
-//        stage.setTitle("New Window");
-//        stage.setScene(scene);
-//        stage.show();
-        this.newTourListener.accept(this.tourEntryModel);
-        tourEntryModel.createTour(this.tourEntryModel);
+        if(tourNames.contains(this.tourEntryModel.getTourName())){
+            System.out.println("Nope");
+        }else{
+            this.newTourListener.accept(this.tourEntryModel);
+            tourEntryModel.createTour(this.tourEntryModel);
+            tourNames.add(this.tourEntryModel.getTourName());
+        }
     }
 
     public void addListener(Consumer<TourEntryModel> listenToNewTour) {

@@ -1,5 +1,6 @@
 package DatabaseAccessLayer;
 
+import BusinessLayer.ConfigurationManager;
 import PresentationLayer.model.TourModel;
 
 import java.io.FileNotFoundException;
@@ -17,9 +18,11 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
     @Override
     public Connection createConnection() throws FileNotFoundException, SQLException {
         String url = "jdbc:postgresql://localhost:5432/postgres";
+        String user = ConfigurationManager.GetConfigProperty("user");
+        String password = ConfigurationManager.GetConfigProperty("pwd");
         Properties props = new Properties();
-        props.setProperty("user","postgres");
-        props.setProperty("password","myPassword");
+        props.setProperty("user",user);
+        props.setProperty("password",password);
         con = DriverManager.getConnection(url, props);
         return DriverManager.getConnection(url, props);
     }

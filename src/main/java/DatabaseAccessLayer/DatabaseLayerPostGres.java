@@ -17,7 +17,7 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
 
     @Override
     public Connection createConnection() throws FileNotFoundException, SQLException {
-        String url = "jdbc:postgresql://localhost:5432/postgres";
+        String url = ConfigurationManager.GetConfigProperty("PostgresSqlConnectionString");
         String user = ConfigurationManager.GetConfigProperty("user");
         String password = ConfigurationManager.GetConfigProperty("pwd");
         Properties props = new Properties();
@@ -64,9 +64,9 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
     }
 
     @Override
-    public void updateTourDetails(String tourDesc, String tourFrom, String tourTo, String tourTransport, String tourDistance, String tourEstTime, String tourInfo, String tourName) throws SQLException {
+    public void updateTourDetails(String tourDesc, String tourFrom, String tourTo, String tourTransport, String tourDistance, String tourEstTime, String tourInfo, String tourName, int tourRating) throws SQLException {
         System.out.println(tourName);
-        String sql = "UPDATE tours SET description = ?, \"from\" = ?, \"to\" = ?, transport_type = ?, distance = ?, estimated_time = ?, route_info = ? WHERE \"name\" = ?;";
+        String sql = "UPDATE tours SET description = ?, \"from\" = ?, \"to\" = ?, transport_type = ?, distance = ?, estimated_time = ?, route_info = ?, ratings = ?  WHERE \"name\" = ?;";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
@@ -77,7 +77,8 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
         ps.setString(5, tourDistance);
         ps.setString(6, tourEstTime);
         ps.setString(7, tourInfo);
-        ps.setString(8, tourName);
+        ps.setInt(8, tourRating);
+        ps.setString(9, tourName);
 
         ps.executeUpdate();
 

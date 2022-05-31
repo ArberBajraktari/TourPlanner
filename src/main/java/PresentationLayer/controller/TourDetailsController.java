@@ -10,22 +10,32 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import org.controlsfx.control.Rating;
+import org.json.JSONException;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
 
 public class TourDetailsController implements Initializable {
 
     private final TourDetailsModel tourDetailsModel;
+    ;
 
     @FXML
     private ImageView imageView;
@@ -33,6 +43,7 @@ public class TourDetailsController implements Initializable {
     private Button editButton;
     @FXML
     private Button saveButton;
+
 
 
     @FXML
@@ -67,6 +78,8 @@ public class TourDetailsController implements Initializable {
     private Label tourEstTimeLabel;
     @FXML
     private Label tourInfoLabel;
+    @FXML
+    private Rating tourRating;
 
     private IBusinessLayer manager = BusinessLayerFactory.GetManager();
 
@@ -89,7 +102,11 @@ public class TourDetailsController implements Initializable {
     }
 
     public void saveTour(ActionEvent actionEvent) throws IOException, SQLException {
-        if(tourDetailsModel.getTourName() != null && !tourDetailsModel.getTourName().equals("") ){
+        if(!inputAreValid()){
+            System.out.println("itu: " + inputAreValid());
+            inputNotValidBox(true);
+        }else{
+            if(tourDetailsModel.getTourName() != null && !tourDetailsModel.getTourName().equals("") ){
                 if (this.tourDetailsModel.getWorkingMode()) {
 
                     System.out.println("Saving tour to DB");
@@ -99,17 +116,26 @@ public class TourDetailsController implements Initializable {
                 this.tourDetailsModel.saveTourModel();
 
                 //Revert to Working mode
-                this.tourDetailsModel.setEditMode(false);
-                this.tourDetailsModel.setEditButton("Edit");
-                this.tourDetailsModel.setWorkMode(true);
 
-                //save image for respective Tour
-                manager.getMap(this.tourDetailsModel.getTourName(), this.tourDetailsModel.getTourFrom(), this.tourDetailsModel.getTourTo());
-                File file = new File("src/main/resources/TourImages/" + this.tourDetailsModel.getTourName() + ".jpg");
-                Image image = new Image(file.toURI().toString());
-                this.tourDetailsModel.setTourDetailImg(image);
-
-                manager.updateTourDetails(this.tourDetailsModel.getTourDesc(), this.tourDetailsModel.getTourFrom(), this.tourDetailsModel.getTourTo(), this.tourDetailsModel.getTourTransport(), this.tourDetailsModel.getTourDistance(), this.tourDetailsModel.getTourEstTime(), this.tourDetailsModel.getTourInfo(), this.tourDetailsModel.getTourName());
+                if(this.tourDetailsModel.getTourTo() == null || this.tourDetailsModel.getTourFrom() == null) {
+                    manager.updateTourDetails(this.tourDetailsModel.getTourDesc(), this.tourDetailsModel.getTourFrom(), this.tourDetailsModel.getTourTo(), this.tourDetailsModel.getTourTransport(), this.tourDetailsModel.getTourDistance(), this.tourDetailsModel.getTourEstTime(), this.tourDetailsModel.getTourInfo(), this.tourDetailsModel.getTourName(), this.tourDetailsModel.getTourRating());
+                    this.tourDetailsModel.setEditMode(false);
+                    this.tourDetailsModel.setEditButton("Edit");
+                    this.tourDetailsModel.setWorkMode(true);
+                }else{
+                    if(manager.getMap(this.tourDetailsModel.getTourName(), this.tourDetailsModel.getTourFrom(), this.tourDetailsModel.getTourTo())){
+                        File file = new File("src/main/resources/TourImages/" + this.tourDetailsModel.getTourName() + ".jpg");
+                        Image image = new Image(file.toURI().toString());
+                        this.tourDetailsModel.setTourDetailImg(image);
+                        this.tourDetailsModel.setEditMode(false);
+                        this.tourDetailsModel.setEditButton("Edit");
+                        this.tourDetailsModel.setWorkMode(true);
+                        manager.updateTourDetails(this.tourDetailsModel.getTourDesc(), this.tourDetailsModel.getTourFrom(), this.tourDetailsModel.getTourTo(), this.tourDetailsModel.getTourTransport(), this.tourDetailsModel.getTourDistance(), this.tourDetailsModel.getTourEstTime(), this.tourDetailsModel.getTourInfo(), this.tourDetailsModel.getTourName(), this.tourDetailsModel.getTourRating());
+                    }else{
+                        TourDetailsController.inputNotValidBox(false);
+                    }
+                }
+            }
         }
     }
 
@@ -123,6 +149,7 @@ public class TourDetailsController implements Initializable {
         this.tourDistance.textProperty().bindBidirectional(this.tourDetailsModel.getTourDistanceProperty());
         this.tourEstTime.textProperty().bindBidirectional(this.tourDetailsModel.getTourEstTimeProperty());
         this.tourInfo.textProperty().bindBidirectional(this.tourDetailsModel.getTourInfoProperty());
+        this.tourRating.ratingProperty().bindBidirectional(this.tourDetailsModel.getTourRatingProperty());
 
         this.tourName.visibleProperty().bind(this.tourDetailsModel.getEditModeProperty());
         this.tourDesc.visibleProperty().bind(this.tourDetailsModel.getEditModeProperty());
@@ -162,5 +189,49 @@ public class TourDetailsController implements Initializable {
 
     public void test(Event event) {
 
+    }
+
+    public static void inputNotValidBox(boolean type){
+        //Create Stage
+        Stage newWindow = new Stage();
+        newWindow.setTitle("New Scene");
+//Create view in Java
+        Label title;
+        if(type){
+            title = new Label("Please make sure the inputed value are the required format!");
+        }else{
+            title = new Label("Please make sure the inputed locations exist!");
+        }
+
+        VBox container = new VBox(title);
+//Style container
+        container.setSpacing(15);
+        container.setPadding(new Insets(25));
+        container.setAlignment(Pos.CENTER);
+//Set view in window
+        newWindow.setScene(new Scene(container));
+//Launch
+        newWindow.show();
+    }
+
+    public boolean inputAreValid(){
+        String distance = this.tourDetailsModel.getTourDistance();
+        String time = this.tourDetailsModel.getTourEstTime();
+        try{
+            if(this.tourDetailsModel.getTourDistance() != null){
+                System.out.println("distance");
+                Integer.parseInt(distance);
+            }
+            if(this.tourDetailsModel.getTourEstTime() != null){
+                System.out.println("est time");
+                LocalTime.parse(time);
+            }
+            System.out.println("a vjen itu");
+            return true;
+        }
+        catch (NumberFormatException | DateTimeParseException | NullPointerException e){
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 }

@@ -24,6 +24,7 @@ public class TourDetailsModel {
     private StringProperty tourDistanceLabel;
     private StringProperty tourEstTimeLabel;
     private StringProperty tourInfoLabel;
+    private IntegerProperty tourRating;
 
     private StringProperty editButton;
 
@@ -59,6 +60,7 @@ public class TourDetailsModel {
         tourDistance = new SimpleStringProperty("");
         tourEstTime = new SimpleStringProperty("");
         tourInfo = new SimpleStringProperty("");
+        tourRating = new SimpleIntegerProperty(0);
 
         tourNameLabel = new SimpleStringProperty("Dummy");
         tourDescLabel = new SimpleStringProperty("Dummy");
@@ -166,6 +168,7 @@ public class TourDetailsModel {
         setTourDetailDistance(currentTourModel.getTourDistance());
         setTourDetailEstTime(currentTourModel.getTourEstTime());
         setTourDetailInfo(currentTourModel.getTourInfo());
+        setTourDetailRating(currentTourModel.getTourRating());
         File file = new File("src/main/resources/TourImages/" + getTourName() + ".jpg");
         Image image = new Image(file.toURI().toString());
         setTourDetailImg(image);
@@ -174,6 +177,9 @@ public class TourDetailsModel {
 
     private void setTourDetailInfo(String tourInfo) {
         this.tourInfo.set(tourInfo);
+    }
+    private void setTourDetailRating(int tourRating) {
+        this.tourRating.set(tourRating);
     }
 
     private void setTourDetailEstTime(String tourEstTime) {
@@ -206,6 +212,7 @@ public class TourDetailsModel {
             this.tourModel.setTourInfo(getTourInfo());
             this.tourModel.setTourEstTime(getTourEstTime());
             this.tourModel.setTourTransport(getTourTransport());
+            this.tourModel.setTourRating(getTourRating());
         }
     }
 
@@ -244,5 +251,13 @@ public class TourDetailsModel {
 
     public StringProperty getTourInfoProperty() {
         return tourInfo;
+    }
+
+    public int getTourRating() {
+        return tourRating.get();
+    }
+
+    public IntegerProperty getTourRatingProperty() {
+        return tourRating;
     }
 }

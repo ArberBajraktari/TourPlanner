@@ -11,5 +11,5 @@ public interface IDatabaseLayer {
     void addTour(String tour);
     int getMaxId();
     void removeTour(TourModel tourModel);
-    void updateTourDetails(String tourDesc, String tourFrom, String tourTo, String tourTransport, String tourDistance, String tourEstTime, String tourInfo, String tourName) throws SQLException;
+    void updateTourDetails(String tourDesc, String tourFrom, String tourTo, String tourTransport, String tourDistance, String tourEstTime, String tourInfo, String tourName, int tourRating) throws SQLException;
 }

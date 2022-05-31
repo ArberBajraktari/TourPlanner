@@ -2,6 +2,8 @@ package PresentationLayer.model;
 
 import BusinessLayer.IBusinessLayer;
 import BusinessLayer.BusinessLayerFactory;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -25,6 +27,14 @@ public class TourModel {
 
     @FXML
     private StringProperty tourTransport = new SimpleStringProperty();
+    @FXML
+    private StringProperty tourDistance = new SimpleStringProperty();
+    @FXML
+    private StringProperty tourEstTime = new SimpleStringProperty();
+    @FXML
+    private StringProperty tourInfo = new SimpleStringProperty();
+    @FXML
+    private IntegerProperty tourRating = new SimpleIntegerProperty();
 
     public String getTourTransport() {
         return tourTransport.get();
@@ -68,12 +78,7 @@ public class TourModel {
     }
 
 
-    @FXML
-    private StringProperty tourDistance = new SimpleStringProperty();
-    @FXML
-    private StringProperty tourEstTime = new SimpleStringProperty();
-    @FXML
-    private StringProperty tourInfo = new SimpleStringProperty();
+
 
 
     private ObservableList<TourLogCellModel> tourLogs = FXCollections.observableArrayList();
@@ -155,5 +160,13 @@ public class TourModel {
             TourLogCellModel value = it.next();
             this.tourLogs.add(value);
         }
+    }
+
+    public int getTourRating() {
+        return this.tourRating.get();
+    }
+
+    public void setTourRating(int tourRating) {
+        this.tourRating.set(tourRating);
     }
 }

@@ -38,25 +38,24 @@ public class BusinessLayerImp implements IBusinessLayer {
     }
 
     @Override
-    public void getMap(String tourName, String start, String finish) throws IOException {
+    public boolean getMap(String tourName, String start, String finish) throws IOException {
         try {
             File outputFile = new File("src/main/resources/TourImages/" + tourName + ".jpg");
             BufferedImage img = MapQuestManager.requestRouteImage(start, finish);
             if(img != null){
                 ImageIO.write(img, "jpg", outputFile);
+            }else{
+                return false;
             }
-
-
-        } catch (IOException e) {
-            System.out.println(e);
+        } catch (Exception e) {
+            return false;
         }
-
-
+        return true;
     }
 
     @Override
-    public void updateTourDetails(String tourDesc, String tourFrom, String tourTo, String tourTransport, String tourDistance, String tourEstTime, String tourInfo, String tourName) throws SQLException, FileNotFoundException {
+    public void updateTourDetails(String tourDesc, String tourFrom, String tourTo, String tourTransport, String tourDistance, String tourEstTime, String tourInfo, String tourName, int tourRating) throws SQLException, FileNotFoundException {
         dataLayer.createConnection();
-        dataLayer.updateTourDetails(tourDesc, tourFrom, tourTo, tourTransport, tourDistance, tourEstTime, tourInfo, tourName);
+        dataLayer.updateTourDetails(tourDesc, tourFrom, tourTo, tourTransport, tourDistance, tourEstTime, tourInfo, tourName, tourRating);
     }
 }

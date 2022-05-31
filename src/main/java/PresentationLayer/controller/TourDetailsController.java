@@ -20,6 +20,7 @@ import javafx.scene.image.ImageView;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class TourDetailsController implements Initializable {
@@ -87,7 +88,7 @@ public class TourDetailsController implements Initializable {
 
     }
 
-    public void saveTour(ActionEvent actionEvent) throws IOException {
+    public void saveTour(ActionEvent actionEvent) throws IOException, SQLException {
         if(tourDetailsModel.getTourName() != null && !tourDetailsModel.getTourName().equals("") ){
                 if (this.tourDetailsModel.getWorkingMode()) {
 
@@ -102,10 +103,13 @@ public class TourDetailsController implements Initializable {
                 this.tourDetailsModel.setEditButton("Edit");
                 this.tourDetailsModel.setWorkMode(true);
 
+                //save image for respective Tour
                 manager.getMap(this.tourDetailsModel.getTourName(), this.tourDetailsModel.getTourFrom(), this.tourDetailsModel.getTourTo());
                 File file = new File("src/main/resources/TourImages/" + this.tourDetailsModel.getTourName() + ".jpg");
                 Image image = new Image(file.toURI().toString());
                 this.tourDetailsModel.setTourDetailImg(image);
+
+                manager.updateTourDetails(this.tourDetailsModel.getTourDesc(), this.tourDetailsModel.getTourFrom(), this.tourDetailsModel.getTourTo(), this.tourDetailsModel.getTourTransport(), this.tourDetailsModel.getTourDistance(), this.tourDetailsModel.getTourEstTime(), this.tourDetailsModel.getTourInfo(), this.tourDetailsModel.getTourName());
         }
     }
 

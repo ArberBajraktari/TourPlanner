@@ -12,4 +12,6 @@ public interface IBusinessLayer {
     void createTourItem(TourEntryModel tourItem) throws SQLException, IOException;
     void deleteTourItem(TourModel tourModel) throws SQLException, FileNotFoundException;
     void getMap(String tourName, String start, String finish) throws IOException;
+
+    void updateTourDetails(String tourDesc, String tourFrom, String tourTo, String tourTransport, String tourDistance, String tourEstTime, String tourInfo, String tourName) throws SQLException, FileNotFoundException;
 }

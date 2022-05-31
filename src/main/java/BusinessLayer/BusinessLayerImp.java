@@ -53,4 +53,10 @@ public class BusinessLayerImp implements IBusinessLayer {
 
 
     }
+
+    @Override
+    public void updateTourDetails(String tourDesc, String tourFrom, String tourTo, String tourTransport, String tourDistance, String tourEstTime, String tourInfo, String tourName) throws SQLException, FileNotFoundException {
+        dataLayer.createConnection();
+        dataLayer.updateTourDetails(tourDesc, tourFrom, tourTo, tourTransport, tourDistance, tourEstTime, tourInfo, tourName);
+    }
 }

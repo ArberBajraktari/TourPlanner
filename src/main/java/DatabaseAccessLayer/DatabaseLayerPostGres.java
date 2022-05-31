@@ -61,6 +61,26 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
     }
 
     @Override
+    public void updateTourDetails(String tourDesc, String tourFrom, String tourTo, String tourTransport, String tourDistance, String tourEstTime, String tourInfo, String tourName) throws SQLException {
+        System.out.println(tourName);
+        String sql = "UPDATE tours SET description = ?, \"from\" = ?, \"to\" = ?, transport_type = ?, distance = ?, estimated_time = ?, route_info = ? WHERE \"name\" = ?;";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setString(1, tourDesc);
+        ps.setString(2, tourFrom);
+        ps.setString(3, tourTo);
+        ps.setString(4, tourTransport);
+        ps.setString(5, tourDistance);
+        ps.setString(6, tourEstTime);
+        ps.setString(7, tourInfo);
+        ps.setString(8, tourName);
+
+        ps.executeUpdate();
+
+    }
+
+    @Override
     public void addTour(String tour) {
         System.out.println("Saving Tour into DB");
         int count = getMaxId() + 1;

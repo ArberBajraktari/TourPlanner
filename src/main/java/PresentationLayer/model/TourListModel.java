@@ -14,6 +14,10 @@ public class TourListModel {
         return tours;
     }
 
+    public void setTours(ObservableList<TourModel> tours) {
+        this.tours = tours;
+    }
+
     public void addTours(TourModel tour) {
         this.tours.add(tour);
     }

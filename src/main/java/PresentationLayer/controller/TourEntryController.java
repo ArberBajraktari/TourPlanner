@@ -1,5 +1,7 @@
 package PresentationLayer.controller;
 
+import BusinessLayer.BusinessLayerFactory;
+import BusinessLayer.IBusinessLayer;
 import PresentationLayer.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +18,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -31,6 +34,7 @@ public class TourEntryController implements Initializable {
     private Consumer<TourEntryModel> newTourListener;
 
     private static List<String> tourNames;
+    private IBusinessLayer manager = BusinessLayerFactory.GetManager();
 
     @FXML
     public Label toursLabel;
@@ -72,6 +76,16 @@ public class TourEntryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            tourNames = manager.getAllTourNames();
+            if(tourNames == null){
+                tourNames = new ArrayList<>();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         this.inputTour.textProperty().bindBidirectional(this.tourEntryModel.getTourNameProperty());
     }
 

@@ -35,7 +35,6 @@ import java.util.ResourceBundle;
 public class TourDetailsController implements Initializable {
 
     private final TourDetailsModel tourDetailsModel;
-    ;
 
     @FXML
     private ImageView imageView;

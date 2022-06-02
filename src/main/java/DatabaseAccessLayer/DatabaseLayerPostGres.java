@@ -2,9 +2,13 @@ package DatabaseAccessLayer;
 
 import BusinessLayer.ConfigurationManager;
 import PresentationLayer.model.TourModel;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.io.FileNotFoundException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 
@@ -82,6 +86,57 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
 
         ps.executeUpdate();
 
+    }
+
+    @Override
+    public ObservableList<TourModel> getAllTours() {
+        try {
+
+            // Step 4: Create a statement
+            String sql = "SELECT * FROM Tours";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            ObservableList<TourModel> tours = FXCollections.observableArrayList();
+            TourModel temp;
+            while (rs.next()){
+                temp = new TourModel();
+                temp.setTourName(rs.getString("name"));
+                temp.setTourDesc(rs.getString("description"));
+                temp.setTourFrom(rs.getString("from"));
+                temp.setTourTo(rs.getString("to"));
+                temp.setTourTransport(rs.getString("transport_type"));
+                temp.setTourDistance(rs.getString("distance"));
+                temp.setTourEstTime(rs.getString("estimated_time"));
+                temp.setTourInfo(rs.getString("route_info"));
+                temp.setTourRating(rs.getInt("ratings"));
+                tours.add(temp);
+            }
+            return tours;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<String> getAllToursNames() {
+        try {
+
+            // Step 4: Create a statement
+            String sql = "SELECT \"name\" FROM Tours";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            List<String> toursNames = new ArrayList<>();
+            while (rs.next()){
+                toursNames.add(rs.getString("name"));
+            }
+            return toursNames;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override

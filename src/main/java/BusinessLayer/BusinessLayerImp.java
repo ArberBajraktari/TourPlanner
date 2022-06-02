@@ -4,6 +4,7 @@ import DatabaseAccessLayer.DataAccessLayerFactory;
 import DatabaseAccessLayer.IDatabaseLayer;
 import PresentationLayer.model.TourEntryModel;
 import PresentationLayer.model.TourModel;
+import javafx.collections.ObservableList;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -11,6 +12,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 
 public class BusinessLayerImp implements IBusinessLayer {
@@ -57,5 +59,17 @@ public class BusinessLayerImp implements IBusinessLayer {
     public void updateTourDetails(String tourDesc, String tourFrom, String tourTo, String tourTransport, String tourDistance, String tourEstTime, String tourInfo, String tourName, int tourRating) throws SQLException, FileNotFoundException {
         dataLayer.createConnection();
         dataLayer.updateTourDetails(tourDesc, tourFrom, tourTo, tourTransport, tourDistance, tourEstTime, tourInfo, tourName, tourRating);
+    }
+
+    @Override
+    public ObservableList<TourModel> getAllTour() throws SQLException, FileNotFoundException {
+        dataLayer.createConnection();
+        return dataLayer.getAllTours();
+    }
+
+    @Override
+    public List<String> getAllTourNames() throws SQLException, FileNotFoundException {
+        dataLayer.createConnection();
+        return dataLayer.getAllToursNames();
     }
 }

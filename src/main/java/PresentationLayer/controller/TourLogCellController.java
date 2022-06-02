@@ -1,5 +1,7 @@
 package PresentationLayer.controller;
 
+import BusinessLayer.BusinessLayerFactory;
+import BusinessLayer.IBusinessLayer;
 import PresentationLayer.model.TourLogCellModel;
 import PresentationLayer.model.TourLogItemModel;
 import PresentationLayer.model.TourModel;
@@ -12,12 +14,14 @@ import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.function.Consumer;
 
 public class TourLogCellController {
 
     private TourLogCellModel tourLogCellModel;
     private Consumer<TourLogCellModel> onDeleteProductConsumer;
+    private IBusinessLayer manager = BusinessLayerFactory.GetManager();
 
     @FXML
     private Label date;
@@ -97,5 +101,9 @@ public class TourLogCellController {
             this.tourLogCellModel.setEditMode(true);
             this.tourLogCellModel.setWorkMode(false);
         }
+    }
+
+    public void onSaveTour(ActionEvent actionEvent) {
+        this.manager.saveTourLogs(this.tourLogCellModel, this.tourLogCellModel.getName());
     }
 }

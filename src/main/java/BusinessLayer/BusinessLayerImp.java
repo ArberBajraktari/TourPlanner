@@ -3,6 +3,7 @@ package BusinessLayer;
 import DatabaseAccessLayer.DataAccessLayerFactory;
 import DatabaseAccessLayer.IDatabaseLayer;
 import PresentationLayer.model.TourEntryModel;
+import PresentationLayer.model.TourLogCellModel;
 import PresentationLayer.model.TourModel;
 import javafx.collections.ObservableList;
 
@@ -71,5 +72,18 @@ public class BusinessLayerImp implements IBusinessLayer {
     public List<String> getAllTourNames() throws SQLException, FileNotFoundException {
         dataLayer.createConnection();
         return dataLayer.getAllToursNames();
+    }
+
+    @Override
+    public void saveTourLogs(TourLogCellModel tourLogs, String tourModelName) {
+        try {
+            this.dataLayer.createConnection();
+            this.dataLayer.saveTourLogs(tourLogs, tourModelName);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }

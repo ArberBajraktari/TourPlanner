@@ -1,6 +1,7 @@
 package BusinessLayer;
 
 import PresentationLayer.model.TourEntryModel;
+import PresentationLayer.model.TourLogCellModel;
 import PresentationLayer.model.TourModel;
 import javafx.collections.ObservableList;
 
@@ -19,4 +20,6 @@ public interface IBusinessLayer {
     ObservableList<TourModel> getAllTour() throws SQLException, FileNotFoundException;
 
     List<String> getAllTourNames() throws SQLException, FileNotFoundException;
+
+    void saveTourLogs(TourLogCellModel tourLogs, String tourModelName);
 }

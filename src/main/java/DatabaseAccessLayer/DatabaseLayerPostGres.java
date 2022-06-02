@@ -1,6 +1,7 @@
 package DatabaseAccessLayer;
 
 import BusinessLayer.ConfigurationManager;
+import PresentationLayer.model.TourLogCellModel;
 import PresentationLayer.model.TourModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,6 +9,7 @@ import javafx.collections.ObservableList;
 import java.io.FileNotFoundException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
@@ -44,6 +46,47 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
             ResultSet last_updated_person = ps.getResultSet();
             if(last_updated_person.next()) {
                 return last_updated_person.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public int getMaxIdLog() {
+        try {
+
+            // Step 4: Create a statement
+            String sql = "SELECT max(id) FROM tours_logs";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            // Step 6: Process the results
+            ps.execute();
+            ResultSet last_updated_person = ps.getResultSet();
+            if(last_updated_person.next()) {
+                return last_updated_person.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public int getIdFromName(String name) {
+        try {
+
+            // Step 4: Create a statement
+            String sql = "SELECT id FROM Tours where name = ?";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, name);
+            // Step 6: Process the results
+            ps.execute();
+            ResultSet last_updated_person = ps.getResultSet();
+            if(last_updated_person.next()) {
+                return last_updated_person.getInt("id");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -137,6 +180,29 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public void saveTourLogs(TourLogCellModel item, String tourModelName) {
+
+        // Step 4: Create a statement
+        String sql = "Insert into tours_logs values(?, ?, ?, ?, ?, ?, ?)";
+
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement(sql);
+
+            ps.setInt(1, getMaxIdLog()+1);
+            ps.setInt(2, getIdFromName(tourModelName));
+            ps.setString(3, item.getDate());
+            ps.setString(4, item.getComment());
+            ps.setString(5, item.getDifficulty());
+            ps.setString(6, item.getTotalTime());
+            ps.setString(7, item.getRating());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override

@@ -1,16 +1,21 @@
 package PresentationLayer.model;
 
+import BusinessLayer.BusinessLayerFactory;
+import BusinessLayer.IBusinessLayer;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.Iterator;
+
 public class TourLogModel {
 
     private StringProperty tourLog;
     private ObservableList<TourLogCellModel> tourLogs = FXCollections.observableArrayList();
     private TourModel tourModel;
+
 
 
     public TourLogModel(){
@@ -31,6 +36,12 @@ public class TourLogModel {
         clearLogs();
         //save tourLogs from Listview to LogListView
         setLogModel(tourModelList);
+        Iterator<TourLogCellModel> it = tourLogs.iterator();
+        while (it.hasNext()) {
+            TourLogCellModel item = it.next();
+            item.setName(tourModelList.getTourName());
+        }
+
 
 //        TourLogCellModel t = new TourLogCellModel();
 //        t.setDistanceProperty("Test");
@@ -64,5 +75,17 @@ public class TourLogModel {
         if(this.tourModel != null){
             this.tourModel.setTourLogs(getTours());
         }
+    }
+
+    public ObservableList<TourLogCellModel> getTourLogs() {
+        return tourLogs;
+    }
+
+    public void setTourLogs(ObservableList<TourLogCellModel> tourLogs) {
+        this.tourLogs = tourLogs;
+    }
+
+    public String getTourModelName(){
+        return this.tourModel.getTourName();
     }
 }

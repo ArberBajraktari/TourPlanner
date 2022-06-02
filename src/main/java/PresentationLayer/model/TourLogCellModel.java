@@ -20,6 +20,8 @@ public class TourLogCellModel {
     @FXML
     private StringProperty rating = new SimpleStringProperty("dummy");
 
+    private String name;
+
     private BooleanProperty editMode = new SimpleBooleanProperty(false);
     private BooleanProperty workingMode = new SimpleBooleanProperty(true);
 
@@ -45,6 +47,10 @@ public class TourLogCellModel {
 
     public void setComment(String comment) {
         this.comment.set(comment);
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDifficulty() {
@@ -113,5 +119,9 @@ public class TourLogCellModel {
 
     public BooleanProperty getEditModeProperty() {
         return editMode;
+    }
+
+    public String getName() {
+        return name;
     }
 }

@@ -1,5 +1,6 @@
 package DatabaseAccessLayer;
 
+import PresentationLayer.model.TourLogCellModel;
 import PresentationLayer.model.TourModel;
 import javafx.collections.ObservableList;
 
@@ -17,4 +18,8 @@ public interface IDatabaseLayer {
 
     ObservableList<TourModel> getAllTours();
     List<String> getAllToursNames();
+
+    void saveTourLogs(TourLogCellModel tourLogs, String tourModelName);
+    int getMaxIdLog();
+    int getIdFromName(String name);
 }

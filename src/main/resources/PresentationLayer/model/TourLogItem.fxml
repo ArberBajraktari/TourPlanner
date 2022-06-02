@@ -31,5 +31,6 @@
         <Region HBox.hgrow="ALWAYS"></Region>
         <Button text="X" onAction="#onDeleteTour" style="-fx-label-padding: 10; -fx-alignment: center-right" />
         <Button text="E" onAction="#onEditTour" style="-fx-label-padding: 10; -fx-alignment: center-right" />
+        <Button text="S" onAction="#onSaveTour" style="-fx-label-padding: 10; -fx-alignment: center-right" />
     </children>
 </HBox>

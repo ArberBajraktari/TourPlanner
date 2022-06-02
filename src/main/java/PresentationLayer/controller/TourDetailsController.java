@@ -1,6 +1,7 @@
 package PresentationLayer.controller;
 
 import BusinessLayer.BusinessLayerFactory;
+import BusinessLayer.ConfigurationManager;
 import BusinessLayer.IBusinessLayer;
 import PresentationLayer.model.TourDetailsModel;
 import PresentationLayer.model.TourModel;
@@ -123,7 +124,8 @@ public class TourDetailsController implements Initializable {
                     this.tourDetailsModel.setWorkMode(true);
                 }else{
                     if(manager.getMap(this.tourDetailsModel.getTourName(), this.tourDetailsModel.getTourFrom(), this.tourDetailsModel.getTourTo())){
-                        File file = new File("src/main/resources/TourImages/" + this.tourDetailsModel.getTourName() + ".jpg");
+                        String path = ConfigurationManager.GetConfigProperty("FileAccessStoragePath");
+                        File file = new File(path + this.tourDetailsModel.getTourName() + ".jpg");
                         Image image = new Image(file.toURI().toString());
                         this.tourDetailsModel.setTourDetailImg(image);
                         this.tourDetailsModel.setEditMode(false);

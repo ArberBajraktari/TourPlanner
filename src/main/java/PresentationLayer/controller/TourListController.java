@@ -1,6 +1,7 @@
 package PresentationLayer.controller;
 
 import BusinessLayer.BusinessLayerFactory;
+import BusinessLayer.ConfigurationManager;
 import BusinessLayer.IBusinessLayer;
 import PresentationLayer.model.*;
 import javafx.fxml.FXML;
@@ -8,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -43,6 +45,15 @@ public class TourListController implements Initializable{
     }
 
     private void deleteProduct(TourModel model) {
+        String path;
+        try {
+            path = ConfigurationManager.GetConfigProperty("FileAccessStoragePath");
+            File file = new File(path + this.tourDetailsModel.getTourName() + ".jpg");
+            file.delete();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
         this.tourListModel.removeTour(model);
     }
 

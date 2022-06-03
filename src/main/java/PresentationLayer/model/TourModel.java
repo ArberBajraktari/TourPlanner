@@ -154,6 +154,8 @@ public class TourModel {
     }
     public void setTourLogs(ObservableList<TourLogCellModel> tourLogs){
         clearLogs();
+        System.out.println("pse asht bosh");
+        System.out.println(tourLogs);
 
         Iterator<TourLogCellModel> it = tourLogs.iterator();
         while (it.hasNext()) {

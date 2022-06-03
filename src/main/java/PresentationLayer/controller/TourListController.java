@@ -38,13 +38,8 @@ public class TourListController implements Initializable{
             this.tourListModel.setTours(manager.getAllTour());
             Iterator<TourModel> allTours = this.tourListModel.getTours().iterator();
             while(allTours.hasNext()){
-                // TODO itu asht problemi
-                // WTF...
-                //System.out.pq
-                //
-                // rintln(manager.getAllTourLogs(allTours.next().getTourName()));
-                //System.out.println("po itu?");
-                //allTours.next().setTourLogs(manager.getAllTourLogs(allTours.next().getTourName()));
+                TourModel temp = allTours.next();
+                temp.setTourLogs(manager.getAllTourLogs(temp.getTourName()));
             }
         } catch (SQLException e) {
             e.printStackTrace();

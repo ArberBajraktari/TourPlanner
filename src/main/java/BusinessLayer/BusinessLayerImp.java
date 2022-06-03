@@ -41,6 +41,12 @@ public class BusinessLayerImp implements IBusinessLayer {
     }
 
     @Override
+    public void deleteTourLogItem(TourLogCellModel tourLogCellModel) throws SQLException, FileNotFoundException {
+        dataLayer.createConnection();
+        dataLayer.removeTourLog(tourLogCellModel);
+    }
+
+    @Override
     public boolean getMap(String tourName, String start, String finish) throws IOException {
         try {
             File outputFile = new File("src/main/resources/TourImages/" + tourName + ".jpg");
@@ -85,5 +91,18 @@ public class BusinessLayerImp implements IBusinessLayer {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public ObservableList<TourLogCellModel> getAllTourLogs(String tourName) {
+        try {
+            this.dataLayer.createConnection();
+            return this.dataLayer.getAllTourLogs(tourName);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

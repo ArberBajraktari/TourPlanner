@@ -14,6 +14,9 @@ import javafx.scene.input.MouseEvent;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 
 public class TourLogController implements Initializable {
@@ -23,6 +26,8 @@ public class TourLogController implements Initializable {
     private Label logLabel = new Label();
     @FXML
     public ListView<TourLogCellModel> listView = new ListView<>();
+    private IBusinessLayer manager = BusinessLayerFactory.GetManager();
+
 
 
     public TourLogController(TourLogModel tourLogModel) {
@@ -57,11 +62,18 @@ public class TourLogController implements Initializable {
 
     public void addLog(ActionEvent actionEvent) {
         TourLogCellModel t = new TourLogCellModel();
+        LocalDateTime now = LocalDateTime.now();
+        t.setDate(String.valueOf(now));
         listView.getItems().add(t);
         System.out.println("button add clicked");
     }
 
     public void saveLog(ActionEvent actionEvent){
+        Iterator<TourLogCellModel> item = this.tourLogModel.getTourLogs().iterator();
+        while (item.hasNext()) {
+            manager.saveTourLogs(item.next(), this.tourLogModel.getTourModelName());
+        }
         this.tourLogModel.saveTourModel();
+
     }
 }

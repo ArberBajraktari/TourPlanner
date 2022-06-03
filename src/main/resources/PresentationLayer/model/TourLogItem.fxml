@@ -10,7 +10,6 @@
     <children>
         <StackPane prefWidth="110">
             <Label  fx:id="date" style="-fx-label-padding: 10; -fx-alignment: center-left"/>
-            <TextField fx:id="dateInput"></TextField>
         </StackPane>
         <StackPane prefWidth="110">
             <Label  fx:id="comment" style="-fx-label-padding: 10; -fx-alignment: center-left"/>
@@ -29,8 +28,7 @@
             <TextField fx:id="ratingInput"></TextField>
         </StackPane>
         <Region HBox.hgrow="ALWAYS"></Region>
-        <Button text="X" onAction="#onDeleteTour" style="-fx-label-padding: 10; -fx-alignment: center-right" />
+        <Button text="X" onAction="#onDeleteTourLog" style="-fx-label-padding: 10; -fx-alignment: center-right" />
         <Button text="E" onAction="#onEditTour" style="-fx-label-padding: 10; -fx-alignment: center-right" />
-        <Button text="S" onAction="#onSaveTour" style="-fx-label-padding: 10; -fx-alignment: center-right" />
     </children>
 </HBox>

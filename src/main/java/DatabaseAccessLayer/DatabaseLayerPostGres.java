@@ -112,7 +112,6 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
 
     @Override
     public void updateTourDetails(String tourDesc, String tourFrom, String tourTo, String tourTransport, String tourDistance, String tourEstTime, String tourInfo, String tourName, int tourRating) throws SQLException {
-        System.out.println(tourName);
         String sql = "UPDATE tours SET description = ?, \"from\" = ?, \"to\" = ?, transport_type = ?, distance = ?, estimated_time = ?, route_info = ?, ratings = ?  WHERE \"name\" = ?;";
 
         PreparedStatement ps = con.prepareStatement(sql);
@@ -128,7 +127,67 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
         ps.setString(9, tourName);
 
         ps.executeUpdate();
+    }
 
+    @Override
+    public void updateTourLog(TourLogCellModel item, String tourModelName) {
+        String sql = "UPDATE tours_logs SET comment = ?, difficulty = ?, total_time = ?, rating = ?  WHERE \"date\" = ?;";
+
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, item.getComment());
+            ps.setString(2, item.getDifficulty());
+            ps.setString(3, item.getTotalTime());
+            ps.setString(4, item.getRating());
+            ps.setString(5, item.getDate());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void removeTourLog(TourLogCellModel tourLogCellModel) {
+        try {
+            // Step 4: Create a statement
+            String sql = "DELETE FROM tours_logs WHERE \"date\" = ?;";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, tourLogCellModel.getDate());
+            // Step 6: Process the results
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public ObservableList<TourLogCellModel> getAllTourLogs(String tourName) {
+        try {
+            // Step 4: Create a statement
+            String sql = "SELECT * FROM tours_logs where tour_id=?";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, getIdFromName(tourName));
+            ResultSet rs = ps.executeQuery();
+            ObservableList<TourLogCellModel> tourLogs = FXCollections.observableArrayList();
+            TourLogCellModel temp;
+            while (rs.next()){
+                System.out.println("item x");
+                temp = new TourLogCellModel();
+                temp.setDate(rs.getString("date"));
+                temp.setComment(rs.getString("comment"));
+                temp.setDifficulty(rs.getString("difficulty"));
+                temp.setTotalTime(rs.getString("total_time"));
+                temp.setRating(rs.getString("rating"));
+                tourLogs.add(temp);
+            }
+            return tourLogs;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -185,24 +244,45 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
     @Override
     public void saveTourLogs(TourLogCellModel item, String tourModelName) {
 
-        // Step 4: Create a statement
-        String sql = "Insert into tours_logs values(?, ?, ?, ?, ?, ?, ?)";
+        if(tourLogExists(item.getDate())){
+            updateTourLog(item, tourModelName);
+        }else{
+            // Step 4: Create a statement
+            String sql = "Insert into tours_logs values(?, ?, ?, ?, ?, ?, ?)";
 
-        PreparedStatement ps = null;
-        try {
-            ps = con.prepareStatement(sql);
+            PreparedStatement ps;
+            try {
+                ps = con.prepareStatement(sql);
 
-            ps.setInt(1, getMaxIdLog()+1);
-            ps.setInt(2, getIdFromName(tourModelName));
-            ps.setString(3, item.getDate());
-            ps.setString(4, item.getComment());
-            ps.setString(5, item.getDifficulty());
-            ps.setString(6, item.getTotalTime());
-            ps.setString(7, item.getRating());
-            ps.executeUpdate();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+                ps.setInt(1, getMaxIdLog()+1);
+                ps.setInt(2, getIdFromName(tourModelName));
+                ps.setString(3, item.getDate());
+                ps.setString(4, item.getComment());
+                ps.setString(5, item.getDifficulty());
+                ps.setString(6, item.getTotalTime());
+                ps.setString(7, item.getRating());
+                ps.executeUpdate();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
+    }
+
+    public boolean tourLogExists(String date) {
+        try {
+            // Step 4: Create a statement
+            String sql = "SELECT id FROM tours_logs where \"date\" = ?";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, date);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     @Override

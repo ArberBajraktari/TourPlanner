@@ -21,7 +21,7 @@ public class TourLogCellController {
 
     private TourLogCellModel tourLogCellModel;
     private Consumer<TourLogCellModel> onDeleteProductConsumer;
-    private IBusinessLayer manager = BusinessLayerFactory.GetManager();
+
 
     @FXML
     private Label date;
@@ -34,9 +34,6 @@ public class TourLogCellController {
     @FXML
     private Label rating;
 
-
-    @FXML
-    private TextField dateInput;
     @FXML
     private TextField commentInput;
     @FXML
@@ -62,19 +59,16 @@ public class TourLogCellController {
         this.totalTime.textProperty().bindBidirectional(this.tourLogCellModel.totalTimeProperty());
         this.rating.textProperty().bindBidirectional(this.tourLogCellModel.ratingProperty());
 
-        this.date.visibleProperty().bind(this.tourLogCellModel.getWorkingModeProperty());
         this.comment.visibleProperty().bind(this.tourLogCellModel.getWorkingModeProperty());
         this.difficulty.visibleProperty().bind(this.tourLogCellModel.getWorkingModeProperty());
         this.totalTime.visibleProperty().bind(this.tourLogCellModel.getWorkingModeProperty());
         this.rating.visibleProperty().bind(this.tourLogCellModel.getWorkingModeProperty());
 
-        this.dateInput.textProperty().bindBidirectional(this.tourLogCellModel.dateProperty());
         this.commentInput.textProperty().bindBidirectional(this.tourLogCellModel.commentProperty());
         this.difficultyInput.textProperty().bindBidirectional(this.tourLogCellModel.difficultyProperty());
         this.totalTimeInput.textProperty().bindBidirectional(this.tourLogCellModel.totalTimeProperty());
         this.ratingInput.textProperty().bindBidirectional(this.tourLogCellModel.ratingProperty());
 
-        this.dateInput.visibleProperty().bind(this.tourLogCellModel.getEditModeProperty());
         this.commentInput.visibleProperty().bind(this.tourLogCellModel.getEditModeProperty());
         this.difficultyInput.visibleProperty().bind(this.tourLogCellModel.getEditModeProperty());
         this.totalTimeInput.visibleProperty().bind(this.tourLogCellModel.getEditModeProperty());
@@ -86,9 +80,9 @@ public class TourLogCellController {
     }
 
     //Button delete
-    public void onDeleteTour(ActionEvent actionEvent) throws SQLException, IOException {
+    public void onDeleteTourLog(ActionEvent actionEvent) throws SQLException, IOException {
         this.onDeleteProductConsumer.accept(this.tourLogCellModel);
-        tourLogCellModel.deleteTour(this.tourLogCellModel);
+        tourLogCellModel.deleteTourLog(this.tourLogCellModel);
     }
 
     //Button edit
@@ -101,9 +95,5 @@ public class TourLogCellController {
             this.tourLogCellModel.setEditMode(true);
             this.tourLogCellModel.setWorkMode(false);
         }
-    }
-
-    public void onSaveTour(ActionEvent actionEvent) {
-        this.manager.saveTourLogs(this.tourLogCellModel, this.tourLogCellModel.getName());
     }
 }

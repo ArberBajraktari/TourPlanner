@@ -14,6 +14,7 @@ public interface IBusinessLayer {
 
     void createTourItem(TourEntryModel tourItem) throws SQLException, IOException;
     void deleteTourItem(TourModel tourModel) throws SQLException, FileNotFoundException;
+    void deleteTourLogItem(TourLogCellModel tourLogCellModel) throws SQLException, FileNotFoundException;
     boolean getMap(String tourName, String start, String finish) throws IOException;
 
     void updateTourDetails(String tourDesc, String tourFrom, String tourTo, String tourTransport, String tourDistance, String tourEstTime, String tourInfo, String tourName, int tourRating) throws SQLException, FileNotFoundException;
@@ -22,4 +23,6 @@ public interface IBusinessLayer {
     List<String> getAllTourNames() throws SQLException, FileNotFoundException;
 
     void saveTourLogs(TourLogCellModel tourLogs, String tourModelName);
+
+    ObservableList<TourLogCellModel> getAllTourLogs(String tourName);
 }

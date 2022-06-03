@@ -1,5 +1,7 @@
 package PresentationLayer.model;
 
+import BusinessLayer.BusinessLayerFactory;
+import BusinessLayer.IBusinessLayer;
 import javafx.beans.property.*;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -19,6 +21,7 @@ public class TourLogCellModel {
     private StringProperty totalTime = new SimpleStringProperty("dummy");
     @FXML
     private StringProperty rating = new SimpleStringProperty("dummy");
+    public IBusinessLayer manager = BusinessLayerFactory.GetManager();
 
     private String name;
 
@@ -90,11 +93,8 @@ public class TourLogCellModel {
     }
 
 
-    public void deleteTour(TourLogCellModel tourModel) throws SQLException, FileNotFoundException {
-        System.out.println("ok");
-        //TODO fix
-        //System.out.println(tourModel.getTourName());
-        //manager.deleteTourItem(tourModel);
+    public void deleteTourLog(TourLogCellModel tourLogCellModel) throws SQLException, FileNotFoundException {
+        manager.deleteTourLogItem(tourLogCellModel);
     }
 
 

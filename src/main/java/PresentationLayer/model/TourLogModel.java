@@ -36,18 +36,6 @@ public class TourLogModel {
         clearLogs();
         //save tourLogs from Listview to LogListView
         setLogModel(tourModelList);
-        Iterator<TourLogCellModel> it = tourLogs.iterator();
-        while (it.hasNext()) {
-            TourLogCellModel item = it.next();
-            item.setName(tourModelList.getTourName());
-        }
-
-
-//        TourLogCellModel t = new TourLogCellModel();
-//        t.setDistanceProperty("Test");
-//        tourLogs.add(t);
-//        tourLog.set(tourModelList.getTourName());
-
     }
 
     //set ListView to LogListView

@@ -22,4 +22,9 @@ public interface IDatabaseLayer {
     void saveTourLogs(TourLogCellModel tourLogs, String tourModelName);
     int getMaxIdLog();
     int getIdFromName(String name);
+    boolean tourLogExists(String date);
+    void updateTourLog(TourLogCellModel item, String tourModelName);
+    void removeTourLog(TourLogCellModel tourLogCellModel);
+
+    ObservableList<TourLogCellModel> getAllTourLogs(String tourName);
 }

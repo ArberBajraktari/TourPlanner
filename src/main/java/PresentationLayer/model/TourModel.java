@@ -36,6 +36,9 @@ public class TourModel {
     @FXML
     private IntegerProperty tourRating = new SimpleIntegerProperty();
 
+    private ObservableList<TourLogCellModel> tourLogs = FXCollections.observableArrayList();
+
+
     public String getTourTransport() {
         return tourTransport.get();
     }
@@ -76,13 +79,6 @@ public class TourModel {
             System.out.println("Failed to delete the file.");
         }
     }
-
-
-
-
-
-    private ObservableList<TourLogCellModel> tourLogs = FXCollections.observableArrayList();
-
 
     private IBusinessLayer manager = BusinessLayerFactory.GetManager();
 
@@ -152,11 +148,16 @@ public class TourModel {
     public ObservableList<TourLogCellModel> getTours() {
         return tourLogs;
     }
+
+    public void setTours(ObservableList<TourLogCellModel> tourLogs) {
+        this.tourLogs = tourLogs;
+    }
     public void setTourLogs(ObservableList<TourLogCellModel> tourLogs){
         clearLogs();
 
         Iterator<TourLogCellModel> it = tourLogs.iterator();
         while (it.hasNext()) {
+            System.out.println("him itu wtf");
             TourLogCellModel value = it.next();
             this.tourLogs.add(value);
         }
@@ -169,4 +170,5 @@ public class TourModel {
     public void setTourRating(int tourRating) {
         this.tourRating.set(tourRating);
     }
+
 }

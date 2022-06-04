@@ -2,10 +2,13 @@ package BusinessLayer;
 
 import DatabaseAccessLayer.DataAccessLayerFactory;
 import DatabaseAccessLayer.IDatabaseLayer;
+import PresentationLayer.Main;
 import PresentationLayer.model.TourEntryModel;
 import PresentationLayer.model.TourLogCellModel;
 import PresentationLayer.model.TourModel;
 import javafx.collections.ObservableList;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -63,6 +66,11 @@ public class BusinessLayerImp implements IBusinessLayer {
     }
 
     @Override
+    public String getRouteDistance(String start, String end) {
+        return map.getRouteDistance(start, end);
+    }
+
+    @Override
     public void updateTourDetails(String tourDesc, String tourFrom, String tourTo, String tourTransport, String tourDistance, String tourEstTime, String tourInfo, String tourName, int tourRating) throws SQLException, FileNotFoundException {
         dataLayer.createConnection();
         dataLayer.updateTourDetails(tourDesc, tourFrom, tourTo, tourTransport, tourDistance, tourEstTime, tourInfo, tourName, tourRating);
@@ -104,5 +112,19 @@ public class BusinessLayerImp implements IBusinessLayer {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public void savePDF() {
+        PDDocument document = new PDDocument();
+        try {
+            PDPage page = new PDPage();
+            document.addPage(page);
+            document.save("test.pdf");
+            document.close();
+            Main.getImg();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

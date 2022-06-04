@@ -5,13 +5,19 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.image.WritableImage;
 import javafx.stage.Stage;
 
+import javax.imageio.ImageIO;
+import java.awt.image.RenderedImage;
+import java.io.File;
 import java.io.IOException;
 
 public class Main extends Application {
 
     static ControllerFactory factory = new ControllerFactory();
+    static Scene scene;
     @Override
     public void start(Stage primaryStage) throws IOException {
 
@@ -23,7 +29,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.setMinWidth(400);
         primaryStage.show();
-
+        this.scene = scene;
     }
 
     private FXMLLoader getFxmlLoader(ControllerFactory factory) {
@@ -61,7 +67,25 @@ public class Main extends Application {
                             return null;
                         });
         return fxmlLoader;
+    }
 
+    public static WritableImage getImg(){
+        WritableImage img = new WritableImage(125, 125) ;
+        scene.snapshot(img);
+        try {
+            File myObj = new File("test.png");
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+                ImageIO.write((RenderedImage) img, "png", new File("what"));
+
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        return null;
     }
 
 

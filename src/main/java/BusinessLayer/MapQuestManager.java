@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 public class MapQuestManager {
 
@@ -67,6 +68,8 @@ public class MapQuestManager {
             return null;
         }
         String session = obj.getJSONObject("route").getString("sessionId");
+        String distance = String.valueOf(obj.getJSONObject("route").getFloat("distance"));
+        System.out.println(distance);
         JSONObject boundingBox = obj.getJSONObject("route").getJSONObject("boundingBox");
         try {
             String params;
@@ -94,5 +97,11 @@ public class MapQuestManager {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static String getRouteDistance(String start, String end){
+        String jsonString =requestRoute(start, end);
+        JSONObject obj = new JSONObject(jsonString);
+        return String.valueOf(obj.getJSONObject("route").getFloat("distance"));
     }
 }

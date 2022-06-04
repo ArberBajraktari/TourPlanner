@@ -30,7 +30,6 @@
                         <Label text="Template" fx:id="tourNameLabel"></Label>
                         <TextField fx:id="tourName"></TextField>
                     </StackPane>
-
                 </HBox>
 
                 <HBox >
@@ -67,14 +66,6 @@
                 </HBox>
 
                 <HBox >
-                    <Label text="Distance: (a number)"></Label>
-                    <StackPane>
-                        <Label text="Template" fx:id="tourDistanceLabel"></Label>
-                        <TextField fx:id="tourDistance"></TextField>
-                    </StackPane>
-                </HBox>
-
-                <HBox >
                     <Label text="Estimated Time: (hh:mm)"></Label>
                     <StackPane>
                         <Label text="Template" fx:id="tourEstTimeLabel"></Label>
@@ -88,17 +79,19 @@
                         <Label text="Template" fx:id="tourInfoLabel"></Label>
                         <TextField fx:id="tourInfo"></TextField>
                     </StackPane>
-                </HBox>
 
-                <HBox>
                     <Pane HBox.hgrow="ALWAYS" />
-                    <Button text="Save" fx:id="saveButton" styleClass="saveButton" onAction="#saveTour"></Button>
+                    <StackPane>
+                        <Label text="Template" fx:id="tourDistanceLabel"></Label>
+                    </StackPane>
                 </HBox>
 
                 <HBox>
                     <children>
                         <Rating fx:id="tourRating" layoutX="12.0" layoutY="54.0" />
                     </children>
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Button text="Save" fx:id="saveButton" styleClass="saveButton" onAction="#saveTour"></Button>
                 </HBox>
             </VBox>
         </Tab>

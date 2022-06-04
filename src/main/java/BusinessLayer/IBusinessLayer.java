@@ -16,13 +16,14 @@ public interface IBusinessLayer {
     void deleteTourItem(TourModel tourModel) throws SQLException, FileNotFoundException;
     void deleteTourLogItem(TourLogCellModel tourLogCellModel) throws SQLException, FileNotFoundException;
     boolean getMap(String tourName, String start, String finish) throws IOException;
+    String getRouteDistance(String start, String end);
 
     void updateTourDetails(String tourDesc, String tourFrom, String tourTo, String tourTransport, String tourDistance, String tourEstTime, String tourInfo, String tourName, int tourRating) throws SQLException, FileNotFoundException;
     ObservableList<TourModel> getAllTour() throws SQLException, FileNotFoundException;
 
     List<String> getAllTourNames() throws SQLException, FileNotFoundException;
-
     void saveTourLogs(TourLogCellModel tourLogs, String tourModelName);
-
     ObservableList<TourLogCellModel> getAllTourLogs(String tourName);
+
+    void savePDF();
 }

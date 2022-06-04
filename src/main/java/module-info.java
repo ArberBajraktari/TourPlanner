@@ -8,6 +8,7 @@ module com.example.tourplanner {
     requires org.apache.logging.log4j;
     requires java.desktop;
     requires org.json;
+    requires pdfbox;
 
     opens PresentationLayer to javafx.fxml;
     exports PresentationLayer;

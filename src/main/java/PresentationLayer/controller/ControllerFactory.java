@@ -7,6 +7,7 @@ public class ControllerFactory {
     private final TourLogModel tourLogModel;
     private final TourListModel tourListModel;
     private final TourDetailsModel tourDetailsModel;
+    private final TourSearchModel tourSearchModel;
 
 
     public ControllerFactory(){
@@ -14,6 +15,7 @@ public class ControllerFactory {
         this.tourLogModel = new TourLogModel();
         this.tourListModel = new TourListModel();
         this.tourDetailsModel = new TourDetailsModel();
+        this.tourSearchModel = new TourSearchModel();
     }
 
     public Object create(Class controllerClass) throws Exception {
@@ -27,6 +29,8 @@ public class ControllerFactory {
             return new TourDetailsController(this.tourDetailsModel);
         }else if(controllerClass == MainController.class){
             return new MainController(this.tourListModel);
+        }else if(controllerClass == TourSearchController.class){
+            return new TourSearchController(this.tourSearchModel);
         }else {
             throw new Exception("Controller not supported " + controllerClass.getName());
         }

@@ -108,6 +108,9 @@ public class TourDetailsModel {
         return tourFrom;
     }
 
+    public void setTourDistance(String tourDistance) {
+        this.tourDistance.set(tourDistance);
+    }
 
     public String getTourTo() {
         return tourTo.get();

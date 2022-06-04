@@ -57,8 +57,6 @@ public class TourDetailsController implements Initializable {
     @FXML
     private TextField tourTransport;
     @FXML
-    private TextField tourDistance;
-    @FXML
     private TextField tourEstTime;
     @FXML
     private TextField tourInfo;
@@ -127,6 +125,8 @@ public class TourDetailsController implements Initializable {
                         String path = ConfigurationManager.GetConfigProperty("FileAccessStoragePath");
                         File file = new File(path + this.tourDetailsModel.getTourName() + ".jpg");
                         Image image = new Image(file.toURI().toString());
+                        String distance = manager.getRouteDistance(this.tourDetailsModel.getTourFrom(), this.tourDetailsModel.getTourTo());
+                        this.tourDetailsModel.setTourDistance(distance + " km");
                         this.tourDetailsModel.setTourDetailImg(image);
                         this.tourDetailsModel.setEditMode(false);
                         this.tourDetailsModel.setEditButton("Edit");
@@ -147,7 +147,6 @@ public class TourDetailsController implements Initializable {
         this.tourFrom.textProperty().bindBidirectional(this.tourDetailsModel.getTourFromProperty());
         this.tourTo.textProperty().bindBidirectional(this.tourDetailsModel.getTourToProperty());
         this.tourTransport.textProperty().bindBidirectional(this.tourDetailsModel.getTourTransportProperty());
-        this.tourDistance.textProperty().bindBidirectional(this.tourDetailsModel.getTourDistanceProperty());
         this.tourEstTime.textProperty().bindBidirectional(this.tourDetailsModel.getTourEstTimeProperty());
         this.tourInfo.textProperty().bindBidirectional(this.tourDetailsModel.getTourInfoProperty());
         this.tourRating.ratingProperty().bindBidirectional(this.tourDetailsModel.getTourRatingProperty());
@@ -157,7 +156,6 @@ public class TourDetailsController implements Initializable {
         this.tourFrom.visibleProperty().bind(this.tourDetailsModel.getEditModeProperty());
         this.tourTo.visibleProperty().bind(this.tourDetailsModel.getEditModeProperty());
         this.tourTransport.visibleProperty().bind(this.tourDetailsModel.getEditModeProperty());
-        this.tourDistance.visibleProperty().bind(this.tourDetailsModel.getEditModeProperty());
         this.tourEstTime.visibleProperty().bind(this.tourDetailsModel.getEditModeProperty());
         this.tourInfo.visibleProperty().bind(this.tourDetailsModel.getEditModeProperty());
 
@@ -176,7 +174,6 @@ public class TourDetailsController implements Initializable {
         this.tourFromLabel.visibleProperty().bind(this.tourDetailsModel.getWorkingModeProperty());
         this.tourToLabel.visibleProperty().bind(this.tourDetailsModel.getWorkingModeProperty());
         this.tourTransportLabel.visibleProperty().bind(this.tourDetailsModel.getWorkingModeProperty());
-        this.tourDistanceLabel.visibleProperty().bind(this.tourDetailsModel.getWorkingModeProperty());
         this.tourEstTimeLabel.visibleProperty().bind(this.tourDetailsModel.getWorkingModeProperty());
         this.tourInfoLabel.visibleProperty().bind(this.tourDetailsModel.getWorkingModeProperty());
 
@@ -216,13 +213,8 @@ public class TourDetailsController implements Initializable {
     }
 
     public boolean inputAreValid(){
-        String distance = this.tourDetailsModel.getTourDistance();
         String time = this.tourDetailsModel.getTourEstTime();
         try{
-            if(this.tourDetailsModel.getTourDistance() != null){
-                System.out.println("distance");
-                Integer.parseInt(distance);
-            }
             if(this.tourDetailsModel.getTourEstTime() != null){
                 System.out.println("est time");
                 LocalTime.parse(time);

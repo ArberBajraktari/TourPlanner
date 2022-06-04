@@ -9,7 +9,6 @@ import javafx.collections.ObservableList;
 import java.io.FileNotFoundException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 

@@ -9,6 +9,7 @@ module com.example.tourplanner {
     requires java.desktop;
     requires org.json;
     requires pdfbox;
+    requires opencsv;
 
     opens PresentationLayer to javafx.fxml;
     exports PresentationLayer;

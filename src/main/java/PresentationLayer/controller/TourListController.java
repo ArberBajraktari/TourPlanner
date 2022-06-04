@@ -4,7 +4,7 @@ import BusinessLayer.BusinessLayerFactory;
 import BusinessLayer.ConfigurationManager;
 import BusinessLayer.IBusinessLayer;
 import PresentationLayer.model.*;
-import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
@@ -76,5 +76,12 @@ public class TourListController implements Initializable{
             tourLogModel.setTourModel(tourModelList);
         }
 
+    }
+
+    public void importData(ActionEvent actionEvent) {
+    }
+
+    public void exportData(ActionEvent actionEvent) {
+        this.tourListModel.exportData();
     }
 }

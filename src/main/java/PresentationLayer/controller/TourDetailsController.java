@@ -190,10 +190,8 @@ public class TourDetailsController implements Initializable {
     }
 
     public static void inputNotValidBox(boolean type){
-        //Create Stage
         Stage newWindow = new Stage();
         newWindow.setTitle("New Scene");
-//Create view in Java
         Label title;
         if(type){
             title = new Label("Please make sure the inputed value are the required format!");
@@ -202,13 +200,10 @@ public class TourDetailsController implements Initializable {
         }
 
         VBox container = new VBox(title);
-//Style container
         container.setSpacing(15);
         container.setPadding(new Insets(25));
         container.setAlignment(Pos.CENTER);
-//Set view in window
         newWindow.setScene(new Scene(container));
-//Launch
         newWindow.show();
     }
 
@@ -216,10 +211,8 @@ public class TourDetailsController implements Initializable {
         String time = this.tourDetailsModel.getTourEstTime();
         try{
             if(this.tourDetailsModel.getTourEstTime() != null){
-                System.out.println("est time");
                 LocalTime.parse(time);
             }
-            System.out.println("a vjen itu");
             return true;
         }
         catch (NumberFormatException | DateTimeParseException | NullPointerException e){

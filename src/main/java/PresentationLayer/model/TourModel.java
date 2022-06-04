@@ -17,24 +17,24 @@ import java.util.Iterator;
 
 public class TourModel {
     @FXML
-    private StringProperty tourName = new SimpleStringProperty();
+    private StringProperty tourName = new SimpleStringProperty("");
     @FXML
-    private StringProperty tourDesc = new SimpleStringProperty();
+    private StringProperty tourDesc = new SimpleStringProperty("");
     @FXML
-    private StringProperty tourFrom = new SimpleStringProperty();
+    private StringProperty tourFrom = new SimpleStringProperty("");
     @FXML
-    private StringProperty tourTo = new SimpleStringProperty();
+    private StringProperty tourTo = new SimpleStringProperty("");
 
     @FXML
-    private StringProperty tourTransport = new SimpleStringProperty();
+    private StringProperty tourTransport = new SimpleStringProperty("");
     @FXML
-    private StringProperty tourDistance = new SimpleStringProperty();
+    private StringProperty tourDistance = new SimpleStringProperty("");
     @FXML
-    private StringProperty tourEstTime = new SimpleStringProperty();
+    private StringProperty tourEstTime = new SimpleStringProperty("");
     @FXML
-    private StringProperty tourInfo = new SimpleStringProperty();
+    private StringProperty tourInfo = new SimpleStringProperty("");
     @FXML
-    private IntegerProperty tourRating = new SimpleIntegerProperty();
+    private IntegerProperty tourRating = new SimpleIntegerProperty(0);
 
     private ObservableList<TourLogCellModel> tourLogs = FXCollections.observableArrayList();
 
@@ -154,12 +154,9 @@ public class TourModel {
     }
     public void setTourLogs(ObservableList<TourLogCellModel> tourLogs){
         clearLogs();
-        System.out.println("pse asht bosh");
-        System.out.println(tourLogs);
 
         Iterator<TourLogCellModel> it = tourLogs.iterator();
         while (it.hasNext()) {
-            System.out.println("him itu wtf");
             TourLogCellModel value = it.next();
             this.tourLogs.add(value);
         }

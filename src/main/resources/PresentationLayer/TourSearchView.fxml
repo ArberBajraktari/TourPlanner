@@ -12,7 +12,8 @@
       xmlns:fx="http://javafx.com/fxml" fx:controller="PresentationLayer.controller.TourSearchController">
     <Label contentDisplay="CENTER" text="Search:" HBox.hgrow="ALWAYS"/>
     <StackPane>
-        <TextField></TextField>
+        <TextField fx:id="searchInput"></TextField>
+        <Button text="Export PDF" fx:id="searchButton" styleClass="saveButton" onAction="#searchTours"></Button>
     </StackPane>
     <Pane HBox.hgrow="ALWAYS" />
     <Button text="Export PDF" fx:id="pdfButton" styleClass="saveButton" onAction="#savePDF"></Button>

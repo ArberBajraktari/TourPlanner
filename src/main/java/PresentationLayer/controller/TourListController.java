@@ -75,7 +75,6 @@ public class TourListController implements Initializable{
             tourDetailsModel.setTourModel(tourModelList);
             tourLogModel.setTourModel(tourModelList);
         }
-
     }
 
     public void importData(ActionEvent actionEvent) {

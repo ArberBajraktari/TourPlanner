@@ -1,4 +1,4 @@
-<?import javafx.scene.control.SplitPane?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.ListView?>

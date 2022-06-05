@@ -1,12 +1,8 @@
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.control.SplitPane?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
-
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.StackPane?>
@@ -23,7 +19,6 @@
                     <Pane HBox.hgrow="ALWAYS" />
                     <Button text="Edit" fx:id="editButton" styleClass="editButton" onAction="#editMode"></Button>
                 </HBox>
-
                 <HBox >
                     <Label text="Tour name:"></Label>
                     <StackPane>
@@ -31,7 +26,6 @@
                         <TextField fx:id="tourName"></TextField>
                     </StackPane>
                 </HBox>
-
                 <HBox >
                     <Label text="Description:"></Label>
                     <StackPane>
@@ -40,7 +34,6 @@
                     </StackPane>
 
                 </HBox>
-
                 <HBox >
                     <Label text="From:"></Label>
                     <StackPane>
@@ -48,7 +41,6 @@
                         <TextField fx:id="tourFrom"></TextField>
                     </StackPane>
                 </HBox>
-
                 <HBox >
                     <Label text="To:"></Label>
                     <StackPane>
@@ -56,7 +48,6 @@
                         <TextField fx:id="tourTo"></TextField>
                     </StackPane>
                 </HBox>
-
                 <HBox >
                     <Label text="Transport type:"></Label>
                     <StackPane>
@@ -64,7 +55,6 @@
                         <TextField fx:id="tourTransport"></TextField>
                     </StackPane>
                 </HBox>
-
                 <HBox >
                     <Label text="Estimated Time: (hh:mm)"></Label>
                     <StackPane>
@@ -72,20 +62,17 @@
                         <TextField fx:id="tourEstTime"></TextField>
                     </StackPane>
                 </HBox>
-
                 <HBox >
                     <Label text="Route Info:"></Label>
                     <StackPane>
                         <Label text="Template" fx:id="tourInfoLabel"></Label>
                         <TextField fx:id="tourInfo"></TextField>
                     </StackPane>
-
                     <Pane HBox.hgrow="ALWAYS" />
                     <StackPane>
                         <Label text="Template" fx:id="tourDistanceLabel"></Label>
                     </StackPane>
                 </HBox>
-
                 <HBox>
                     <children>
                         <Rating fx:id="tourRating" layoutX="12.0" layoutY="54.0" />

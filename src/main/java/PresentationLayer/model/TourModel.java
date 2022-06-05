@@ -113,7 +113,7 @@ public class TourModel {
         this.tourTo.set(tourTo);
     }
 
-    private void clearLogs(){
+    protected void clearLogs(){
         this.tourLogs.clear();
     }
 

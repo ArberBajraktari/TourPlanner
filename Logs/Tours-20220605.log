@@ -113,3 +113,53 @@
 2022-06-05 19:13:37.298 [JavaFX Application Thread] INFO  PresentationLayer.model.TourLogItemModel - Item is added to the ListView of Tour
 2022-06-05 19:13:37.814 [JavaFX Application Thread] INFO  PresentationLayer.model.TourLogItemModel - Item is added to the ListView of Tour
 2022-06-05 19:13:37.838 [JavaFX Application Thread] INFO  PresentationLayer.model.TourLogItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:30.465 [JavaFX Application Thread] INFO  PresentationLayer.model.TourItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:31.054 [JavaFX Application Thread] INFO  PresentationLayer.model.TourItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:31.069 [JavaFX Application Thread] INFO  PresentationLayer.model.TourItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:33.226 [JavaFX Application Thread] INFO  PresentationLayer.model.TourItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:33.304 [JavaFX Application Thread] INFO  PresentationLayer.model.TourLogItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:33.370 [JavaFX Application Thread] INFO  PresentationLayer.model.TourLogItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:36.191 [JavaFX Application Thread] INFO  PresentationLayer.model.TourItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:36.239 [JavaFX Application Thread] INFO  DatabaseAccessLayer.DatabaseLayerPostGres - Tour tour 3 is inserted in the DB
+2022-06-05 20:42:36.240 [JavaFX Application Thread] INFO  PresentationLayer.model.TourEntryModel - Tour tour 3 is added (to the DB as well)
+2022-06-05 20:42:36.615 [JavaFX Application Thread] INFO  PresentationLayer.model.TourItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:36.622 [JavaFX Application Thread] INFO  PresentationLayer.model.TourItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:37.112 [JavaFX Application Thread] INFO  PresentationLayer.model.TourItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:37.118 [JavaFX Application Thread] INFO  PresentationLayer.model.TourItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:37.183 [JavaFX Application Thread] INFO  PresentationLayer.model.TourLogItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:37.224 [JavaFX Application Thread] INFO  PresentationLayer.model.TourLogItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:37.540 [JavaFX Application Thread] INFO  PresentationLayer.model.TourItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:37.546 [JavaFX Application Thread] INFO  PresentationLayer.model.TourItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:38.571 [JavaFX Application Thread] INFO  PresentationLayer.model.TourLogItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:38.604 [JavaFX Application Thread] INFO  PresentationLayer.model.TourLogItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:38.698 [JavaFX Application Thread] INFO  PresentationLayer.model.TourLogItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:38.835 [JavaFX Application Thread] INFO  PresentationLayer.model.TourLogItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:38.987 [JavaFX Application Thread] INFO  PresentationLayer.model.TourLogItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:39.138 [JavaFX Application Thread] INFO  PresentationLayer.model.TourLogItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:39.292 [JavaFX Application Thread] INFO  PresentationLayer.model.TourLogItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:39.944 [JavaFX Application Thread] INFO  DatabaseAccessLayer.DatabaseLayerPostGres - Tour Log inserted in DB
+2022-06-05 20:42:39.973 [JavaFX Application Thread] INFO  DatabaseAccessLayer.DatabaseLayerPostGres - Tour Log inserted in DB
+2022-06-05 20:42:39.998 [JavaFX Application Thread] INFO  DatabaseAccessLayer.DatabaseLayerPostGres - Tour Log inserted in DB
+2022-06-05 20:42:40.025 [JavaFX Application Thread] INFO  DatabaseAccessLayer.DatabaseLayerPostGres - Tour Log inserted in DB
+2022-06-05 20:42:40.050 [JavaFX Application Thread] INFO  DatabaseAccessLayer.DatabaseLayerPostGres - Tour Log inserted in DB
+2022-06-05 20:42:40.074 [JavaFX Application Thread] INFO  DatabaseAccessLayer.DatabaseLayerPostGres - Tour Log inserted in DB
+2022-06-05 20:42:41.596 [JavaFX Application Thread] INFO  PresentationLayer.model.TourItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:41.601 [JavaFX Application Thread] INFO  PresentationLayer.model.TourItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:41.615 [JavaFX Application Thread] INFO  PresentationLayer.model.TourLogItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:41.653 [JavaFX Application Thread] INFO  PresentationLayer.model.TourLogItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:41.971 [JavaFX Application Thread] INFO  PresentationLayer.model.TourItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:41.975 [JavaFX Application Thread] INFO  PresentationLayer.model.TourItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:42.052 [JavaFX Application Thread] INFO  PresentationLayer.model.TourLogItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:42.062 [JavaFX Application Thread] INFO  PresentationLayer.model.TourLogItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:42.067 [JavaFX Application Thread] INFO  PresentationLayer.model.TourLogItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:42.073 [JavaFX Application Thread] INFO  PresentationLayer.model.TourLogItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:42.081 [JavaFX Application Thread] INFO  PresentationLayer.model.TourLogItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:42.087 [JavaFX Application Thread] INFO  PresentationLayer.model.TourLogItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:42.171 [JavaFX Application Thread] INFO  PresentationLayer.model.TourLogItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:42.199 [JavaFX Application Thread] INFO  PresentationLayer.model.TourLogItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:42.223 [JavaFX Application Thread] INFO  PresentationLayer.model.TourLogItemModel - Item is added to the ListView of Tour
+2022-06-05 20:42:42.243 [JavaFX Application Thread] INFO  PresentationLayer.model.TourLogItemModel - Item is added to the ListView of Tour
+2022-06-05 21:36:20.824 [main] INFO  DatabaseAccessLayer.DatabaseLayerPostGres - Tour thisTourDoesNotExist is inserted in the DB
+2022-06-05 21:36:21.029 [main] INFO  DatabaseAccessLayer.DatabaseLayerPostGres - Tour thisTourDoesNotExist deleted!
+2022-06-05 21:36:21.042 [main] INFO  DatabaseAccessLayer.DatabaseLayerPostGres - Logs from Tour are deleted!
+2022-06-05 21:36:21.044 [main] INFO  DatabaseAccessLayer.DatabaseLayerPostGres - Logs of thisTourDoesNotExist are deleted!

@@ -26,7 +26,7 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
 
     @Override
     //Create connection to DB
-    public Connection createConnection() throws FileNotFoundException, SQLException {
+    public boolean createConnection() throws FileNotFoundException, SQLException {
         String url = ConfigurationManager.GetConfigProperty("PostgresSqlConnectionString");
         String user = ConfigurationManager.GetConfigProperty("user");
         String password = ConfigurationManager.GetConfigProperty("pwd");
@@ -34,7 +34,26 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
         props.setProperty("user",user);
         props.setProperty("password",password);
         con = DriverManager.getConnection(url, props);
-        return DriverManager.getConnection(url, props);
+        if(!isConnected()){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean isConnected() throws SQLException {
+        if(this.con != null){
+            String sql = "SELECT 1";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.execute();
+            ResultSet last_updated_person = ps.getResultSet();
+            if(last_updated_person.next()) {
+                return true;
+            }
+        }else{
+            return false;
+        }
+        return false;
     }
 
     @Override

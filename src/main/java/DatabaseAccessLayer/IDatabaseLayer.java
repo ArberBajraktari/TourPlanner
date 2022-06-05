@@ -12,7 +12,7 @@ import java.util.List;
 public interface IDatabaseLayer {
 
     //Functions for the DB Layer
-    Connection createConnection() throws FileNotFoundException, SQLException;
+    boolean createConnection() throws FileNotFoundException, SQLException;
     void addTour(String tour);
     int getMaxId();
     void removeTour(TourModel tourModel);
@@ -26,4 +26,5 @@ public interface IDatabaseLayer {
     void updateTourLog(TourLogCellModel item, String tourModelName);
     void removeTourLog(TourLogCellModel tourLogCellModel);
     ObservableList<TourLogCellModel> getAllTourLogs(String tourName);
+    boolean isConnected() throws SQLException;
 }

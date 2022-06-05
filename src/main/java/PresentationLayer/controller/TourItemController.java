@@ -1,5 +1,7 @@
 package PresentationLayer.controller;
 
+import BusinessLayer.BusinessLayerFactory;
+import BusinessLayer.IBusinessLayer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -14,6 +16,7 @@ import java.util.function.Consumer;
 public class TourItemController {
     private TourModel tourModel;
     private Consumer<TourModel> onDeleteProductConsumer;
+    private IBusinessLayer manager = BusinessLayerFactory.GetManager();
 
     @FXML
     public Label name;
@@ -38,7 +41,7 @@ public class TourItemController {
     public void onDeleteTour(ActionEvent actionEvent) throws SQLException, IOException {
         TourEntryController.deleteTourName(this.tourModel.getTourName());
         this.onDeleteProductConsumer.accept(this.tourModel);
-        tourModel.deleteTour(this.tourModel);
+        manager.deleteTourItem(this.tourModel);
         tourModel.deleteImg("src/main/resources/TourImages/" + this.tourModel.getTourName() + ".jpg");
     }
 }

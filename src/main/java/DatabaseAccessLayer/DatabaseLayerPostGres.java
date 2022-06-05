@@ -96,11 +96,14 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
     //Remove Tour
     public void removeTour(TourModel tourModel) {
         try {
+            int tourId = getIdFromName(tourModel.getTourName());
             String sql = "DELETE FROM Tours WHERE \"name\" = ?;";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, tourModel.getTourName());
             ps.executeUpdate();
             log.info("Tour " + tourModel.getTourName() + " deleted!");
+            removeLogsForTour(tourId);
+            log.info("Logs of " + tourModel.getTourName() + " are deleted!");
         } catch (SQLException e) {
             log.error("Could not delete Tour");
             log.error(e.getMessage());
@@ -161,6 +164,19 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
             log.info("Tour Log is deleted!");
         } catch (SQLException e) {
             log.error("Could not delete Tour Log");
+            log.error(e.getMessage());
+        }
+    }
+
+    public void removeLogsForTour(int tourId) {
+        try {
+            String sql = "DELETE FROM tours_logs WHERE tour_id = ?;";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, tourId);
+            ps.executeUpdate();
+            log.info("Logs from Tour are deleted!");
+        } catch (SQLException e) {
+            log.error("Could not delete Logs of this Tour");
             log.error(e.getMessage());
         }
     }

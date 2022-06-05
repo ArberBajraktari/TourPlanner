@@ -38,7 +38,6 @@ public class TourModel {
     private IntegerProperty tourRating = new SimpleIntegerProperty(0);
 
     private ObservableList<TourLogCellModel> tourLogs = FXCollections.observableArrayList();
-    private IBusinessLayer manager = BusinessLayerFactory.GetManager();
 
     public static TourModel From(TourEntryModel source) {
         var newInstance = new TourModel();
@@ -138,11 +137,6 @@ public class TourModel {
             TourLogCellModel value = it.next();
             this.tourLogs.add(value);
         }
-    }
-
-    //Delete Tour
-    public void deleteTour(TourModel tourModel) throws SQLException, FileNotFoundException {
-        manager.deleteTourItem(tourModel);
     }
 
     //Delete Img for this Tour

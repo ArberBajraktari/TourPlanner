@@ -21,8 +21,9 @@ import java.util.List;
 
 public class BusinessLayerImp implements IBusinessLayer {
 
-    //connection to DB layer
+    //DB Layer
     private IDatabaseLayer dataLayer;
+    //MapQuest
     private MapQuestManager map = new MapQuestManager();
 
     public BusinessLayerImp(){
@@ -31,10 +32,8 @@ public class BusinessLayerImp implements IBusinessLayer {
 
     @Override
     public void createTourItem(TourEntryModel tourItem) throws SQLException, FileNotFoundException {
-        System.out.println("Creating");
         dataLayer.createConnection();
         dataLayer.addTour(tourItem.getTourName());
-
     }
 
     @Override

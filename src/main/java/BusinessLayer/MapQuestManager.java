@@ -17,7 +17,8 @@ public class MapQuestManager {
     public static String requestRoute(String start, String end){
         HttpURLConnection connection = null;
         try{
-            URL url = new URL("http://www.mapquestapi.com/directions/v2/route?key=wrq6qJ05GD4w8ZMjbTsZ25C5matuLpNw&from="+start+"&to=" + end);
+            String key = ConfigurationManager.GetConfigProperty("MapKey");
+            URL url = new URL("http://www.mapquestapi.com/directions/v2/route?key=" + key + "&from="+start+"&to=" + end);
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Length",
@@ -81,7 +82,9 @@ public class MapQuestManager {
             String box = boundingBox.getJSONObject("lr").getFloat("lat") + "," + boundingBox.getJSONObject("lr").getFloat("lng") + "," + boundingBox.getJSONObject("ul").getFloat("lat") + "," + boundingBox.getJSONObject("ul").getFloat("lng");
             params += "&boundingBox="+box;
 
-            URL url = new URL("http://www.mapquestapi.com/staticmap/v5/map?key=wrq6qJ05GD4w8ZMjbTsZ25C5matuLpNw" + params);
+
+            String key = ConfigurationManager.GetConfigProperty("MapKey");
+            URL url = new URL("http://www.mapquestapi.com/staticmap/v5/map?key=" + key + params);
             InputStream is;
             try {
                 is = url.openStream();

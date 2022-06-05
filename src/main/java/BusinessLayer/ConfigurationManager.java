@@ -13,9 +13,7 @@ public class ConfigurationManager {
         Logger log = LogManager.getLogger(ConfigurationManager.class);
         Properties prop = new Properties();
         String propFileName = "config.properties";
-
         InputStream stream = new FileInputStream(propFileName);
-
         try {
             prop.load(stream);
             return prop.getProperty(propertyName);

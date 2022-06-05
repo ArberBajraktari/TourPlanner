@@ -82,7 +82,7 @@
                 </HBox>
             </VBox>
         </Tab>
-        <Tab text="Map" fx:id="map_tab" onSelectionChanged="#test" >
+        <Tab text="Map" fx:id="map_tab" >
             <VBox>
                 <ImageView fx:id="imageView" fitWidth="-Infinity" fitHeight="-Infinity">
                 </ImageView>

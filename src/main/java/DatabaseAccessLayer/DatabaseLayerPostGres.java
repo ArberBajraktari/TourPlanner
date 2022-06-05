@@ -95,6 +95,7 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
 
     @Override
     public void removeTour(TourModel tourModel) {
+        //TODO
         System.out.println("Saving Tour into DB");
         int count = getMaxId() + 1;
         try {

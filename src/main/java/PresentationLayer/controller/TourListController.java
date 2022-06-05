@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
@@ -34,6 +33,8 @@ public class TourListController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //Get all tours from DB on loading
+        //Get tour logs per each Tour as well
         try {
             this.tourListModel.setTours(manager.getAllTour());
             Iterator<TourModel> allTours = this.tourListModel.getTours().iterator();
@@ -54,23 +55,22 @@ public class TourListController implements Initializable{
     private void deleteProduct(TourModel model) {
         String path;
         try {
+            //Deletes the map file
             path = ConfigurationManager.GetConfigProperty("FileAccessStoragePath");
             File file = new File(path + this.tourDetailsModel.getTourName() + ".jpg");
             file.delete();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
         this.tourListModel.removeTour(model);
     }
 
     @FXML
+    //Tour item is clicked
     private void tourItemClicked(MouseEvent mouseEvent) {
         //Select the model that is clicked
         TourModel tourModelList = listView.getSelectionModel().getSelectedItem();
-        TourModel temp = new TourModel();
-        tourDetailsModel.setTourModel(temp);
-        tourLogModel.setTourModel(temp);
+        //Set TourDetail and TourLog
         if(tourModelList != null){
             tourDetailsModel.setTourModel(tourModelList);
             tourLogModel.setTourModel(tourModelList);

@@ -3,6 +3,7 @@ package PresentationLayer.controller;
 import PresentationLayer.model.*;
 
 public class ControllerFactory {
+    //create Models
     private final TourEntryModel tourEntryModel;
     private final TourLogModel tourLogModel;
     private final TourListModel tourListModel;
@@ -11,6 +12,7 @@ public class ControllerFactory {
 
 
     public ControllerFactory(){
+        //initialize Models
         this.tourEntryModel = new TourEntryModel();
         this.tourLogModel = new TourLogModel();
         this.tourListModel = new TourListModel();
@@ -19,6 +21,7 @@ public class ControllerFactory {
     }
 
     public Object create(Class controllerClass) throws Exception {
+        //for each controller, assign the Model
         if (controllerClass == TourEntryController.class) {
             return new TourEntryController(this.tourEntryModel);
         }else if(controllerClass == TourListController.class){

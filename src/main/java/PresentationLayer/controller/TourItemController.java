@@ -1,7 +1,5 @@
 package PresentationLayer.controller;
 
-import PresentationLayer.model.TourEntryModel;
-import PresentationLayer.model.TourItemModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -19,7 +17,6 @@ public class TourItemController {
 
     @FXML
     public Label name;
-
     @FXML
     private Node box = new HBox();
 
@@ -36,6 +33,8 @@ public class TourItemController {
         this.onDeleteProductConsumer = listener;
     }
 
+    //Deletes the Tour from the Listview and from the DB
+    //Deletes IMG and TourLogs as well
     public void onDeleteTour(ActionEvent actionEvent) throws SQLException, IOException {
         TourEntryController.deleteTourName(this.tourModel.getTourName());
         this.onDeleteProductConsumer.accept(this.tourModel);

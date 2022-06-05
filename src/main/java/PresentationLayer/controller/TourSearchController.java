@@ -28,14 +28,15 @@ public class TourSearchController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //Bind text value
         this.searchInput.textProperty().bindBidirectional(this.tourSearchModel.getSearchProperty());
     }
 
+    //Save PDF button
     public void savePDF(ActionEvent actionEvent) {
         manager.savePDF();
     }
 
     public void searchTours(ActionEvent actionEvent) {
-        String input = this.tourSearchModel.getSearch();
     }
 }

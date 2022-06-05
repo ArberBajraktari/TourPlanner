@@ -11,16 +11,7 @@ public class TourSearchModel {
         this.search = new SimpleStringProperty("");
     }
 
-    public String getSearch() {
-        return search.get();
-    }
-
     public StringProperty getSearchProperty() {
         return search;
     }
-
-
-
-
-
 }

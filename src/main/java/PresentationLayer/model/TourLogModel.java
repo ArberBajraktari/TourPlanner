@@ -16,19 +16,32 @@ public class TourLogModel {
     private ObservableList<TourLogCellModel> tourLogs = FXCollections.observableArrayList();
     private TourModel tourModel;
 
-
-
     public TourLogModel(){
         tourLog = new SimpleStringProperty("Log view");
     }
 
-
-    public String getTourLog() {
-        return tourLog.get();
-    }
-
     public StringProperty getTourLogProperty() {
         return tourLog;
+    }
+
+    public ObservableList<TourLogCellModel> getTourLogs() {
+        return tourLogs;
+    }
+
+    public String getTourModelName(){
+        return this.tourModel.getTourName();
+    }
+
+    private void clearLogs(){
+        tourLogs.clear();
+    }
+
+    public ObservableList<TourLogCellModel> getTours() {
+        return tourLogs;
+    }
+
+    public void removeTour(TourLogCellModel product) {
+        this.tourLogs.remove(product);
     }
 
     public void setTourModel(TourModel tourModelList) {
@@ -46,34 +59,10 @@ public class TourLogModel {
         this.tourModel = tourModel;
     }
 
-    private void clearLogs(){
-        tourLogs.clear();
-    }
-
-    public ObservableList<TourLogCellModel> getTours() {
-        return tourLogs;
-    }
-
-    public void removeTour(TourLogCellModel product) {
-        this.tourLogs.remove(product);
-    }
-
     //save ListView to be the Same as the modified LogListView
     public void saveTourModel() {
         if(this.tourModel != null){
             this.tourModel.setTourLogs(getTours());
         }
-    }
-
-    public ObservableList<TourLogCellModel> getTourLogs() {
-        return tourLogs;
-    }
-
-    public void setTourLogs(ObservableList<TourLogCellModel> tourLogs) {
-        this.tourLogs = tourLogs;
-    }
-
-    public String getTourModelName(){
-        return this.tourModel.getTourName();
     }
 }

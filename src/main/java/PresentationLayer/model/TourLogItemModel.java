@@ -15,6 +15,7 @@ public class TourLogItemModel extends javafx.scene.control.ListCell<TourLogCellM
         this.onDeleteProductCallBack = callback;
     }
 
+    //Load TourLogItem.fxml to the ListView
     @Override
     public void updateItem(TourLogCellModel product, boolean empty)
     {

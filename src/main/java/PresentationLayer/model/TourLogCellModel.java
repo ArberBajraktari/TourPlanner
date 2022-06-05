@@ -92,14 +92,10 @@ public class TourLogCellModel {
         this.rating.set(rating);
     }
 
-
+    //Delete Tour Log Item from the Listview
     public void deleteTourLog(TourLogCellModel tourLogCellModel) throws SQLException, FileNotFoundException {
         manager.deleteTourLogItem(tourLogCellModel);
     }
-
-
-
-
 
     public boolean getEditMode() {
         return editMode.get();

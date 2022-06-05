@@ -14,6 +14,7 @@ public class TourItemModel extends javafx.scene.control.ListCell<TourModel>{
         this.onDeleteProductCallBack = callback;
     }
 
+    //Load TourItem.fxml to the ListView
     @Override
     public void updateItem(TourModel product, boolean empty)
     {
@@ -37,6 +38,4 @@ public class TourItemModel extends javafx.scene.control.ListCell<TourModel>{
         controller.addListenerForDeleteTour(this.onDeleteProductCallBack);
         setGraphic(controller.getProductItemBox());
     }
-
-
 }

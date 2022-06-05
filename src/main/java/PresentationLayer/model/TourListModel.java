@@ -19,10 +19,10 @@ import java.util.List;
 
 public class TourListModel {
 
+    private ObservableList<TourModel> tours = FXCollections.observableArrayList();
+
     public TourListModel(){
     }
-
-    private ObservableList<TourModel> tours = FXCollections.observableArrayList();
 
     public ObservableList<TourModel> getTours() {
         return tours;
@@ -40,11 +40,8 @@ public class TourListModel {
         this.tours.remove(product);
     }
 
-    public void removeAll() {
-        this.tours.clear();
-    }
-
     public void exportData() {
+        //Export All Tours and Tour Logs
         String[] header = {"logs", "name", "description", "from", "to", "transport_type", "estimated_time", "route_info", "rating", "date", "comment", "difficulty", "total_timing", "rating"};
         List<String[]> list = new ArrayList<>();
         list.add(header);
@@ -60,7 +57,6 @@ public class TourListModel {
                 list.add(temp_log);
             }
         }
-
         try (CSVWriter writer = new CSVWriter(new FileWriter(ConfigurationManager.GetConfigProperty("CsvAccessStoragePath") + "export.csv"))) {
             writer.writeAll(list);
             exportStatus(true);
@@ -70,6 +66,7 @@ public class TourListModel {
         }
     }
 
+    //Check if the Export is done or failed
     public static void exportStatus(boolean type){
         //Create Stage
         Stage newWindow = new Stage();
@@ -80,7 +77,6 @@ public class TourListModel {
         }else{
             title = new Label("Export not done!");
         }
-
         VBox container = new VBox(title);
         container.setSpacing(15);
         container.setPadding(new Insets(25));

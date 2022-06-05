@@ -24,7 +24,6 @@ public class TourModel {
     private StringProperty tourFrom = new SimpleStringProperty("");
     @FXML
     private StringProperty tourTo = new SimpleStringProperty("");
-
     @FXML
     private StringProperty tourTransport = new SimpleStringProperty("");
     @FXML
@@ -37,7 +36,13 @@ public class TourModel {
     private IntegerProperty tourRating = new SimpleIntegerProperty(0);
 
     private ObservableList<TourLogCellModel> tourLogs = FXCollections.observableArrayList();
+    private IBusinessLayer manager = BusinessLayerFactory.GetManager();
 
+    public static TourModel From(TourEntryModel source) {
+        var newInstance = new TourModel();
+        newInstance.tourName.set(source.getTourName());
+        return newInstance;
+    }
 
     public String getTourTransport() {
         return tourTransport.get();
@@ -71,42 +76,16 @@ public class TourModel {
         return tourInfo.get();
     }
 
-    public void deleteImg(String img){
-        File myObj = new File(img);
-        if (myObj.delete()) {
-            System.out.println("Deleted the file: " + myObj.getName());
-        } else {
-            System.out.println("Failed to delete the file.");
-        }
-    }
-
-    private IBusinessLayer manager = BusinessLayerFactory.GetManager();
-
-    public static TourModel From(TourEntryModel source) {
-        var newInstance = new TourModel();
-        newInstance.tourName.set(source.getTourName());
-        return newInstance;
-    }
-
-
-
-    //Getter and Setter
     public String getTourName() {
         return tourName.get();
     }
+
     public void setTourName(String name){
         this.tourName.set(name);
     }
 
-    //Getter and Setter for Property
     public StringProperty getTourNameProperty() {
         return tourName;
-    }
-
-    //Delete Tour
-    public void deleteTour(TourModel tourModel) throws SQLException, FileNotFoundException {
-        System.out.println(tourModel.getTourName());
-        manager.deleteTourItem(tourModel);
     }
 
     public String getTourDesc() {
@@ -133,33 +112,12 @@ public class TourModel {
         this.tourTo.set(tourTo);
     }
 
-    public String getDistance() {
-        return tourDistance.get();
-    }
-
-    public StringProperty distanceProperty() {
-        return tourDistance;
-    }
-
     private void clearLogs(){
         this.tourLogs.clear();
     }
 
     public ObservableList<TourLogCellModel> getTours() {
         return tourLogs;
-    }
-
-    public void setTours(ObservableList<TourLogCellModel> tourLogs) {
-        this.tourLogs = tourLogs;
-    }
-    public void setTourLogs(ObservableList<TourLogCellModel> tourLogs){
-        clearLogs();
-
-        Iterator<TourLogCellModel> it = tourLogs.iterator();
-        while (it.hasNext()) {
-            TourLogCellModel value = it.next();
-            this.tourLogs.add(value);
-        }
     }
 
     public int getTourRating() {
@@ -170,4 +128,29 @@ public class TourModel {
         this.tourRating.set(tourRating);
     }
 
+    public void setTourLogs(ObservableList<TourLogCellModel> tourLogs){
+        clearLogs();
+
+        Iterator<TourLogCellModel> it = tourLogs.iterator();
+        while (it.hasNext()) {
+            TourLogCellModel value = it.next();
+            this.tourLogs.add(value);
+        }
+    }
+
+    //Delete Tour
+    public void deleteTour(TourModel tourModel) throws SQLException, FileNotFoundException {
+        System.out.println(tourModel.getTourName());
+        manager.deleteTourItem(tourModel);
+    }
+
+    //Delete Img for this Tour
+    public void deleteImg(String img){
+        File myObj = new File(img);
+        if (myObj.delete()) {
+            System.out.println("Deleted the file: " + myObj.getName());
+        } else {
+            System.out.println("Failed to delete the file.");
+        }
+    }
 }

@@ -17,10 +17,6 @@ public class TourEntryModel {
         tourName = new SimpleStringProperty("");
     }
 
-    public void setTourName(String newValue) {
-        this.tourName.set(newValue);
-    }
-
     public String getTourName() {
         return tourName.get();
     }
@@ -29,6 +25,7 @@ public class TourEntryModel {
         return tourName;
     }
 
+    //When add is clicked, the new Tour will be added to the DB
     public boolean createTour(TourEntryModel tourEntryModel) throws SQLException, IOException {
         manager.createTourItem(tourEntryModel);
         return true;

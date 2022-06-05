@@ -21,6 +21,7 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
     }
 
     @Override
+    //Create connection to DB
     public Connection createConnection() throws FileNotFoundException, SQLException {
         String url = ConfigurationManager.GetConfigProperty("PostgresSqlConnectionString");
         String user = ConfigurationManager.GetConfigProperty("user");
@@ -33,14 +34,11 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
     }
 
     @Override
+    //Get last inserted Tours id
     public int getMaxId() {
         try {
-
-            // Step 4: Create a statement
             String sql = "SELECT max(id) FROM Tours";
-
             PreparedStatement ps = con.prepareStatement(sql);
-            // Step 6: Process the results
             ps.execute();
             ResultSet last_updated_person = ps.getResultSet();
             if(last_updated_person.next()) {
@@ -53,14 +51,11 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
     }
 
     @Override
+    //Get last inserted Tour Logs id
     public int getMaxIdLog() {
         try {
-
-            // Step 4: Create a statement
             String sql = "SELECT max(id) FROM tours_logs";
-
             PreparedStatement ps = con.prepareStatement(sql);
-            // Step 6: Process the results
             ps.execute();
             ResultSet last_updated_person = ps.getResultSet();
             if(last_updated_person.next()) {
@@ -73,15 +68,12 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
     }
 
     @Override
+    //Get ID of the Tour with x name
     public int getIdFromName(String name) {
         try {
-
-            // Step 4: Create a statement
-            String sql = "SELECT id FROM Tours where name = ?";
-
+            String sql = "SELECT id FROM Tours where \"name\" = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, name);
-            // Step 6: Process the results
             ps.execute();
             ResultSet last_updated_person = ps.getResultSet();
             if(last_updated_person.next()) {
@@ -94,45 +86,43 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
     }
 
     @Override
+    //Remove Tour
     public void removeTour(TourModel tourModel) {
-        //TODO
-        System.out.println("Saving Tour into DB");
-        int count = getMaxId() + 1;
         try {
-            // Step 4: Create a statement
-            String sql = "DELETE FROM Tours WHERE name = '" + tourModel.getTourName() + "';";
-
+            String sql = "DELETE FROM Tours WHERE \"name\" = ?;";
             PreparedStatement ps = con.prepareStatement(sql);
-            // Step 6: Process the results
-            System.out.println(ps.executeUpdate());
+            ps.setString(1, tourModel.getTourName());
+            ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     @Override
+    //Update Tour Details after Save button is clicked
     public void updateTourDetails(String tourDesc, String tourFrom, String tourTo, String tourTransport, String tourDistance, String tourEstTime, String tourInfo, String tourName, int tourRating) throws SQLException {
         String sql = "UPDATE tours SET description = ?, \"from\" = ?, \"to\" = ?, transport_type = ?, distance = ?, estimated_time = ?, route_info = ?, ratings = ?  WHERE \"name\" = ?;";
-
-        PreparedStatement ps = con.prepareStatement(sql);
-
-        ps.setString(1, tourDesc);
-        ps.setString(2, tourFrom);
-        ps.setString(3, tourTo);
-        ps.setString(4, tourTransport);
-        ps.setString(5, tourDistance);
-        ps.setString(6, tourEstTime);
-        ps.setString(7, tourInfo);
-        ps.setInt(8, tourRating);
-        ps.setString(9, tourName);
-
-        ps.executeUpdate();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, tourDesc);
+            ps.setString(2, tourFrom);
+            ps.setString(3, tourTo);
+            ps.setString(4, tourTransport);
+            ps.setString(5, tourDistance);
+            ps.setString(6, tourEstTime);
+            ps.setString(7, tourInfo);
+            ps.setInt(8, tourRating);
+            ps.setString(9, tourName);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
+    //Update Tour Logs after Save button on Log view is clicked
     public void updateTourLog(TourLogCellModel item, String tourModelName) {
         String sql = "UPDATE tours_logs SET comment = ?, difficulty = ?, total_time = ?, rating = ?  WHERE \"date\" = ?;";
-
         PreparedStatement ps;
         try {
             ps = con.prepareStatement(sql);
@@ -148,14 +138,12 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
     }
 
     @Override
+    //Remove Tour Log (the one who is removed from the ListView)
     public void removeTourLog(TourLogCellModel tourLogCellModel) {
         try {
-            // Step 4: Create a statement
             String sql = "DELETE FROM tours_logs WHERE \"date\" = ?;";
-
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, tourLogCellModel.getDate());
-            // Step 6: Process the results
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -163,18 +151,16 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
     }
 
     @Override
+    //Get all Tour Logs for each Tour
     public ObservableList<TourLogCellModel> getAllTourLogs(String tourName) {
         try {
-            // Step 4: Create a statement
             String sql = "SELECT * FROM tours_logs where tour_id=?";
-
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, getIdFromName(tourName));
             ResultSet rs = ps.executeQuery();
             ObservableList<TourLogCellModel> tourLogs = FXCollections.observableArrayList();
             TourLogCellModel temp;
             while (rs.next()){
-                System.out.println("item x");
                 temp = new TourLogCellModel();
                 temp.setDate(rs.getString("date"));
                 temp.setComment(rs.getString("comment"));
@@ -191,12 +177,10 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
     }
 
     @Override
+    //Get all Tours
     public ObservableList<TourModel> getAllTours() {
         try {
-
-            // Step 4: Create a statement
             String sql = "SELECT * FROM Tours";
-
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             ObservableList<TourModel> tours = FXCollections.observableArrayList();
@@ -222,12 +206,10 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
     }
 
     @Override
+    //Get all Tour Names
     public List<String> getAllToursNames() {
         try {
-
-            // Step 4: Create a statement
             String sql = "SELECT \"name\" FROM Tours";
-
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             List<String> toursNames = new ArrayList<>();
@@ -242,18 +224,15 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
     }
 
     @Override
+    //Save all TourLogs
     public void saveTourLogs(TourLogCellModel item, String tourModelName) {
-
         if(tourLogExists(item.getDate())){
             updateTourLog(item, tourModelName);
         }else{
-            // Step 4: Create a statement
             String sql = "Insert into tours_logs values(?, ?, ?, ?, ?, ?, ?)";
-
             PreparedStatement ps;
             try {
                 ps = con.prepareStatement(sql);
-
                 ps.setInt(1, getMaxIdLog()+1);
                 ps.setInt(2, getIdFromName(tourModelName));
                 ps.setString(3, item.getDate());
@@ -268,11 +247,10 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
         }
     }
 
+    //Check if Tour Log exists
     public boolean tourLogExists(String date) {
         try {
-            // Step 4: Create a statement
             String sql = "SELECT id FROM tours_logs where \"date\" = ?";
-
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, date);
             ResultSet rs = ps.executeQuery();
@@ -286,22 +264,17 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
     }
 
     @Override
+    //Add Tour
     public void addTour(String tour) {
-        System.out.println("Saving Tour into DB");
         int count = getMaxId() + 1;
         try {
-            // Step 4: Create a statement
-            String sql = "insert into Tours values("+ count +", '" + tour +"')";
-
+            String sql = "insert into Tours values(?, ?)";
             PreparedStatement ps = con.prepareStatement(sql);
-            // Step 6: Process the results
+            ps.setInt(1, count);
+            ps.setString(2, tour);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
-
-
-
 }

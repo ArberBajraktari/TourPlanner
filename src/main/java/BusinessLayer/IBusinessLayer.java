@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface IBusinessLayer {
 
-    //Functions for the BL
+    //Functions for the Business Layer
     void createTourItem(TourEntryModel tourItem) throws SQLException, IOException;
     void deleteTourItem(TourModel tourModel) throws SQLException, FileNotFoundException;
     void deleteTourLogItem(TourLogCellModel tourLogCellModel) throws SQLException, FileNotFoundException;

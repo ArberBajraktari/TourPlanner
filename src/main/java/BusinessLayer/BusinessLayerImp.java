@@ -60,6 +60,7 @@ public class BusinessLayerImp implements IBusinessLayer {
             if(img != null){
                 log.info("Img is saved!");
                 ImageIO.write(img, "jpg", outputFile);
+                return true;
             }else{
                 log.error("Could not save img for this Tour!");
                 return false;
@@ -68,7 +69,6 @@ public class BusinessLayerImp implements IBusinessLayer {
             log.error("Could not save img for this Tour!");
             return false;
         }
-        return false;
     }
 
     @Override

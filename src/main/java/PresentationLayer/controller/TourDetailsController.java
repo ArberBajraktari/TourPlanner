@@ -214,7 +214,7 @@ public class TourDetailsController implements Initializable {
             }
             return true;
         }
-        catch (NumberFormatException | DateTimeParseException | NullPointerException e){
+        catch (DateTimeParseException | NullPointerException e){
             System.out.println(e.getMessage());
             return false;
         }

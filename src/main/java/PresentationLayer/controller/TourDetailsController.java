@@ -4,6 +4,7 @@ import BusinessLayer.BusinessLayerFactory;
 import BusinessLayer.ConfigurationManager;
 import BusinessLayer.IBusinessLayer;
 import PresentationLayer.model.TourDetailsModel;
+import PresentationLayer.model.TourEntryModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +18,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.controlsfx.control.Rating;
 import java.io.File;
 import java.io.IOException;
@@ -76,6 +79,8 @@ public class TourDetailsController implements Initializable {
         this.tourDetailsModel = tourDetailsModel;
     }
 
+    Logger log = LogManager.getLogger(TourDetailsController.class);
+
     public void editMode(ActionEvent actionEvent) {
         //Change to edit mode when the button is clicked
         if(this.tourDetailsModel.getEditMode() == true){
@@ -88,16 +93,17 @@ public class TourDetailsController implements Initializable {
             this.tourDetailsModel.setEditButton("Cancel");
             this.tourDetailsModel.setWorkMode(false);
         }
-
+        log.info("State of Tour Details is flipped");
     }
 
     public void saveTour(ActionEvent actionEvent) throws IOException, SQLException {
         //Save tour when the save button is clicked
         //with validation
         if(!inputAreValid()){
-            System.out.println("itu: " + inputAreValid());
+            log.info("Input from Fields is not valid");
             inputNotValidBox(true);
         }else{
+            log.info("Update Details fron Tour");
             if(tourDetailsModel.getTourName() != null && !tourDetailsModel.getTourName().equals("") ){
                 //Save tour
                 this.tourDetailsModel.saveTourModel();
@@ -124,6 +130,7 @@ public class TourDetailsController implements Initializable {
                         //Update Tour in DB
                         manager.updateTourDetails(this.tourDetailsModel.getTourDesc(), this.tourDetailsModel.getTourFrom(), this.tourDetailsModel.getTourTo(), this.tourDetailsModel.getTourTransport(), this.tourDetailsModel.getTourDistance(), this.tourDetailsModel.getTourEstTime(), this.tourDetailsModel.getTourInfo(), this.tourDetailsModel.getTourName(), this.tourDetailsModel.getTourRating());
                     }else{
+                        log.info("Input from Fields is not valid");
                         //Show new Screen, input was not valid
                         TourDetailsController.inputNotValidBox(false);
                     }

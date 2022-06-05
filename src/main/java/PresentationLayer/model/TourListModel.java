@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -57,12 +59,16 @@ public class TourListModel {
                 list.add(temp_log);
             }
         }
+        Logger log = LogManager.getLogger(TourListModel.class);
         try (CSVWriter writer = new CSVWriter(new FileWriter(ConfigurationManager.GetConfigProperty("CsvAccessStoragePath") + "export.csv"))) {
             writer.writeAll(list);
             exportStatus(true);
+            log.info("Tours are exported in a CSV file");
         } catch (IOException e) {
             e.printStackTrace();
             exportStatus(false);
+            log.error("Tours could not be exported.");
+            log.error(e.getMessage());
         }
     }
 

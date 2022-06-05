@@ -9,6 +9,8 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -140,17 +142,17 @@ public class TourModel {
 
     //Delete Tour
     public void deleteTour(TourModel tourModel) throws SQLException, FileNotFoundException {
-        System.out.println(tourModel.getTourName());
         manager.deleteTourItem(tourModel);
     }
 
     //Delete Img for this Tour
     public void deleteImg(String img){
+        Logger log = LogManager.getLogger(TourModel.class);
         File myObj = new File(img);
-        if (myObj.delete()) {
-            System.out.println("Deleted the file: " + myObj.getName());
+        if (!myObj.exists() || myObj.delete()) {
+            log.info(myObj.getName() + " is deleted");
         } else {
-            System.out.println("Failed to delete the file.");
+            log.error("Failed to delete the file.");
         }
     }
 }

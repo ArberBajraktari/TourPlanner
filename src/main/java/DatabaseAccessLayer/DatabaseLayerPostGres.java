@@ -1,10 +1,13 @@
 package DatabaseAccessLayer;
 
+import BusinessLayer.BusinessLayerImp;
 import BusinessLayer.ConfigurationManager;
 import PresentationLayer.model.TourLogCellModel;
 import PresentationLayer.model.TourModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.FileNotFoundException;
 import java.sql.*;
@@ -16,6 +19,7 @@ import java.util.Properties;
 public class DatabaseLayerPostGres implements IDatabaseLayer {
 
     private Connection con;
+    Logger log = LogManager.getLogger(DatabaseLayerPostGres.class);
 
     public DatabaseLayerPostGres(){
     }
@@ -45,7 +49,8 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
                 return last_updated_person.getInt(1);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Could not get id from last Tour inserted!");
+            log.error(e.getMessage());
         }
         return 0;
     }
@@ -62,7 +67,8 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
                 return last_updated_person.getInt(1);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Could not get id from last Tour Log inserted!");
+            log.error(e.getMessage());
         }
         return 0;
     }
@@ -80,7 +86,8 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
                 return last_updated_person.getInt("id");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Could not get id from name of Tour");
+            log.error(e.getMessage());
         }
         return 0;
     }
@@ -93,8 +100,10 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, tourModel.getTourName());
             ps.executeUpdate();
+            log.info("Tour " + tourModel.getTourName() + " deleted!");
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Could not delete Tour");
+            log.error(e.getMessage());
         }
     }
 
@@ -114,8 +123,10 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
             ps.setInt(8, tourRating);
             ps.setString(9, tourName);
             ps.executeUpdate();
+            log.info("Tour " + tourName + " is updated!");
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Could not update Tour");
+            log.error(e.getMessage());
         }
     }
 
@@ -132,8 +143,10 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
             ps.setString(4, item.getRating());
             ps.setString(5, item.getDate());
             ps.executeUpdate();
+            log.info("Tour Log is udated!");
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Could not update Tour Log");
+            log.error(e.getMessage());
         }
     }
 
@@ -145,8 +158,10 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, tourLogCellModel.getDate());
             ps.executeUpdate();
+            log.info("Tour Log is deleted!");
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Could not delete Tour Log");
+            log.error(e.getMessage());
         }
     }
 
@@ -171,7 +186,8 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
             }
             return tourLogs;
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Could not fetch all Tour Logs from DB");
+            log.error(e.getMessage());
         }
         return null;
     }
@@ -200,7 +216,8 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
             }
             return tours;
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Could not fetch all Tours from DB");
+            log.error(e.getMessage());
         }
         return null;
     }
@@ -218,7 +235,8 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
             }
             return toursNames;
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Could not fetch all Tour Names from DB");
+            log.error(e.getMessage());
         }
         return null;
     }
@@ -241,8 +259,10 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
                 ps.setString(6, item.getTotalTime());
                 ps.setString(7, item.getRating());
                 ps.executeUpdate();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
+                log.info("Tour Log inserted in DB");
+            } catch (SQLException e) {
+                log.error("Could not insert Tour Log in DB");
+                log.error(e.getMessage());
             }
         }
     }
@@ -273,8 +293,10 @@ public class DatabaseLayerPostGres implements IDatabaseLayer {
             ps.setInt(1, count);
             ps.setString(2, tour);
             ps.executeUpdate();
+            log.info("Tour " + tour + " is inserted in the DB");
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Could not insert Tour in DB");
+            log.error(e.getMessage());
         }
     }
 }

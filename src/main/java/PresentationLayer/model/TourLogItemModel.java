@@ -3,6 +3,8 @@ package PresentationLayer.model;
 import PresentationLayer.controller.TourItemController;
 import PresentationLayer.controller.TourLogCellController;
 import javafx.fxml.FXMLLoader;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.function.Consumer;
@@ -14,6 +16,8 @@ public class TourLogItemModel extends javafx.scene.control.ListCell<TourLogCellM
     public TourLogItemModel(Consumer<TourLogCellModel> callback) {
         this.onDeleteProductCallBack = callback;
     }
+
+    Logger log = LogManager.getLogger(TourLogItemModel.class);
 
     //Load TourLogItem.fxml to the ListView
     @Override
@@ -28,9 +32,12 @@ public class TourLogItemModel extends javafx.scene.control.ListCell<TourLogCellM
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TourLogItem.fxml"));
         try
         {
+            log.info("Item is added to the ListView of Tour");
             fxmlLoader.load();
         }
         catch (IOException e) {
+            log.error("Could not create Item TourItem.fxml");
+            log.error(e.getMessage());
             throw new RuntimeException(e);
         }
 

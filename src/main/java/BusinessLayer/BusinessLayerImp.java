@@ -3,10 +3,13 @@ package BusinessLayer;
 import DatabaseAccessLayer.DataAccessLayerFactory;
 import DatabaseAccessLayer.IDatabaseLayer;
 import PresentationLayer.Main;
+import PresentationLayer.controller.TourEntryController;
 import PresentationLayer.model.TourEntryModel;
 import PresentationLayer.model.TourLogCellModel;
 import PresentationLayer.model.TourModel;
 import javafx.collections.ObservableList;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 
@@ -25,6 +28,7 @@ public class BusinessLayerImp implements IBusinessLayer {
     private IDatabaseLayer dataLayer;
     //MapQuest
     private MapQuestManager map = new MapQuestManager();
+    Logger log = LogManager.getLogger(BusinessLayerImp.class);
 
     public BusinessLayerImp(){
         dataLayer = DataAccessLayerFactory.getDatabase();
@@ -54,14 +58,17 @@ public class BusinessLayerImp implements IBusinessLayer {
             File outputFile = new File("src/main/resources/TourImages/" + tourName + ".jpg");
             BufferedImage img = MapQuestManager.requestRouteImage(start, finish);
             if(img != null){
+                log.info("Img is saved!");
                 ImageIO.write(img, "jpg", outputFile);
             }else{
+                log.error("Could not save img for this Tour!");
                 return false;
             }
         } catch (Exception e) {
+            log.error("Could not save img for this Tour!");
             return false;
         }
-        return true;
+        return false;
     }
 
     @Override
@@ -93,8 +100,10 @@ public class BusinessLayerImp implements IBusinessLayer {
             this.dataLayer.createConnection();
             this.dataLayer.saveTourLogs(tourLogs, tourModelName);
         } catch (FileNotFoundException e) {
+            log.error(e.getMessage());
             e.printStackTrace();
         } catch (SQLException e) {
+            log.error(e.getMessage());
             e.printStackTrace();
         }
 
@@ -106,8 +115,10 @@ public class BusinessLayerImp implements IBusinessLayer {
             this.dataLayer.createConnection();
             return this.dataLayer.getAllTourLogs(tourName);
         } catch (FileNotFoundException e) {
+            log.error(e.getMessage());
             e.printStackTrace();
         } catch (SQLException e) {
+            log.error(e.getMessage());
             e.printStackTrace();
         }
         return null;
@@ -122,8 +133,12 @@ public class BusinessLayerImp implements IBusinessLayer {
             document.save("test.pdf");
             document.close();
             Main.getImg();
+            log.info("PDF is saved");
         } catch (IOException e) {
+            log.error("PDF could not be saved");
+            log.error(e.getMessage());
             e.printStackTrace();
         }
     }
 }
+

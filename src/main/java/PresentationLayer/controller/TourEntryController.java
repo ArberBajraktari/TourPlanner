@@ -8,6 +8,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import PresentationLayer.model.TourEntryModel;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -22,6 +25,7 @@ public class TourEntryController implements Initializable {
     private Consumer<TourEntryModel> newTourListener;
     private static List<String> tourNames;
     private IBusinessLayer manager = BusinessLayerFactory.GetManager();
+    Logger log = LogManager.getLogger(TourEntryController.class);
 
     @FXML
     public Label toursLabel;
@@ -40,7 +44,7 @@ public class TourEntryController implements Initializable {
     //Adds a new tour to the ListView and creates the Tour in the DB
     public void addTour(ActionEvent actionEvent) throws SQLException, IOException {
         if(tourNames.contains(this.tourEntryModel.getTourName())){
-            System.out.println("Nope");
+            log.info("Cannot add this Tour. Tour already exists!");
         }else{
             this.newTourListener.accept(this.tourEntryModel);
             tourEntryModel.createTour(this.tourEntryModel);

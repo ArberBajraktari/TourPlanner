@@ -69,8 +69,6 @@ public class MapQuestManager {
             return null;
         }
         String session = obj.getJSONObject("route").getString("sessionId");
-        String distance = String.valueOf(obj.getJSONObject("route").getFloat("distance"));
-        System.out.println(distance);
         JSONObject boundingBox = obj.getJSONObject("route").getJSONObject("boundingBox");
         try {
             String params;
